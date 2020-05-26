@@ -1,0 +1,28 @@
+controller
+	idle
+	animations
+	marcher
+	animations
+	courir
+	animations
+	blending
+	mettre sur github
+	
+	sauter plus ou moins haut/loin 
+	se raccrocher à une corniche
+	glisser au sol plus ou moins lgtps
+	
+	grimper
+	enjamber
+	grimper le long d'un mur
+	sauter quand contre un mur
+	échelle
+	
+	sortir un flingue
+	viser
+	se déplacer en visant
+	tirer
+	
+
+proto graphique https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
+
