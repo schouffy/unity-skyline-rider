@@ -4,29 +4,39 @@ using UnityEngine;
 
 public class HeroAnimations : MonoBehaviour
 {
-    [Range(0, 100)]
-    public float PlayRandomIdleAnimationEverySeconds;
+    public float RandomIdleAnimationsInterval;
     private float _lastRandomIdleAnimationTime;
+    private float _lastInputTime;
 
     public Animator Animator;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //if (Time.time > _lastRandomIdleAnimationTime + PlayRandomIdleAnimationEverySeconds)
-        //{
-        //    Animator.SetTrigger("Idle_random");
-        //    _lastRandomIdleAnimationTime = Time.time;
-        //}
+        HandleIdleAnimations();
+        HandleMovementAnimation();
+    }
 
-        //Debug.Log("velocity: " + GetComponent<Rigidbody2D>().velocity);
+    void HandleIdleAnimations()
+    {
+        if (HasAnyInput())
+            _lastInputTime = Time.time;
 
-        Animator.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) / 100);
+        if (Time.time > Mathf.Max(_lastInputTime, _lastRandomIdleAnimationTime) + RandomIdleAnimationsInterval)
+        {
+            Animator.SetTrigger("Idle_random");
+            _lastRandomIdleAnimationTime = Time.time;
+        }
+    }
+
+    bool HasAnyInput()
+    {
+        if (Input.anyKey || Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            return true;
+        return false;
+    }
+
+    void HandleMovementAnimation()
+    {
+        Animator.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) / 5.8f);
     }
 }

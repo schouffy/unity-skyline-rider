@@ -3,18 +3,25 @@ controller
 	X marcher
 	X courir
 	X blending
+	X pb d'échelle sprites et modèles 3D
+		PPU lors de l'import des sprites: 16, no filter, compression none
+		réso 320x180, Assets PPU 16 sur la caméra
+	X cleaning idle/move dans animation controller et scripts
+	X 3 ou 4 presets de vitesse pour éviter le blending trop violent
+	X caméra qui suit basiquement
+	X clean du personnage dans blender et les crottes qui se décollent de ses pieds
 	
-	cleaning idle/move dans animation controller et scripts
-	caméra qui suit basiquement
-	clean du personnage dans blender et les crottes qui se décollent de ses pieds
-	
-	sauter plus ou moins haut/loin 
+	sauter
 	glisser au sol plus ou moins lgtps
-	grimper
-	enjamber
+	animations
+	
+	presets vitesse : idle, marche, course. Enlever les intermédiaires. La marche la plus lente ne doit pas saccader à l'affichage.
 	
 	mockup/proto graphique 
 	https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
+	
+	grimper
+	enjamber
 	
 	se raccrocher à une corniche
 	grimper le long d'un mur
