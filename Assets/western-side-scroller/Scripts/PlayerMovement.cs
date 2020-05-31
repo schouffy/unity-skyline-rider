@@ -10,11 +10,13 @@ public class PlayerMovement : MonoBehaviour
     public float RunSpeed;
     public float[] SpeedSteps;
 
-    private bool _jump;
+    
 
     [Header("Debug info (read only)")]
     public float InputSpeed;
     public float StepSpeed;
+    public bool _jump;
+    public bool _crouch;
 
     void Start()
     {
@@ -28,10 +30,12 @@ public class PlayerMovement : MonoBehaviour
         _horizontalMove = StepSpeed * RunSpeed;
 
         _jump = Input.GetButtonDown("Jump");
+
+        _crouch = Input.GetButton("Crouch");
     }
 
     void FixedUpdate()
     {
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _jump);
+        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _crouch, _jump);
     }
 }

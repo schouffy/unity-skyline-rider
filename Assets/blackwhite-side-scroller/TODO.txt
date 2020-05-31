@@ -1,38 +1,45 @@
-controller
-	X idle
-	X marcher
-	X courir
-	X blending
-	X pb d'échelle sprites et modèles 3D
-		PPU lors de l'import des sprites: 16, no filter, compression none
-		réso 320x180, Assets PPU 16 sur la caméra
-	X cleaning idle/move dans animation controller et scripts
-	X 3 ou 4 presets de vitesse pour éviter le blending trop violent
-	X caméra qui suit basiquement
-	X clean du personnage dans blender et les crottes qui se décollent de ses pieds
-	
-	sauter
-	glisser au sol plus ou moins lgtps
-	animations
-	
-	presets vitesse : idle, marche, course. Enlever les intermédiaires. La marche la plus lente ne doit pas saccader à l'affichage.
-	
-	mockup/proto graphique 
-	https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
-	
-	grimper
-	enjamber
-	
-	se raccrocher à une corniche
-	grimper le long d'un mur
-	sauter quand contre un mur
-	échelle
-	
-	sortir un flingue
-	viser
-	se déplacer en visant
-	tirer
-	
+
+X idle
+X marcher
+X courir
+X blending
+X pb d'échelle sprites et modèles 3D
+	PPU lors de l'import des sprites: 16, no filter, compression none
+	réso 320x180, Assets PPU 16 sur la caméra
+X cleaning idle/move dans animation controller et scripts
+X 3 ou 4 presets de vitesse pour éviter le blending trop violent
+X caméra qui suit basiquement
+X clean du personnage dans blender et les crottes qui se décollent de ses pieds
+
+X se baisser et se déplacer comme ça
+X sauter
+
+Améliorer saut (décomposer, raycast,..)
+grimper
+enjamber
+escaliers, pente,..
+
+mockup/proto graphique 
+https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
+
+
+
+se raccrocher à une corniche
+grimper le long d'un mur
+sauter quand contre un mur
+échelle
+perche
+
+glissade plus ou moins longtemps
+roulade
+
+attaquer avec un sabre
+
+sortir un flingue
+viser
+se déplacer en visant
+tirer
+
 
 
 

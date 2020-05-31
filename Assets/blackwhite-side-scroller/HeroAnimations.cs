@@ -14,6 +14,8 @@ public class HeroAnimations : MonoBehaviour
     {
         HandleIdleAnimations();
         HandleMovementAnimation();
+        HandleCrouchAnimations();
+        HandleJumpAnimations();
     }
 
     void HandleIdleAnimations()
@@ -38,5 +40,16 @@ public class HeroAnimations : MonoBehaviour
     void HandleMovementAnimation()
     {
         Animator.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) / 5.8f);
+    }
+
+    void HandleCrouchAnimations()
+    {
+        Animator.SetBool("Crouch", Input.GetButton("Crouch"));
+    }
+
+    void HandleJumpAnimations()
+    {
+        if (Input.GetButtonDown("Jump"))
+            Animator.SetTrigger("Jump");
     }
 }
