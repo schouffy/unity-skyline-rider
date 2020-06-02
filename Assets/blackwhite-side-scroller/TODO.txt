@@ -15,19 +15,22 @@ X se baisser et se déplacer comme ça
 X sauter
 
 X Améliorer saut (décomposer, raycast,..)
-grimper
-enjamber
-escaliers, pente,..
-chute sans sauter / après saut trop haut
 
 mockup/proto graphique 
 https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
 
+chute sans sauter / après saut trop haut
+cleaning
 
+escaliers, pente,..
 
 se raccrocher à une corniche
+enjamber
+franchir, grimper
+
 grimper le long d'un mur
 sauter quand contre un mur
+
 échelle
 perche
 

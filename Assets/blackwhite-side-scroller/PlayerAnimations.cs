@@ -51,7 +51,6 @@ public class PlayerAnimations : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("jump end false");
             Animator.SetBool("JumpEnd", false);
             Animator.SetTrigger("JumpStart");
         }
@@ -62,5 +61,11 @@ public class PlayerAnimations : MonoBehaviour
         var currentClip = Animator.GetCurrentAnimatorClipInfo(0);
         if (currentClip.Length == 1 && currentClip[0].clip != null && currentClip[0].clip.name == "JumpMid")
             Animator.SetBool("JumpEnd", true);
+    }
+
+    public void StartFall()
+    {
+        Animator.SetBool("JumpEnd", false);
+        Animator.SetTrigger("Fall");
     }
 }

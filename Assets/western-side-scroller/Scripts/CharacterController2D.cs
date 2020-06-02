@@ -24,6 +24,7 @@ public class CharacterController2D : MonoBehaviour
 	[Header("Events")]
 	[Space]
 
+	public UnityEvent OnFallEvent;
 	public UnityEvent OnLandEvent;
 	public UnityEvent OnGroundApproachingEvent;
 
@@ -41,6 +42,9 @@ public class CharacterController2D : MonoBehaviour
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		_player = GetComponent<Player>();
+
+		if (OnFallEvent == null)
+			OnFallEvent = new UnityEvent();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -68,6 +72,12 @@ public class CharacterController2D : MonoBehaviour
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
 			}
+		}
+
+		if (wasGrounded && !m_Grounded && m_Velocity.y <= 0)
+		{
+			Debug.Log("fall");
+			OnFallEvent.Invoke();
 		}
 
 		Debug.DrawRay(m_GroundCheck.position, Vector2.down * m_groundApproachingDistance, Color.green);
