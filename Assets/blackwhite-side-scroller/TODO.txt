@@ -14,10 +14,11 @@ X clean du personnage dans blender et les crottes qui se décollent de ses pieds
 X se baisser et se déplacer comme ça
 X sauter
 
-Améliorer saut (décomposer, raycast,..)
+X Améliorer saut (décomposer, raycast,..)
 grimper
 enjamber
 escaliers, pente,..
+chute sans sauter / après saut trop haut
 
 mockup/proto graphique 
 https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
@@ -42,4 +43,9 @@ tirer
 
 
 
-
+déroulement
+1- parkour basique
+2- infiltration
+3- infiltration et utilisation environnement pour se débarasser d'ennemis
+4- découverte arme de melée
+5- découverte flingue

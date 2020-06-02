@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroAnimations : MonoBehaviour
+public class PlayerAnimations : MonoBehaviour
 {
     public float RandomIdleAnimationsInterval;
     private float _lastRandomIdleAnimationTime;
@@ -50,6 +50,17 @@ public class HeroAnimations : MonoBehaviour
     void HandleJumpAnimations()
     {
         if (Input.GetButtonDown("Jump"))
-            Animator.SetTrigger("Jump");
+        {
+            Debug.Log("jump end false");
+            Animator.SetBool("JumpEnd", false);
+            Animator.SetTrigger("JumpStart");
+        }
+    }
+
+    public void LandAfterJump()
+    {
+        var currentClip = Animator.GetCurrentAnimatorClipInfo(0);
+        if (currentClip.Length == 1 && currentClip[0].clip != null && currentClip[0].clip.name == "JumpMid")
+            Animator.SetBool("JumpEnd", true);
     }
 }
