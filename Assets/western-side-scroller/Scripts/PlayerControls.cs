@@ -30,12 +30,13 @@ public class PlayerControls : MonoBehaviour
         _horizontalMove = StepSpeed * RunSpeed;
 
         _jump = Input.GetButtonDown("Jump");
-
         _crouch = Input.GetButton("Crouch");
     }
 
     void FixedUpdate()
     {
         _controller.Move(_horizontalMove * Time.fixedDeltaTime, _crouch, _jump);
+
+        _jump = false;
     }
 }

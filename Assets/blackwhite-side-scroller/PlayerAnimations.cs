@@ -15,7 +15,7 @@ public class PlayerAnimations : MonoBehaviour
         HandleIdleAnimations();
         HandleMovementAnimation();
         HandleCrouchAnimations();
-        HandleJumpAnimations();
+        //HandleJumpAnimations();
     }
 
     void HandleIdleAnimations()
@@ -47,13 +47,13 @@ public class PlayerAnimations : MonoBehaviour
         Animator.SetBool("Crouch", Input.GetButton("Crouch"));
     }
 
-    void HandleJumpAnimations()
+    public void StartJump()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
+        //if (Input.GetButtonDown("Jump"))
+        //{
             Animator.SetBool("JumpEnd", false);
             Animator.SetTrigger("JumpStart");
-        }
+        //}
     }
 
     public void LandAfterJump()
@@ -67,5 +67,10 @@ public class PlayerAnimations : MonoBehaviour
     {
         Animator.SetBool("JumpEnd", false);
         Animator.SetTrigger("Fall");
+    }
+
+    public void StartClimbing(ObstacleSize obstacleSize)
+    {
+        Debug.Log("Start climbing animation " + obstacleSize);
     }
 }
