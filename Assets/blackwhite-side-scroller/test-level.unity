@@ -2139,6 +2139,7 @@ MonoBehaviour:
   - {fileID: 1950264349}
   - {fileID: 1022469416}
   FrontObstacleRaycastDistance: 0.2
+  ClimbTransitionSpeed: 3
   OnJumpEvent:
     m_PersistentCalls:
       m_Calls:

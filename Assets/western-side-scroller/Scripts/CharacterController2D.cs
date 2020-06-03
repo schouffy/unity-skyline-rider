@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,6 +36,7 @@ public class CharacterController2D : MonoBehaviour
     [Space]
     public Transform[] ObstacleRaycastStartPositions;
     public float FrontObstacleRaycastDistance = 0.2f;
+    public float ClimbTransitionSpeed = 1f;
 
 
     [Header("Events")]
@@ -100,7 +102,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        if (wasGrounded && !m_Grounded && m_Velocity.y <= 0)
+        if (wasGrounded && !m_Grounded && m_Velocity.y < 0)
         {
             Debug.Log("fall");
             OnFallEvent.Invoke();
@@ -239,9 +241,31 @@ public class CharacterController2D : MonoBehaviour
         if (hit.collider != null)
         {
             // animate to this location
-            transform.position = hit.point;
+            StartCoroutine(MoveToTargetPosition(hit.point));
             OnClimbStartEvent.Invoke(obstacleSize);
         }
+    }
+
+    private IEnumerator MoveToTargetPosition(Vector2 targetPosition)
+    {
+        m_Rigidbody2D.simulated = false;
+
+        // First go up, then go forward
+        var firstTargetPos = new Vector2(transform.position.x, targetPosition.y);
+        var secondTargetPos = targetPosition;
+
+        while (Vector2.Distance(transform.position, firstTargetPos) > 0.01f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, firstTargetPos, ClimbTransitionSpeed * Time.deltaTime);
+            yield return null;
+        }
+        while (Vector2.Distance(transform.position, secondTargetPos) > 0.01f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, secondTargetPos, ClimbTransitionSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        m_Rigidbody2D.simulated = true;
     }
 
 

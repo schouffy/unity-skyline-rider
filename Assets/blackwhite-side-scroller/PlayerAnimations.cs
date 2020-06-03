@@ -49,11 +49,8 @@ public class PlayerAnimations : MonoBehaviour
 
     public void StartJump()
     {
-        //if (Input.GetButtonDown("Jump"))
-        //{
-            Animator.SetBool("JumpEnd", false);
-            Animator.SetTrigger("JumpStart");
-        //}
+        Animator.SetBool("JumpEnd", false);
+        Animator.SetTrigger("JumpStart");
     }
 
     public void LandAfterJump()
@@ -72,5 +69,8 @@ public class PlayerAnimations : MonoBehaviour
     public void StartClimbing(ObstacleSize obstacleSize)
     {
         Debug.Log("Start climbing animation " + obstacleSize);
+
+        Animator.SetFloat("ObstacleHeight", (float)obstacleSize);
+        Animator.SetTrigger("Climb");
     }
 }
