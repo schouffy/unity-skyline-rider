@@ -11,6 +11,8 @@ public class PlayerAnimations : MonoBehaviour
     public Animator Animator;
     public Rigidbody2D RigidBody;
 
+    public Collider2D[] PlayerColliders;
+
     void Update()
     {
         HandleIdleAnimations();
@@ -18,6 +20,18 @@ public class PlayerAnimations : MonoBehaviour
         HandleCrouchAnimations();
         //HandleJumpAnimations();
     }
+
+    //void OnAnimatorMove()
+    //{
+    //    Animator animator = GetComponent<Animator>();
+    //    if (animator)
+    //    {
+    //        Vector3 newPosition = RigidBody.transform.position;
+    //        newPosition.y += animator.deltaPosition.y;
+    //        newPosition.x += animator.deltaPosition.x;
+    //        RigidBody.transform.position = newPosition;
+    //    }
+    //}
 
     void HandleIdleAnimations()
     {
@@ -69,10 +83,31 @@ public class PlayerAnimations : MonoBehaviour
 
     public void StartClimbing(ObstacleSize obstacleSize)
     {
-        Debug.Log("Start climbing animation " + obstacleSize);
+        Debug.Log("Start climbing animation " + obstacleSize + " value: " + (float)obstacleSize);
+
+        //Animator.applyRootMotion = true;
+        //RigidBody.simulated = false;
+        //RigidBody.isKinematic = true;
+        //for (var i = 0; i < PlayerColliders.Length; ++i)
+        //{
+        //    PlayerColliders[i].gameObject.SetActive(false);
+        //}
 
         Animator.SetFloat("ObstacleHeight", (float)obstacleSize);
         Animator.SetTrigger("Climb");
+    }
+
+    public void EndClimbing()
+    {
+        Debug.Log("End climbing");
+        
+        //for (var i = 0; i < PlayerColliders.Length; ++i)
+        //{
+        //    PlayerColliders[i].gameObject.SetActive(true);
+        //}
+        //RigidBody.simulated = true;
+        //RigidBody.isKinematic = false;
+        //Animator.applyRootMotion = false;
     }
 
 }
