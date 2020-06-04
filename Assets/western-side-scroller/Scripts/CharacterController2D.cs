@@ -27,6 +27,7 @@ public class CharacterController2D : MonoBehaviour
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
+    private bool m_Climbing;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -196,26 +197,9 @@ public class CharacterController2D : MonoBehaviour
         // If the player should jump...
         if (m_Grounded && jump)
         {
-            var obstacleSize = ObstacleSize.None;
-            var obstacleApproxPosition = Vector2.zero;
-            for (var i = 0; i < ObstacleRaycastStartPositions.Length; ++i)
+            if (!DetectAndClimbObstacle())
             {
-                var startPos = ObstacleRaycastStartPositions[i];
-                var hit = Physics2D.Raycast(startPos.position, new Vector2(m_FacingRight ? 1 : -1, 0), FrontObstacleRaycastDistance, m_WhatIsGround);
-                if (hit.collider != null)
-                {
-                    obstacleSize = (ObstacleSize)(i + 1);
-                    obstacleApproxPosition = hit.point;
-                }
-            }
-            if (obstacleSize != ObstacleSize.None)
-            {
-                // if there is an obstacle in front, climb it
-                ClimbOverObstacle(obstacleSize, obstacleApproxPosition);
-            }
-            else
-            {
-                //else jump
+                //no obstacle:  jump
 
                 // Add a vertical force to the player.
                 m_Grounded = false;
@@ -229,6 +213,34 @@ public class CharacterController2D : MonoBehaviour
                 OnJumpEvent.Invoke();
             }
         }
+        else if (!m_Grounded && !m_Climbing && Input.GetButton("Jump"))
+        {
+            // If obstacle is encountered mid-air and jump button is down, jump over it
+            DetectAndClimbObstacle();
+        }
+    }
+
+    private bool DetectAndClimbObstacle()
+    {
+        var obstacleSize = ObstacleSize.None;
+        var obstacleApproxPosition = Vector2.zero;
+        for (var i = 0; i < ObstacleRaycastStartPositions.Length; ++i)
+        {
+            var startPos = ObstacleRaycastStartPositions[i];
+            var hit = Physics2D.Raycast(startPos.position, new Vector2(m_FacingRight ? 1 : -1, 0), FrontObstacleRaycastDistance, m_WhatIsGround);
+            if (hit.collider != null)
+            {
+                obstacleSize = (ObstacleSize)(i + 1);
+                obstacleApproxPosition = hit.point;
+            }
+        }
+        if (obstacleSize != ObstacleSize.None)
+        {
+            // if there is an obstacle in front, climb it
+            ClimbOverObstacle(obstacleSize, obstacleApproxPosition);
+            return true;
+        }
+        return false;
     }
 
     private void ClimbOverObstacle(ObstacleSize obstacleSize, Vector2 obstacleApproxPosition)
@@ -240,6 +252,7 @@ public class CharacterController2D : MonoBehaviour
         Debug.DrawRay(obstacleApproxPosition + Vector2.up * 3, Vector3.down * 5);
         if (hit.collider != null)
         {
+            m_Climbing = true;
             // animate to this location
             m_Rigidbody2D.velocity = Vector2.zero;
             StartCoroutine(MoveToTargetPosition(hit.point));
@@ -266,6 +279,7 @@ public class CharacterController2D : MonoBehaviour
             yield return null;
         }
 
+        m_Climbing = false;
         m_Rigidbody2D.simulated = true;
     }
 
