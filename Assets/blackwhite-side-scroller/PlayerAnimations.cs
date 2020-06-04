@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour
     private float _lastInputTime;
 
     public Animator Animator;
+    public Rigidbody2D RigidBody;
 
     void Update()
     {
@@ -39,7 +40,7 @@ public class PlayerAnimations : MonoBehaviour
 
     void HandleMovementAnimation()
     {
-        Animator.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) / 5.8f);
+        Animator.SetFloat("Speed", Mathf.Abs(RigidBody.velocity.x) / 5.8f);
     }
 
     void HandleCrouchAnimations()
@@ -73,4 +74,5 @@ public class PlayerAnimations : MonoBehaviour
         Animator.SetFloat("ObstacleHeight", (float)obstacleSize);
         Animator.SetTrigger("Climb");
     }
+
 }

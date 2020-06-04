@@ -241,6 +241,7 @@ public class CharacterController2D : MonoBehaviour
         if (hit.collider != null)
         {
             // animate to this location
+            m_Rigidbody2D.velocity = Vector2.zero;
             StartCoroutine(MoveToTargetPosition(hit.point));
             OnClimbStartEvent.Invoke(obstacleSize);
         }
