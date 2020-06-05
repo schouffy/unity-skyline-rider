@@ -33,25 +33,29 @@ mockup/proto graphique
 		Batiment en ruine
 
 
-
-playtest + animations
-	trouver une technique pour ne pas perdre trop de temps avec le snapping
-	mourir quand on tombe
-
-
-
-chute sans sauter / après saut trop haut
-cleaning
+trouver une technique pour ne pas perdre trop de temps avec le snapping
+map de test avec tous les mouvements de base
+	marcher/courir
+	tomber (chute sans sauter / après saut trop haut)
+	sauter
+	enjamber
+	grimper
+	grimper après un saut
+mourir quand on tombe dans un trou
+playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
 escaliers, pente,..
 
 sauter quand contre un mur
 
-
-Effets de particules quand on court, saute, atterit etc...
-
 glissade plus ou moins longtemps
 roulade
+roulade auto après saut vertigineux 
+
+Effets de particules quand on court, saute, atterit etc...
+coyote time ?
+
+playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
 échelle
 perche
