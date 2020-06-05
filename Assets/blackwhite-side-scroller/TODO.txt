@@ -35,6 +35,9 @@ mockup/proto graphique
 
 
 playtest + animations
+	trouver une technique pour ne pas perdre trop de temps avec le snapping
+	mourir quand on tombe
+
 
 
 chute sans sauter / après saut trop haut
@@ -44,11 +47,14 @@ escaliers, pente,..
 
 sauter quand contre un mur
 
-échelle
-perche
+
+Effets de particules quand on court, saute, atterit etc...
 
 glissade plus ou moins longtemps
 roulade
+
+échelle
+perche
 
 attaquer avec un sabre
 
@@ -56,6 +62,8 @@ sortir un flingue
 viser
 se déplacer en visant
 tirer
+
+événements "interactifs" (oiseaux qui s'envolent, )
 
 
 

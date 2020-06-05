@@ -83,7 +83,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void StartClimbing(ObstacleSize obstacleSize)
     {
-        Debug.Log("Start climbing animation " + obstacleSize + " value: " + (float)obstacleSize);
+        //Debug.Log("Start climbing animation " + obstacleSize + " value: " + (float)obstacleSize);
 
         //Animator.applyRootMotion = true;
         //RigidBody.simulated = false;
@@ -99,7 +99,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void EndClimbing()
     {
-        Debug.Log("End climbing");
+        //Debug.Log("End climbing");
         
         //for (var i = 0; i < PlayerColliders.Length; ++i)
         //{
