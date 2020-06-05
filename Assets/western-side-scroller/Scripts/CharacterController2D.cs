@@ -9,7 +9,13 @@ public enum ObstacleSize
     Low,
     Medium,
     High,
-    VeryHigh
+    VeryHigh,
+    Above1,
+    Above2,
+    Above3,
+    Above4,
+    Above5,
+    Above6
 }
 
 public class CharacterController2D : MonoBehaviour
@@ -20,12 +26,11 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
-    [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
+    [SerializeField] private CircleCollider2D m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private float m_groundApproachingDistance = 1f;                 // A mask determining what is ground to the character
 
-    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_Climbing;
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
@@ -38,6 +43,9 @@ public class CharacterController2D : MonoBehaviour
     public Transform[] ObstacleRaycastStartPositions;
     public float FrontObstacleRaycastDistance = 0.2f;
     public float ClimbTransitionSpeed = 1f;
+    public float MaxClimbDistanceIfObstacleIsTooHigh = 2f;
+    public float MaxClimbDistanceAfterJumpIfObstacleIsTooHigh = 1f;
+    private bool _hasAlreadyClimbedOnce = false;
 
 
     [Header("Events")]
@@ -92,7 +100,7 @@ public class CharacterController2D : MonoBehaviour
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.transform.position, m_GroundCheck.radius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
@@ -105,12 +113,12 @@ public class CharacterController2D : MonoBehaviour
 
         if (wasGrounded && !m_Grounded && m_Velocity.y < 0)
         {
-            Debug.Log("fall");
+            Debug.Log("fall " + m_Velocity.y);
             OnFallEvent.Invoke();
         }
 
-        Debug.DrawRay(m_GroundCheck.position, Vector2.down * m_groundApproachingDistance, Color.green);
-        var ground = Physics2D.CircleCast(m_GroundCheck.position, k_GroundedRadius, Vector2.down, m_groundApproachingDistance, m_WhatIsGround);
+        Debug.DrawRay(m_GroundCheck.transform.position, Vector2.down * m_groundApproachingDistance, Color.green);
+        var ground = Physics2D.CircleCast(m_GroundCheck.transform.position, m_GroundCheck.radius, Vector2.down, m_groundApproachingDistance, m_WhatIsGround);
         if (ground.collider != null)
         {
             OnGroundApproachingEvent.Invoke();
@@ -218,10 +226,17 @@ public class CharacterController2D : MonoBehaviour
             // If obstacle is encountered mid-air and jump button is down, jump over it
             DetectAndClimbObstacle();
         }
+        if (_hasAlreadyClimbedOnce && m_Grounded)
+        {
+            _hasAlreadyClimbedOnce = false;
+        }
     }
 
     private bool DetectAndClimbObstacle()
     {
+        if (_hasAlreadyClimbedOnce)
+            return true;
+
         var obstacleSize = ObstacleSize.None;
         var obstacleApproxPosition = Vector2.zero;
         for (var i = 0; i < ObstacleRaycastStartPositions.Length; ++i)
@@ -245,19 +260,37 @@ public class CharacterController2D : MonoBehaviour
 
     private void ClimbOverObstacle(ObstacleSize obstacleSize, Vector2 obstacleApproxPosition)
     {
-        m_Grounded = false;
+        _hasAlreadyClimbedOnce = true;
 
-        // identify where to land on the obstacle
-        var hit = Physics2D.Raycast(obstacleApproxPosition + Vector2.up * 3, Vector3.down, 5, m_WhatIsGround);
-        Debug.DrawRay(obstacleApproxPosition + Vector2.up * 3, Vector3.down * 5);
-        if (hit.collider != null)
+        if ((obstacleSize == ObstacleSize.Above6 && m_Grounded)
+            || (obstacleSize >= ObstacleSize.Above3 && !m_Grounded))
         {
+            // if obstacle is too high, we can't go on top of it but we still try to climb it
+            //Debug.Log("Too high to climb.");
+
             m_Climbing = true;
             // animate to this location
             m_Rigidbody2D.velocity = Vector2.zero;
-            StartCoroutine(MoveToTargetPosition(hit.point));
+            var targetPosition = new Vector2(transform.position.x, transform.position.y + (m_Grounded ? MaxClimbDistanceIfObstacleIsTooHigh : MaxClimbDistanceAfterJumpIfObstacleIsTooHigh));
+            StartCoroutine(MoveToTargetPosition(targetPosition));
             OnClimbStartEvent.Invoke(obstacleSize);
         }
+        else
+        {
+            // identify where to land on the obstacle
+            var hit = Physics2D.Raycast(obstacleApproxPosition + Vector2.up * 3, Vector3.down, 5, m_WhatIsGround);
+            Debug.DrawRay(obstacleApproxPosition + Vector2.up * 3, Vector3.down * 5);
+            if (hit.collider != null)
+            {
+                m_Climbing = true;
+                // animate to this location
+                m_Rigidbody2D.velocity = Vector2.zero;
+                StartCoroutine(MoveToTargetPosition(hit.point));
+                OnClimbStartEvent.Invoke(obstacleSize);
+            }
+        }
+
+        m_Grounded = false;
     }
 
     private IEnumerator MoveToTargetPosition(Vector2 targetPosition)

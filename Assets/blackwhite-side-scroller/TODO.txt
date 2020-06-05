@@ -19,18 +19,22 @@ X Améliorer saut (décomposer, raycast,..)
 X enjamber
 X franchir, grimper
 
-s'accrocher
-Hauteur max de grimpe (depuis sol + depuis saut)
+X s'accrocher
+X Hauteur max de grimpe (depuis sol + depuis saut)
 
 mockup/proto graphique 
-https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
-https://www.indiemag.fr/articles/unworthy-nouvel-arrivant-famille-soulslike-reussit-campagne-greenlight
-https://www.youtube.com/watch?v=QbyVuJbgwfM&feature=emb_logo
-https://tristan-harris.itch.io/resurgent
+	https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
+	https://www.indiemag.fr/articles/unworthy-nouvel-arrivant-famille-soulslike-reussit-campagne-greenlight
+	https://www.youtube.com/watch?v=QbyVuJbgwfM&feature=emb_logo
+	https://tristan-harris.itch.io/resurgent
+	Environnements
+		rooftops
+		Forêt
+		Batiment en ruine
 
 
 
-playtest
+playtest + animations
 
 
 chute sans sauter / après saut trop haut
