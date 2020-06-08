@@ -22,7 +22,7 @@ X franchir, grimper
 X s'accrocher
 X Hauteur max de grimpe (depuis sol + depuis saut)
 
-mockup/proto graphique 
+X mockup/proto graphique 
 	https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
 	https://www.indiemag.fr/articles/unworthy-nouvel-arrivant-famille-soulslike-reussit-campagne-greenlight
 	https://www.youtube.com/watch?v=QbyVuJbgwfM&feature=emb_logo
@@ -33,29 +33,34 @@ mockup/proto graphique
 		Batiment en ruine
 
 
-trouver une technique pour ne pas perdre trop de temps avec le snapping
+X trouver une technique pour ne pas perdre trop de temps avec le snapping
 map de test avec tous les mouvements de base
 	marcher/courir
-	tomber (chute sans sauter / après saut trop haut)
+	tomber
 	sauter
 	enjamber
 	grimper
 	grimper après un saut
 mourir quand on tombe dans un trou
+glisser sur des pentes,..
+chute sans sauter / après saut trop haut
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
-escaliers, pente,..
-
-sauter quand contre un mur
 
 glissade plus ou moins longtemps
 roulade
 roulade auto après saut vertigineux 
 
+sauter quand contre un mur
+
 Effets de particules quand on court, saute, atterit etc...
+rendre le décor un peu plus vivant (oiseaux, pluie,...)
 coyote time ?
+Ajouter sons
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
+
+
 
 échelle
 perche
@@ -67,8 +72,7 @@ viser
 se déplacer en visant
 tirer
 
-événements "interactifs" (oiseaux qui s'envolent, )
-
+système d'instructions
 
 
 déroulement
