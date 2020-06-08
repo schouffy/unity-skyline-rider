@@ -34,24 +34,26 @@ X mockup/proto graphique
 
 
 X trouver une technique pour ne pas perdre trop de temps avec le snapping
-map de test avec tous les mouvements de base
+X map de test avec tous les mouvements de base
 	marcher/courir
 	tomber
 	sauter
 	enjamber
 	grimper
 	grimper après un saut
-mourir quand on tombe dans un trou
-glisser sur des pentes,..
-chute sans sauter / après saut trop haut
-playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
+X mourir quand on tombe dans un trou
+X chute sans sauter
+X mourir après chute trop haute (+ animation "perte de controle" en l'air)
 
 
-glissade plus ou moins longtemps
-roulade
-roulade auto après saut vertigineux 
 
-sauter quand contre un mur
+playtest + animations. 
+	X- on peut grimper sur des murs de n'importe quelle hauteur en maintenant/hammerant espace ?
+	X- anim idle random se lance quand on recharge la scène
+	- anim JumpLostControl/FatalFall se lance quand on rase le sol (un coin ou un mur vertical)
+	- revoir les animations de grimpe pour chaque hauteur + vitesse de ces animations
+Avant d'aller plus loin tout ça doit bien fonctionner
+
 
 Effets de particules quand on court, saute, atterit etc...
 rendre le décor un peu plus vivant (oiseaux, pluie,...)
@@ -60,10 +62,23 @@ Ajouter sons
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
+ennemis basiques
+
+
+
+se baisser
+glissade plus ou moins longtemps
+roulade
+roulade auto après saut vertigineux 
+
+sauter quand contre un mur
+
 
 
 échelle
 perche
+plateformes qui rebondissent (easy avec bounciness des physics materials 2D ?)
+glisser sur des pentes
 
 attaquer avec un sabre
 

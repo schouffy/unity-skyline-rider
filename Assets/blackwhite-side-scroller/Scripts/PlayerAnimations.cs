@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     public float RandomIdleAnimationsInterval;
-    private float _lastRandomIdleAnimationTime;
-    private float _lastInputTime;
+
+    // static to keep them when restarting level
+    private static float _lastRandomIdleAnimationTime;
+    private static float _lastInputTime; 
 
     public Animator Animator;
     public Rigidbody2D RigidBody;
@@ -18,20 +20,7 @@ public class PlayerAnimations : MonoBehaviour
         HandleIdleAnimations();
         HandleMovementAnimation();
         HandleCrouchAnimations();
-        //HandleJumpAnimations();
     }
-
-    //void OnAnimatorMove()
-    //{
-    //    Animator animator = GetComponent<Animator>();
-    //    if (animator)
-    //    {
-    //        Vector3 newPosition = RigidBody.transform.position;
-    //        newPosition.y += animator.deltaPosition.y;
-    //        newPosition.x += animator.deltaPosition.x;
-    //        RigidBody.transform.position = newPosition;
-    //    }
-    //}
 
     void HandleIdleAnimations()
     {
@@ -71,7 +60,8 @@ public class PlayerAnimations : MonoBehaviour
     public void LandAfterJump()
     {
         var currentClip = Animator.GetCurrentAnimatorClipInfo(0);
-        if (currentClip.Length == 1 && currentClip[0].clip != null && currentClip[0].clip.name == "JumpMid")
+        if (currentClip.Length == 1 && currentClip[0].clip != null 
+            && (currentClip[0].clip.name == "JumpMid" || currentClip[0].clip.name == "Fall" || currentClip[0].clip.name == "JumpLostControl"))
             Animator.SetBool("JumpEnd", true);
     }
 
@@ -83,31 +73,17 @@ public class PlayerAnimations : MonoBehaviour
 
     public void StartClimbing(ObstacleSize obstacleSize)
     {
-        //Debug.Log("Start climbing animation " + obstacleSize + " value: " + (float)obstacleSize);
-
-        //Animator.applyRootMotion = true;
-        //RigidBody.simulated = false;
-        //RigidBody.isKinematic = true;
-        //for (var i = 0; i < PlayerColliders.Length; ++i)
-        //{
-        //    PlayerColliders[i].gameObject.SetActive(false);
-        //}
-
         Animator.SetFloat("ObstacleHeight", (float)obstacleSize);
         Animator.SetTrigger("Climb");
     }
 
     public void EndClimbing()
     {
-        //Debug.Log("End climbing");
-        
-        //for (var i = 0; i < PlayerColliders.Length; ++i)
-        //{
-        //    PlayerColliders[i].gameObject.SetActive(true);
-        //}
-        //RigidBody.simulated = true;
-        //RigidBody.isKinematic = false;
-        //Animator.applyRootMotion = false;
+    }
+
+    public void StartFatalFall()
+    {
+        Animator.SetBool("FatalFall", true);
     }
 
 }

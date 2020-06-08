@@ -20,6 +20,7 @@ public enum ObstacleSize
 
 public class CharacterController2D : MonoBehaviour
 {
+    public PlayerAnimations Animator;
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
     [SerializeField] private float m_BoostJumpMultiplier = 0f;                     // Multiplier of current horizontal velocity to boost forward when jumping
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -30,6 +31,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private float m_groundApproachingDistance = 1f;                 // A mask determining what is ground to the character
+    public float MaxVerticalVelocityBeforeFallIsFatal;
 
     private bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_Climbing;
@@ -37,6 +39,10 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
+    private bool _hasJumped;
+    private bool _dieOnLand;
+    private bool _isControllable;
+
 
     [Header("Climbing")]
     [Space]
@@ -45,7 +51,9 @@ public class CharacterController2D : MonoBehaviour
     public float ClimbTransitionSpeed = 1f;
     public float MaxClimbDistanceIfObstacleIsTooHigh = 2f;
     public float MaxClimbDistanceAfterJumpIfObstacleIsTooHigh = 1f;
+    public float MinIntervalBetweenTwoClimbsOnSameObstacle = 0.8f;
     private bool _hasAlreadyClimbedOnce = false;
+    private float _lastClimbTime;
 
 
     [Header("Events")]
@@ -53,7 +61,9 @@ public class CharacterController2D : MonoBehaviour
     public UnityEvent OnJumpEvent;
     public UnityEvent OnFallEvent;
     public UnityEvent OnLandEvent;
+    public UnityEvent OnDieEvent;
     public UnityEvent OnGroundApproachingEvent;
+    public UnityEvent OnSlideStartEvent;
 
     [System.Serializable]
     public class ObstacleClimbEvent : UnityEvent<ObstacleSize> { }
@@ -71,6 +81,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
+        _isControllable = true;
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         _player = GetComponent<Player>();
 
@@ -83,6 +94,9 @@ public class CharacterController2D : MonoBehaviour
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
 
+        if (OnDieEvent == null)
+            OnDieEvent = new UnityEvent();
+
         if (OnGroundApproachingEvent == null)
             OnGroundApproachingEvent = new UnityEvent();
 
@@ -91,9 +105,12 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnClimbStartEvent == null)
             OnClimbStartEvent = new ObstacleClimbEvent();
+
+        if (OnSlideStartEvent == null)
+            OnSlideStartEvent = new UnityEvent();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
@@ -106,14 +123,22 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
+                _hasAlreadyClimbedOnce = false;
+                
+                _hasJumped = false;
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
+
+                if (_dieOnLand)
+                {
+                    Die();
+                }
             }
         }
 
-        if (wasGrounded && !m_Grounded && m_Velocity.y < 0)
+        if (wasGrounded && !m_Grounded && !_hasJumped && !m_Climbing)
         {
-            Debug.Log("fall " + m_Velocity.y);
+            Debug.Log("fall");
             OnFallEvent.Invoke();
         }
 
@@ -123,11 +148,27 @@ public class CharacterController2D : MonoBehaviour
         {
             OnGroundApproachingEvent.Invoke();
         }
+
+        if (!m_Grounded && -m_Rigidbody2D.velocity.y > MaxVerticalVelocityBeforeFallIsFatal && !_dieOnLand)
+        {
+            Debug.Log("fatal fall + " + (-m_Rigidbody2D.velocity.y));
+            _isControllable = false;
+            _dieOnLand = true;
+            Animator.StartFatalFall();
+        }
     }
 
+    private void Die()
+    {
+        _isControllable = false;
+        OnDieEvent.Invoke();
+    }
 
     public void Move(float move, bool crouch, bool jump)
     {
+        if (!_isControllable)
+            return;
+
         // If crouching, check to see if the character can stand up
         if (!crouch)
         {
@@ -141,7 +182,6 @@ public class CharacterController2D : MonoBehaviour
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
-
             // If crouching
             if (crouch)
             {
@@ -205,6 +245,8 @@ public class CharacterController2D : MonoBehaviour
         // If the player should jump...
         if (m_Grounded && jump)
         {
+            _hasJumped = true;
+
             if (!DetectAndClimbObstacle())
             {
                 //no obstacle:  jump
@@ -226,15 +268,11 @@ public class CharacterController2D : MonoBehaviour
             // If obstacle is encountered mid-air and jump button is down, jump over it
             DetectAndClimbObstacle();
         }
-        if (_hasAlreadyClimbedOnce && m_Grounded)
-        {
-            _hasAlreadyClimbedOnce = false;
-        }
     }
 
     private bool DetectAndClimbObstacle()
     {
-        if (_hasAlreadyClimbedOnce)
+        if (_hasAlreadyClimbedOnce || _lastClimbTime + MinIntervalBetweenTwoClimbsOnSameObstacle > Time.time)
             return true;
 
         var obstacleSize = ObstacleSize.None;
@@ -261,6 +299,7 @@ public class CharacterController2D : MonoBehaviour
     private void ClimbOverObstacle(ObstacleSize obstacleSize, Vector2 obstacleApproxPosition)
     {
         _hasAlreadyClimbedOnce = true;
+        _lastClimbTime = Time.time;
 
         if ((obstacleSize == ObstacleSize.Above6 && m_Grounded)
             || (obstacleSize >= ObstacleSize.Above3 && !m_Grounded))
