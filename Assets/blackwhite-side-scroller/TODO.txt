@@ -50,12 +50,12 @@ X mourir après chute trop haute (+ animation "perte de controle" en l'air)
 playtest + animations. 
 	X- on peut grimper sur des murs de n'importe quelle hauteur en maintenant/hammerant espace ?
 	X- anim idle random se lance quand on recharge la scène
-	- anim JumpLostControl/FatalFall se lance quand on rase le sol (un coin ou un mur vertical)
 	- revoir les animations de grimpe pour chaque hauteur + vitesse de ces animations
+	X- ne pas charger l'animation Fall si on tombe de "pas assez haut"
 Avant d'aller plus loin tout ça doit bien fonctionner
 
 
-Effets de particules quand on court, saute, atterit etc...
+Effets de particules quand on court, saute, atterit...
 rendre le décor un peu plus vivant (oiseaux, pluie,...)
 coyote time ?
 Ajouter sons

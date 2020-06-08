@@ -136,17 +136,17 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        if (wasGrounded && !m_Grounded && !_hasJumped && !m_Climbing)
-        {
-            Debug.Log("fall");
-            OnFallEvent.Invoke();
-        }
-
+        
         Debug.DrawRay(m_GroundCheck.transform.position, Vector2.down * m_groundApproachingDistance, Color.green);
         var ground = Physics2D.CircleCast(m_GroundCheck.transform.position, m_GroundCheck.radius, Vector2.down, m_groundApproachingDistance, m_WhatIsGround);
         if (ground.collider != null)
         {
             OnGroundApproachingEvent.Invoke();
+        }
+        else if (wasGrounded && !m_Grounded && !_hasJumped && !m_Climbing)
+        {
+            Debug.Log("fall");
+            OnFallEvent.Invoke();
         }
 
         if (!m_Grounded && -m_Rigidbody2D.velocity.y > MaxVerticalVelocityBeforeFallIsFatal && !_dieOnLand)
