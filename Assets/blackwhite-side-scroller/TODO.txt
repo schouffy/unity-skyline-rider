@@ -47,11 +47,23 @@ X mourir après chute trop haute (+ animation "perte de controle" en l'air)
 
 
 
+
 playtest + animations. 
 	X- on peut grimper sur des murs de n'importe quelle hauteur en maintenant/hammerant espace ?
 	X- anim idle random se lance quand on recharge la scène
-	- revoir les animations de grimpe pour chaque hauteur + vitesse de ces animations
+	X- revoir les animations de grimpe pour chaque hauteur + vitesse de ces animations
 	X- ne pas charger l'animation Fall si on tombe de "pas assez haut"
+glisser sur des pentes
+	- a polish
+	- parfois ça saute loin, parfois non
+	- gérer le retour sur la plateforme depuis en bas
+ennemis basiques
+	X- patrouille
+	- Voit le joueur
+		 - raycast vers le haut, milieu et bas du joueur
+	- vise le joueur
+	- tire sur le joueur
+	- le joueur meurt
 Avant d'aller plus loin tout ça doit bien fonctionner
 
 
@@ -62,7 +74,13 @@ Ajouter sons
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
-ennemis basiques
+
+sortir un flingue
+viser
+se déplacer en visant
+tirer
+
+attaquer avec un sabre
 
 
 
@@ -71,21 +89,24 @@ glissade plus ou moins longtemps
 roulade
 roulade auto après saut vertigineux 
 
+
 sauter quand contre un mur
+
+
+
+
+
+
+
+
 
 
 
 échelle
 perche
 plateformes qui rebondissent (easy avec bounciness des physics materials 2D ?)
-glisser sur des pentes
 
-attaquer avec un sabre
 
-sortir un flingue
-viser
-se déplacer en visant
-tirer
 
 système d'instructions
 

@@ -32,6 +32,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private float m_groundApproachingDistance = 1f;                 // A mask determining what is ground to the character
     public float MaxVerticalVelocityBeforeFallIsFatal;
+    public Vector2 JumpFromSlidingForce;
 
     private bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_Climbing;
@@ -129,11 +130,16 @@ public class CharacterController2D : MonoBehaviour
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
 
+                if (colliders[i].sharedMaterial != null && colliders[i].sharedMaterial.name == "SlidingSteep")
+                {
+                    StartSliding(colliders[i].GetComponent<SteepGround>());
+                }
                 if (_dieOnLand)
                 {
                     Die();
                 }
             }
+            
         }
 
         
@@ -155,6 +161,36 @@ public class CharacterController2D : MonoBehaviour
             _isControllable = false;
             _dieOnLand = true;
             Animator.StartFatalFall();
+        }
+    }
+
+    public void StartSliding(SteepGround steepGroundToSlideOn)
+    {
+        if (_dieOnLand)
+        {
+            Debug.Log("Cancelling fatal fall");
+            Animator.CancelFatalFall();
+            _dieOnLand = false; // Can't die from jumping on steep surfaces
+            _isControllable = true;
+        }
+        m_Rigidbody2D.simulated = false;
+        GetComponent<SlidingCharacterController2D>().enabled = true;
+        GetComponent<SlidingCharacterController2D>().SetSlideDestination(steepGroundToSlideOn.SlideDestination.position);
+        enabled = false;
+        Animator.StartSliding();
+    }
+
+    public void EndSliding(EndSlidingCondition condition)
+    {
+        GetComponent<Rigidbody2D>().simulated = true;
+        GetComponent<SlidingCharacterController2D>().enabled = false;
+        enabled = true;
+        Animator.EndSliding();
+
+        if (condition == EndSlidingCondition.Jump)
+        {
+            Debug.Log("Adding jump from slide force : " + JumpFromSlidingForce);
+            Jump(JumpFromSlidingForce, ForceMode2D.Impulse);
         }
     }
 
@@ -250,17 +286,10 @@ public class CharacterController2D : MonoBehaviour
             if (!DetectAndClimbObstacle())
             {
                 //no obstacle:  jump
-
-                // Add a vertical force to the player.
-                m_Grounded = false;
-
                 // Add vertical updwards force.
                 // Also, if already moving in a direction, boost in that direction
                 var jumpForce = new Vector2(move * m_BoostJumpMultiplier, m_JumpForce);
-
-                m_Rigidbody2D.AddForce(jumpForce);
-
-                OnJumpEvent.Invoke();
+                Jump(jumpForce);
             }
         }
         else if (!m_Grounded && !m_Climbing && Input.GetButton("Jump"))
@@ -268,6 +297,16 @@ public class CharacterController2D : MonoBehaviour
             // If obstacle is encountered mid-air and jump button is down, jump over it
             DetectAndClimbObstacle();
         }
+    }
+
+    private void Jump(Vector2 jumpForce, ForceMode2D forceMode2D = ForceMode2D.Force)
+    {
+        // Add a vertical force to the player.
+        m_Grounded = false;
+
+        m_Rigidbody2D.AddForce(jumpForce, forceMode2D);
+
+        OnJumpEvent.Invoke();
     }
 
     private bool DetectAndClimbObstacle()

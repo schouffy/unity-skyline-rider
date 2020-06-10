@@ -85,5 +85,19 @@ public class PlayerAnimations : MonoBehaviour
     {
         Animator.SetBool("FatalFall", true);
     }
+    public void CancelFatalFall()
+    {
+        Animator.SetBool("FatalFall", false);
+    }
+
+    public void StartSliding()
+    {
+        Animator.SetBool("Sliding", true);
+    }
+
+    public void EndSliding()
+    {
+        Animator.SetBool("Sliding", false);
+    }
 
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     private CharacterController2D _controller;
+    private SlidingCharacterController2D _slidingController;
     private float _horizontalMove;
     public float RunSpeed;
     public float[] SpeedSteps;
@@ -21,6 +22,7 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         _controller = GetComponent<CharacterController2D>();
+        _slidingController = GetComponent<SlidingCharacterController2D>();
     }
 
     void Update()
@@ -35,7 +37,10 @@ public class PlayerControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, _crouch, _jump);
+        if (_controller.enabled)
+            _controller.Move(_horizontalMove * Time.fixedDeltaTime, _crouch, _jump);
+        else if (_slidingController.enabled && _jump)
+            _slidingController.Jump();
 
         _jump = false;
     }
