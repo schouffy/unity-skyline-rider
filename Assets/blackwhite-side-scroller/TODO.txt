@@ -59,8 +59,7 @@ glisser sur des pentes
 	- gérer le retour sur la plateforme depuis en bas
 ennemis basiques
 	X- patrouille
-	- Voit le joueur
-		 - raycast vers le haut, milieu et bas du joueur
+	X- Voit le joueur
 	- vise le joueur
 	- tire sur le joueur
 	- le joueur meurt

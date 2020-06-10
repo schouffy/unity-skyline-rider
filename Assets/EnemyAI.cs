@@ -9,14 +9,14 @@ public class EnemyAI : MonoBehaviour
     private bool _alive;
     private int _currentWaypointIndex;
     public bool PlayerInRange;
-    private Transform _player;
+    private PlayerAttackable _player;
     public Transform EyePosition;
     public LayerMask RaycastToPlayerLayers;
 
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttackable>();
         _alive = true;
         if (Waypoints != null && Waypoints.Length > 0)
         {
@@ -48,12 +48,16 @@ public class EnemyAI : MonoBehaviour
         if (PlayerInRange)
         {
             // raycast to player
-            var hitInfo = Physics2D.Raycast(EyePosition.position, _player.position - EyePosition.position, 50f, RaycastToPlayerLayers);
-            if (hitInfo.collider != null && hitInfo.collider.gameObject.tag == "Player")
+            foreach (var playerPoint in _player.PointsToRaycast)
             {
-               
-                Debug.Log("Player is in range");
+                var hitInfo = Physics2D.Raycast(EyePosition.position, playerPoint.position - EyePosition.position, 50f, RaycastToPlayerLayers);
+                if (hitInfo.collider != null && hitInfo.collider.gameObject.tag == "Player")
+                {
+                    Debug.Log("Player is in range");
+                    break;
+                }
             }
+            
         }
     }
 
