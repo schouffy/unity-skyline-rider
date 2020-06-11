@@ -8,7 +8,7 @@ public class RadioHitProjectile : Projectile
 
     void Start()
     {
-        Debug.DrawRay(transform.position, transform.right * 50f, Color.red, 0.3f);
+        Debug.DrawLine(transform.position, transform.position + (transform.right * 50f), Color.red, 1f);
         var hitInfo = Physics2D.Raycast(transform.position, transform.right, 50f, HitLayers);
         if (hitInfo.collider != null)
         {

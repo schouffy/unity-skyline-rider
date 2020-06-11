@@ -53,35 +53,44 @@ playtest + animations.
 	X- anim idle random se lance quand on recharge la scène
 	X- revoir les animations de grimpe pour chaque hauteur + vitesse de ces animations
 	X- ne pas charger l'animation Fall si on tombe de "pas assez haut"
-glisser sur des pentes
-	- a polish
-	- parfois ça saute loin, parfois non
-	- gérer le retour sur la plateforme depuis en bas
 ennemis basiques
 	X- patrouille
 	X- Voit le joueur
 	X- vise le joueur
 	X- tire sur le joueur
 	X- le joueur meurt
-	- animations
-
-Première map sans ennemis
-Deuxième map avec ennemis à esquiver
-Avant d'aller plus loin tout ça doit bien fonctionner
+	X- animations
 
 
+POLISH
 Effets de particules quand on court, saute, atterit...
-rendre le décor un peu plus vivant (oiseaux, pluie,...)
-coyote time ?
+	- A améliorer
+FX de tirs, sang, débris, projectiles
+	- tirs: fumée qui part rapidement en avant + puff qui reste
+	- sang: particles + coller des splatters sur les surfaces autour
+	- débris: fumée + débris physiqués doivent se retrouver au sol, sans collider pour pas gêner.
+	- projectiles: balles "traçantes"
+screenshake
+ragdoll joueur quand il meurt
 Ajouter sons
+glisser sur des pentes
+	- a polish
+	- parfois ça saute loin, parfois non
+	- gérer le retour sur la plateforme depuis en bas
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
+coyote time ?
+sauter quand contre un mur
 
 sortir un flingue
 viser
 se déplacer en visant
 tirer
+
+Faire les premières maps
+
+
 
 attaquer avec un sabre
 
@@ -93,23 +102,13 @@ roulade
 roulade auto après saut vertigineux 
 
 
-sauter quand contre un mur
-
-
-
-
-
-
-
-
-
 
 
 échelle
 perche
 plateformes qui rebondissent (easy avec bounciness des physics materials 2D ?)
 
-
+rendre le décor un peu plus vivant (oiseaux, pluie,...)
 
 système d'instructions
 

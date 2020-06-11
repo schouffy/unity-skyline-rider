@@ -197,7 +197,7 @@ public class CharacterController2D : MonoBehaviour
     public void GetHitByBullet(Projectile projectile)
     {
         Debug.Log("projectile " + projectile.GetType().Name + " hit player. Game over.");
-        //Die();
+        Die();
     }
 
     void Die()

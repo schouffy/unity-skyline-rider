@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     public float AimTimeBeforeShoot = 1f;
     public Transform WeaponTip;
     public GameObject BulletPrefab;
-    private Animator Animator;
+    public Animator Animator;
 
     // Start is called before the first frame update
     void Start()
@@ -46,10 +46,12 @@ public class EnemyAI : MonoBehaviour
             {
                 var currentWaypoint = Waypoints[_currentWaypointIndex];
 
+                Animator.SetFloat("Speed", MovementSpeed);
                 transform.position = Vector2.MoveTowards(transform.position, currentWaypoint.transform.position, MovementSpeed * Time.deltaTime);
 
                 if (Vector2.Distance(transform.position, currentWaypoint.transform.position) < 0.2f)
                 {
+                    Animator.SetFloat("Speed", 0);
                     yield return new WaitForSeconds(currentWaypoint.WaitTime);
                     _currentWaypointIndex = (_currentWaypointIndex + 1) % Waypoints.Length;
                     LookAtDestination();
@@ -71,7 +73,8 @@ public class EnemyAI : MonoBehaviour
             {
                 if (CanPlayerBeSeen(out _))
                 {
-                    StartCoroutine(AimAtPlayer());
+                    StartCoroutine(AimContinuouslyAtPlayer());
+                    StartCoroutine(AimAndShootAtPlayer());
                 }
             }
         }
@@ -93,16 +96,39 @@ public class EnemyAI : MonoBehaviour
         return false;
     }
 
-    IEnumerator AimAtPlayer()
+    float AimAngleToBlendingAimAngle(Vector2 aimPosition)
+    {
+        var angle = Vector2.Angle(Vector2.down, aimPosition - (Vector2)WeaponTip.position);
+
+        return angle;
+    }
+
+    IEnumerator AimContinuouslyAtPlayer()
     {
         // go to aiming status
         Status = EnemyAIStatus.Aiming;
 
         while (Status == EnemyAIStatus.Aiming)
         {
-            // aim at player
-            Debug.Log("Aim at player");
+            if (CanPlayerBeSeen(out var whereToShoot))
+            {
+                // aim at player
+                Animator.SetFloat("Speed", 0);
+                Animator.SetBool("IsAiming", true);
+                Animator.SetFloat("AimAngle", AimAngleToBlendingAimAngle(whereToShoot.Value));
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+        Animator.SetBool("IsAiming", false);
+    }
 
+    IEnumerator AimAndShootAtPlayer()
+    {
+        // go to aiming status
+        Status = EnemyAIStatus.Aiming;
+
+        while (Status == EnemyAIStatus.Aiming)
+        {
             // wait for a while
             yield return new WaitForSeconds(AimTimeBeforeShoot);
 
@@ -120,12 +146,12 @@ public class EnemyAI : MonoBehaviour
 
     void ShootAtPlayer(Vector2 whereToShoot)
     {
-        // shoot at player
-        Debug.Log("Shoot at player");
-
         // Instantiate bullet and FX
         bool isLookingRight = transform.localScale.x > 0;
-        Instantiate(BulletPrefab, WeaponTip.position, Quaternion.LookRotation(WeaponTip.right, Vector2.up));
+        var bullet = Instantiate(BulletPrefab, WeaponTip.position, Quaternion.identity);
+        bullet.transform.right = whereToShoot - (Vector2)WeaponTip.position;
+
+        Animator.SetTrigger("Shoot");
     }
 
     void LookAtDestination()
