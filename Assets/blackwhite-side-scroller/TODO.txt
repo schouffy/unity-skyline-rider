@@ -60,9 +60,13 @@ glisser sur des pentes
 ennemis basiques
 	X- patrouille
 	X- Voit le joueur
-	- vise le joueur
-	- tire sur le joueur
-	- le joueur meurt
+	X- vise le joueur
+	X- tire sur le joueur
+	X- le joueur meurt
+	- animations
+
+Première map sans ennemis
+Deuxième map avec ennemis à esquiver
 Avant d'aller plus loin tout ça doit bien fonctionner
 
 

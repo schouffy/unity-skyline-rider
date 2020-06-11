@@ -194,7 +194,13 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void GetHitByBullet(Projectile projectile)
+    {
+        Debug.Log("projectile " + projectile.GetType().Name + " hit player. Game over.");
+        //Die();
+    }
+
+    void Die()
     {
         _isControllable = false;
         OnDieEvent.Invoke();
