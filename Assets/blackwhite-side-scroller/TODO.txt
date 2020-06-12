@@ -67,8 +67,11 @@ X Effets de particules quand on court, saute, atterit...
 FX de tirs, sang, débris, projectiles
 	X- tirs: fumée qui part rapidement en avant + puff qui reste
 	X- débris: fumée + débris physiqués doivent se retrouver au sol, sans collider pour pas gêner.
-	- projectiles: balles "traçantes"
+	X- projectiles: balles "traçantes"
 	- sang: particles + coller des splatters sur les surfaces autour
+		A tweaker : 
+		spatter plus petit, ne pas les superposer, attention aux "joints" entre différents colliders. A playtester.
+		Virer les particules au bout d'un moment, mais laisser les spatters sur la map.
 ragdoll joueur quand il meurt / animations / les deux ?
 Ajouter sons
 screenshake ?

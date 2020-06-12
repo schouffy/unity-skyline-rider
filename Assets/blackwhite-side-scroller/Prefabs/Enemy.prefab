@@ -95,9 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e19b33b7410a3c4199ba1423f1f016f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  Waypoints: []
   MovementSpeed: 1
   PlayerInRange: 0
   EyePosition: {fileID: 7277311989917473077}

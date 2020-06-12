@@ -156,6 +156,9 @@ public class EnemyAI : MonoBehaviour
 
     void LookAtDestination()
     {
+        if (Waypoints == null || Waypoints.Length == 0)
+            return;
+
         if (Waypoints[_currentWaypointIndex].transform.position.x < transform.position.x)
             transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
         else
