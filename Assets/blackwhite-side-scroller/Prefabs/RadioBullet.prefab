@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4680399479194675351}
   - component: {fileID: 5837894842768146407}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: RadioBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,3 +46,7 @@ MonoBehaviour:
   HitLayers:
     serializedVersion: 2
     m_Bits: 769
+  WeaponShootPrefab: {fileID: 8370967782867503783, guid: c44041a3c1194cb46ac48134c3fa6fbf,
+    type: 3}
+  BulletHitEnvironmentPrefab: {fileID: 8370967782867503783, guid: 5e5b99dabf151064f81dcdbef48ad592,
+    type: 3}

@@ -65,19 +65,21 @@ ennemis basiques
 POLISH
 X Effets de particules quand on court, saute, atterit...
 FX de tirs, sang, débris, projectiles
-	- tirs: fumée qui part rapidement en avant + puff qui reste
-	- sang: particles + coller des splatters sur les surfaces autour
-	- débris: fumée + débris physiqués doivent se retrouver au sol, sans collider pour pas gêner.
+	X- tirs: fumée qui part rapidement en avant + puff qui reste
+	X- débris: fumée + débris physiqués doivent se retrouver au sol, sans collider pour pas gêner.
 	- projectiles: balles "traçantes"
-screenshake
-ragdoll joueur quand il meurt
+	- sang: particles + coller des splatters sur les surfaces autour
+ragdoll joueur quand il meurt / animations / les deux ?
 Ajouter sons
+screenshake ?
 glisser sur des pentes
 	- a polish
 	- parfois ça saute loin, parfois non
 	- gérer le retour sur la plateforme depuis en bas
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
+
+Faire les premières maps
 
 coyote time ?
 sauter quand contre un mur
@@ -87,21 +89,12 @@ viser
 se déplacer en visant
 tirer
 
-Faire les premières maps
-
-
-
 attaquer avec un sabre
-
-
 
 se baisser
 glissade plus ou moins longtemps
 roulade
 roulade auto après saut vertigineux 
-
-
-
 
 échelle
 perche
@@ -109,7 +102,7 @@ plateformes qui rebondissent (easy avec bounciness des physics materials 2D ?)
 
 rendre le décor un peu plus vivant (oiseaux, pluie,...)
 
-système d'instructions
+système d'instructions/tuto
 
 
 déroulement
