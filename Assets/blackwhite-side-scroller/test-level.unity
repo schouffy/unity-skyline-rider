@@ -3710,6 +3710,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &921129364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921129365}
+  m_Layer: 8
+  m_Name: FeetFXPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &921129365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921129364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1496222859}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &921694985
 GameObject:
   m_ObjectHideFlags: 0
@@ -6515,6 +6545,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1406230714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1406230715}
+  m_Layer: 8
+  m_Name: LeftFootFXPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1406230715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406230714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.003, z: 0.0014}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 928601029}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1437562820
 GameObject:
   m_ObjectHideFlags: 0
@@ -6663,6 +6723,12 @@ Transform:
   m_Father: {fileID: 2035951049}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1496222859 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1304192527846552929, guid: ae895343be933ef48bdd02bbe6494012,
+    type: 3}
+  m_PrefabInstance: {fileID: 614828592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1507252296
 GameObject:
   m_ObjectHideFlags: 0
@@ -7584,12 +7650,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5e0c323d4eba94ba5681911ee0365c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftFoot: {fileID: 928601029}
-  RightFoot: {fileID: 584009897}
-  FootTouchGroundWhileRunningParticleEffect: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328,
+  LeftFoot: {fileID: 1406230715}
+  RightFoot: {fileID: 2054628144}
+  Feet: {fileID: 921129365}
+  FootTouchGroundWhileRunningParticleEffect: {fileID: 436638307275450341, guid: da7bec67969f0c842b28338163ab262c,
     type: 3}
-  JumpStartParticleEffect: {fileID: 0}
-  LandAfterJumpParticleEffect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845,
+  JumpStartParticleEffect: {fileID: 4179773852822437319, guid: 355fbfe6ee0bfca4bbe0a4bf4871cd22,
+    type: 3}
+  LandAfterJumpParticleEffect: {fileID: 7876548166882852232, guid: 748de9e617f953e4c89545e59012aa05,
     type: 3}
 --- !u!1 &1781551690
 GameObject:
@@ -8590,6 +8658,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2054628143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2054628144}
+  m_Layer: 8
+  m_Name: RightFootFXPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2054628144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054628143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.003, z: 0.0016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 584009897}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2113958706
 GameObject:
   m_ObjectHideFlags: 0

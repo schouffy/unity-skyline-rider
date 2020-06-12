@@ -63,8 +63,7 @@ ennemis basiques
 
 
 POLISH
-Effets de particules quand on court, saute, atterit...
-	- A améliorer
+X Effets de particules quand on court, saute, atterit...
 FX de tirs, sang, débris, projectiles
 	- tirs: fumée qui part rapidement en avant + puff qui reste
 	- sang: particles + coller des splatters sur les surfaces autour

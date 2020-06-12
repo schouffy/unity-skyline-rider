@@ -250,7 +250,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.20772947
+      - time: 0.21135266
         functionName: RightFootHitGround
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -351,7 +351,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.082125604
+      - time: 0
         functionName: JumpStart
         data: 
         objectReferenceParameter: {instanceID: 0}
