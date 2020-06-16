@@ -34,6 +34,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float m_groundApproachingDistance = 1f;                 // A mask determining what is ground to the character
     public float MaxVerticalVelocityBeforeFallIsFatal;
     public Vector2 JumpFromSlidingForce;
+    public Vector2 JumpFromClimbingForce;
 
     private bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_Climbing;
@@ -152,7 +153,6 @@ public class CharacterController2D : MonoBehaviour
         }
         else if (wasGrounded && !m_Grounded && !_hasJumped && !m_Climbing)
         {
-            Debug.Log("fall");
             OnFallEvent.Invoke();
         }
 
@@ -190,10 +190,8 @@ public class CharacterController2D : MonoBehaviour
 
         if (condition == EndSlidingCondition.Jump)
         {
-            Debug.Log("Adding jump from slide force : " + JumpFromSlidingForce);
-
             m_Grounded = false;
-            m_Rigidbody2D.velocity = JumpFromSlidingForce;
+            m_Rigidbody2D.velocity = m_FacingRight ? JumpFromSlidingForce : new Vector2(-JumpFromSlidingForce.x, JumpFromSlidingForce.y);
             OnJumpEvent.Invoke();
         }
     }
@@ -301,11 +299,25 @@ public class CharacterController2D : MonoBehaviour
             // If obstacle is encountered mid-air and jump button is down, jump over it
             DetectAndClimbObstacle();
         }
+        else if (m_Climbing && jump)
+        {
+            // if jumping while climbing, jump away from the wall
+            m_Grounded = false;
+            m_Climbing = false;
+            m_Rigidbody2D.simulated = true;
+            _interruptClimbToJump = true;
+            m_Rigidbody2D.velocity = m_FacingRight ? new Vector2(-JumpFromClimbingForce.x, JumpFromClimbingForce.y) : JumpFromClimbingForce;
+            Look(!m_FacingRight);
+            _hasAlreadyClimbedOnce = false;
+            OnJumpEvent.Invoke();
+        }
     }
+    private bool _interruptClimbToJump;
 
     private void Jump(Vector2 jumpForce, ForceMode2D forceMode2D = ForceMode2D.Force)
     {
         // Add a vertical force to the player.
+        Debug.Log("jump");
         m_Grounded = false;
         m_Rigidbody2D.AddForce(jumpForce, forceMode2D);
         OnJumpEvent.Invoke();
@@ -327,6 +339,11 @@ public class CharacterController2D : MonoBehaviour
                 obstacleSize = (ObstacleSize)(i + 1);
                 obstacleApproxPosition = hit.point;
             }
+            else if (obstacleSize == ObstacleSize.None && (ObstacleSize)(i + 1) == ObstacleSize.Above1)
+            {
+                // no obstacle in front up to a certain height. Even if there is something above, we don't want to climb on it
+                return false;
+            }
         }
         if (obstacleSize != ObstacleSize.None)
         {
@@ -346,7 +363,6 @@ public class CharacterController2D : MonoBehaviour
             || (obstacleSize >= ObstacleSize.Above3 && !m_Grounded))
         {
             // if obstacle is too high, we can't go on top of it but we still try to climb it
-            //Debug.Log("Too high to climb.");
 
             m_Climbing = true;
             // animate to this location
@@ -381,17 +397,18 @@ public class CharacterController2D : MonoBehaviour
         var firstTargetPos = new Vector2(transform.position.x, targetPosition.y);
         var secondTargetPos = targetPosition;
 
-        while (Vector2.Distance(transform.position, firstTargetPos) > 0.01f)
+        while (Vector2.Distance(transform.position, firstTargetPos) > 0.01f && !_interruptClimbToJump)
         {
             transform.position = Vector2.MoveTowards(transform.position, firstTargetPos, ClimbTransitionSpeed * Time.deltaTime);
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
-        while (Vector2.Distance(transform.position, secondTargetPos) > 0.01f)
+        while (Vector2.Distance(transform.position, secondTargetPos) > 0.01f && !_interruptClimbToJump)
         {
             transform.position = Vector2.MoveTowards(transform.position, secondTargetPos, ClimbTransitionSpeed * Time.deltaTime);
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
+        _interruptClimbToJump = false;
         m_Climbing = false;
         m_Rigidbody2D.simulated = true;
     }

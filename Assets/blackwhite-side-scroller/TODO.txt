@@ -74,28 +74,32 @@ FX de tirs, sang, débris, projectiles
 ragdoll joueur quand il meurt / animations / les deux ?
 	X Spawn un autre joueur non controllable, en ragdoll, quand le joueur meurt.
 	X dupliquer les objets environnants qui ont des colliders2D, et modifier les copies pour en faire des colliders 3D
-	Copier la position des membres au moment du switch
+	- Copier la position des membres au moment du switch => ça ne semble pas nécessaire
 suivi caméra
 	X quand on va à droite/gauche
-	attention au parallax sur l'axe Y
+	- attention au parallax sur l'axe Y => Pour l'instant je me limite sur la hauteur des niveaux. Si ça pose pb, Soit trouver un moyen, soit faire des sprites plus hauts
 glisser sur des pentes
 	X- particules
 	X- parfois ça saute loin, parfois non
-	- gérer le retour sur la plateforme depuis en bas
+	- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
+sauter quand contre un mur
+	- logique
+	- animations
+
+
+Faire les premières maps habillées avec props
+1- tuto des mouvements. Parkour basique
+2- Apparition d'ennemis : parkour et infiltration
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
-
-Faire les premières maps
-1- parkour basique
-2- infiltration
+- fail des plateformes superposées
 
 système d'instructions/tuto
-
 
 Ajouter sons
 screenshake ?
 coyote time ?
-sauter quand contre un mur
+
 
 sortir un flingue
 viser
