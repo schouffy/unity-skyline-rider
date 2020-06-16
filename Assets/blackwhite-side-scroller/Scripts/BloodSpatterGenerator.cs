@@ -9,11 +9,15 @@ public class BloodSpatterGenerator : MonoBehaviour
     private List<ParticleCollisionEvent> collisionEvents;
     private static Dictionary<GameObject, List<Vector3>> _listOfBloodSpattersCreatedByCollider = new Dictionary<GameObject, List<Vector3>>(); // static because shared by all the particle systems
     public GameObject BloodSpatter;
+    private float _spatterRadius;
 
     void Start()
     {
         part = GetComponent<ParticleSystem>();
         collisionEvents = new List<ParticleCollisionEvent>();
+        _spatterRadius = 0.15f;
+        //(BloodSpatter.GetComponent<SpriteRenderer>().bounds.extents.x
+        //    + BloodSpatter.GetComponent<SpriteRenderer>().bounds.extents.x) / 2f;
     }
 
     void OnParticleCollision(GameObject colliderParticleFellOn)
@@ -34,8 +38,8 @@ public class BloodSpatterGenerator : MonoBehaviour
                 spriteMask.sprite = colliderParticleFellOn.GetComponent<SpriteRenderer>().sprite;
             }
 
-            // TODO Do not create if another blood spatter is already is in range on this collider according to sprite size
-            if (!_listOfBloodSpattersCreatedByCollider[colliderParticleFellOn].Any())
+            // Do not create if another blood spatter is already is in range on this collider according to sprite size
+            if (!_listOfBloodSpattersCreatedByCollider[colliderParticleFellOn].Any(spatter => Vector2.Distance(spatter, collisionEvents[i].intersection) < _spatterRadius))
             {
                 _listOfBloodSpattersCreatedByCollider[colliderParticleFellOn].Add(collisionEvents[i].intersection);
                 Instantiate(BloodSpatter, collisionEvents[i].intersection, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));

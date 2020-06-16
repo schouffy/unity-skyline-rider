@@ -68,11 +68,11 @@ FX de tirs, sang, débris, projectiles
 	X- tirs: fumée qui part rapidement en avant + puff qui reste
 	X- débris: fumée + débris physiqués doivent se retrouver au sol, sans collider pour pas gêner.
 	X- projectiles: balles "traçantes"
-	- sang: particles + coller des splatters sur les surfaces autour
-		A tweaker : 
-		spatter plus petit, ne pas les superposer, attention aux "joints" entre différents colliders. A playtester.
-		Virer les particules au bout d'un moment, mais laisser les spatters sur la map.
+	X- sang: particles + coller des splatters sur les surfaces autour
+		X spatter plus petit, ne pas les superposer, attention aux "joints" entre différents colliders. A playtester.
+		X Virer les particules au bout d'un moment, mais laisser les spatters sur la map.
 ragdoll joueur quand il meurt / animations / les deux ?
+	Spawn un autre joueur non controllable, en ragdoll, quand le joueur meurt. Copier la position des membres au moment du switch
 Ajouter sons
 screenshake ?
 glisser sur des pentes
@@ -94,6 +94,8 @@ tirer
 
 attaquer avec un sabre
 
+ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
+
 se baisser
 glissade plus ou moins longtemps
 roulade
@@ -103,7 +105,7 @@ roulade auto après saut vertigineux
 perche
 plateformes qui rebondissent (easy avec bounciness des physics materials 2D ?)
 
-rendre le décor un peu plus vivant (oiseaux, pluie,...)
+rendre le décor un peu plus vivant (oiseaux, pluie, orage...)
 
 système d'instructions/tuto
 
