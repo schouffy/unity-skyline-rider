@@ -72,13 +72,18 @@ FX de tirs, sang, débris, projectiles
 		X spatter plus petit, ne pas les superposer, attention aux "joints" entre différents colliders. A playtester.
 		X Virer les particules au bout d'un moment, mais laisser les spatters sur la map.
 ragdoll joueur quand il meurt / animations / les deux ?
-	Spawn un autre joueur non controllable, en ragdoll, quand le joueur meurt. Copier la position des membres au moment du switch
-Ajouter sons
-screenshake ?
+	X Spawn un autre joueur non controllable, en ragdoll, quand le joueur meurt.
+	X dupliquer les objets environnants qui ont des colliders2D, et modifier les copies pour en faire des colliders 3D
+	Copier la position des membres au moment du switch
+suivi caméra
+	quand on va à droite/gauche
+	attention au parallax sur l'axe Y
 glisser sur des pentes
 	- a polish
 	- parfois ça saute loin, parfois non
 	- gérer le retour sur la plateforme depuis en bas
+Ajouter sons
+screenshake ?
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
