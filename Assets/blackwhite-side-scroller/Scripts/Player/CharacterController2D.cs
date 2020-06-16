@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -39,6 +40,7 @@ public class CharacterController2D : MonoBehaviour
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    public bool FacingRight => m_FacingRight;
     private Vector3 m_Velocity = Vector3.zero;
     private bool _hasJumped;
     private bool _dieOnLand;
@@ -139,7 +141,6 @@ public class CharacterController2D : MonoBehaviour
                     Die();
                 }
             }
-            
         }
 
         
@@ -190,7 +191,10 @@ public class CharacterController2D : MonoBehaviour
         if (condition == EndSlidingCondition.Jump)
         {
             Debug.Log("Adding jump from slide force : " + JumpFromSlidingForce);
-            Jump(JumpFromSlidingForce, ForceMode2D.Impulse);
+
+            m_Grounded = false;
+            m_Rigidbody2D.velocity = JumpFromSlidingForce;
+            OnJumpEvent.Invoke();
         }
     }
 
@@ -303,9 +307,7 @@ public class CharacterController2D : MonoBehaviour
     {
         // Add a vertical force to the player.
         m_Grounded = false;
-
         m_Rigidbody2D.AddForce(jumpForce, forceMode2D);
-
         OnJumpEvent.Invoke();
     }
 

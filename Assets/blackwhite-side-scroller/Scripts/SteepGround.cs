@@ -6,4 +6,8 @@ public class SteepGround : MonoBehaviour
 {
     public Transform SlideDestination;
 
+    public void DisableSliding()
+    {
+        this.GetComponent<Collider2D>().sharedMaterial = null;
+    }
 }

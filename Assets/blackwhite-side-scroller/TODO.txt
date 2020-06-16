@@ -76,19 +76,24 @@ ragdoll joueur quand il meurt / animations / les deux ?
 	X dupliquer les objets environnants qui ont des colliders2D, et modifier les copies pour en faire des colliders 3D
 	Copier la position des membres au moment du switch
 suivi caméra
-	quand on va à droite/gauche
+	X quand on va à droite/gauche
 	attention au parallax sur l'axe Y
 glisser sur des pentes
-	- a polish
-	- parfois ça saute loin, parfois non
+	X- particules
+	X- parfois ça saute loin, parfois non
 	- gérer le retour sur la plateforme depuis en bas
-Ajouter sons
-screenshake ?
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
 Faire les premières maps
+1- parkour basique
+2- infiltration
 
+système d'instructions/tuto
+
+
+Ajouter sons
+screenshake ?
 coyote time ?
 sauter quand contre un mur
 
@@ -112,7 +117,7 @@ plateformes qui rebondissent (easy avec bounciness des physics materials 2D ?)
 
 rendre le décor un peu plus vivant (oiseaux, pluie, orage...)
 
-système d'instructions/tuto
+
 
 
 déroulement

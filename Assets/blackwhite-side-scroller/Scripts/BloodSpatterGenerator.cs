@@ -16,8 +16,6 @@ public class BloodSpatterGenerator : MonoBehaviour
         part = GetComponent<ParticleSystem>();
         collisionEvents = new List<ParticleCollisionEvent>();
         _spatterRadius = 0.15f;
-        //(BloodSpatter.GetComponent<SpriteRenderer>().bounds.extents.x
-        //    + BloodSpatter.GetComponent<SpriteRenderer>().bounds.extents.x) / 2f;
     }
 
     void OnParticleCollision(GameObject colliderParticleFellOn)
