@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7212177298352493195}
-  - component: {fileID: 7212177298352493194}
+  - component: {fileID: 511130112299328005}
   m_Layer: 8
   m_Name: ceilingCheck
   m_TagString: Untagged
@@ -143,25 +143,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7212177298352493188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 1.35, z: 0}
+  m_LocalPosition: {x: 0.009, y: 1.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7212177298887007250}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &7212177298352493194
-SphereCollider:
+--- !u!58 &511130112299328005
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7212177298352493188}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.15
 --- !u!1 &7212177298456080049
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,11 +467,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_GroundCheck: {fileID: 7212177300137137228}
-  m_CeilingCheck: {fileID: 7212177298352493195}
+  m_CeilingCheck: {fileID: 511130112299328005}
   m_CrouchDisableCollider: {fileID: 7212177298720066543}
   m_groundApproachingDistance: 1
   MaxVerticalVelocityBeforeFallIsFatal: 16
   JumpFromSlidingForce: {x: 210, y: 1080}
+  JumpFromClimbingForce: {x: 0, y: 0}
   ObstacleRaycastStartPositions:
   - {fileID: 7212177299815388609}
   - {fileID: 7212177298918724359}

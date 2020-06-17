@@ -82,9 +82,9 @@ glisser sur des pentes
 	X- particules
 	X- parfois ça saute loin, parfois non
 	- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
-sauter quand contre un mur
-	- logique
-	- animations
+	- gérer dans les deux sens, orienter le joueur dans le sens de la descente
+X sauter quand contre un mur
+
 
 
 Faire les premières maps habillées avec props
@@ -92,23 +92,32 @@ Faire les premières maps habillées avec props
 2- Apparition d'ennemis : parkour et infiltration
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
-- fail des plateformes superposées
+	- fail des plateformes superposées (utiliser le ceiling check pour ne pas grimper)
+	- ragdoll et blood spatter quand fatal fall
+		- tweak ragdoll ?
+	- fall puis climb -> animations KO
+	- ne pas pouvoir climb en boucle à la même plateforme
+	- ne pas pouvoir climb quand je suis en train de chuter (? pas sur à réfléchir)
+	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
+	- contrôles manette
+	- animations climb/jump pas ouf
+	- gestion correcte de la mort (prompt + attente pression touche pour reload)
+
 
 système d'instructions/tuto
+
+ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
 
 Ajouter sons
 screenshake ?
 coyote time ?
 
+attaquer avec un sabre
 
 sortir un flingue
 viser
 se déplacer en visant
 tirer
-
-attaquer avec un sabre
-
-ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
 
 se baisser
 glissade plus ou moins longtemps
@@ -116,8 +125,6 @@ roulade
 roulade auto après saut vertigineux 
 
 échelle
-perche
-plateformes qui rebondissent (easy avec bounciness des physics materials 2D ?)
 
 rendre le décor un peu plus vivant (oiseaux, pluie, orage...)
 

@@ -23,15 +23,15 @@ public class CharacterController2D : MonoBehaviour
 {
     public PlayerAnimations Animator;
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
-    [SerializeField] private float m_BoostJumpMultiplier = 0f;                     // Multiplier of current horizontal velocity to boost forward when jumping
+    [SerializeField] private float m_BoostJumpMultiplier = 0f;                  // Multiplier of current horizontal velocity to boost forward when jumping
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
-    [SerializeField] private CircleCollider2D m_GroundCheck;                           // A position marking where to check if the player is grounded.
-    [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
+    [SerializeField] private CircleCollider2D m_GroundCheck;                    // A position marking where to check if the player is grounded.
+    [SerializeField] private CircleCollider2D m_CeilingCheck;                   // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
-    [SerializeField] private float m_groundApproachingDistance = 1f;                 // A mask determining what is ground to the character
+    [SerializeField] private float m_groundApproachingDistance = 1f;            // A mask determining what is ground to the character
     public float MaxVerticalVelocityBeforeFallIsFatal;
     public Vector2 JumpFromSlidingForce;
     public Vector2 JumpFromClimbingForce;
@@ -46,7 +46,8 @@ public class CharacterController2D : MonoBehaviour
     private bool _hasJumped;
     private bool _dieOnLand;
     private bool _isControllable;
-
+    private bool _interruptClimbToJump;
+    private bool _hasWallJumped;
 
     [Header("Climbing")]
     [Space]
@@ -55,9 +56,6 @@ public class CharacterController2D : MonoBehaviour
     public float ClimbTransitionSpeed = 1f;
     public float MaxClimbDistanceIfObstacleIsTooHigh = 2f;
     public float MaxClimbDistanceAfterJumpIfObstacleIsTooHigh = 1f;
-    public float MinIntervalBetweenTwoClimbsOnSameObstacle = 0.8f;
-    private bool _hasAlreadyClimbedOnce = false;
-    private float _lastClimbTime;
 
 
     [Header("Events")]
@@ -79,8 +77,6 @@ public class CharacterController2D : MonoBehaviour
     public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
-    //public Animator UpperBodyAnimator;
-    //public Animator LowerBodyAnimator;
     private Player _player;
 
     private void Awake()
@@ -127,7 +123,6 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
-                _hasAlreadyClimbedOnce = false;
                 
                 _hasJumped = false;
                 if (!wasGrounded)
@@ -145,7 +140,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         
-        Debug.DrawRay(m_GroundCheck.transform.position, Vector2.down * m_groundApproachingDistance, Color.green);
+        //Debug.DrawRay(m_GroundCheck.transform.position, Vector2.down * m_groundApproachingDistance, Color.green);
         var ground = Physics2D.CircleCast(m_GroundCheck.transform.position, m_GroundCheck.radius, Vector2.down, m_groundApproachingDistance, m_WhatIsGround);
         if (ground.collider != null)
         {
@@ -211,7 +206,7 @@ public class CharacterController2D : MonoBehaviour
         if (!crouch)
         {
             // If the character has a ceiling preventing them from standing up, keep them crouching
-            if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
+            if (Physics2D.OverlapCircle(m_CeilingCheck.transform.position, k_CeilingRadius, m_WhatIsGround))
             {
                 crouch = true;
             }
@@ -294,9 +289,15 @@ public class CharacterController2D : MonoBehaviour
                 Jump(jumpForce);
             }
         }
-        else if (!m_Grounded && !m_Climbing && Input.GetButton("Jump"))
+        else if (!m_Grounded && !m_Climbing && (Input.GetButton("Jump") || _hasWallJumped))
         {
             // If obstacle is encountered mid-air and jump button is down, jump over it
+            // Do the same if player comes from a wall jump because it makes controls easier
+            //if (DetectAndClimbObstacle() && _hasWallJumped)
+            //{
+            //    //_hasWallJumped = false;
+            //    Debug.Log("has auto climbed.");
+            //}
             DetectAndClimbObstacle();
         }
         else if (m_Climbing && jump)
@@ -306,18 +307,16 @@ public class CharacterController2D : MonoBehaviour
             m_Climbing = false;
             m_Rigidbody2D.simulated = true;
             _interruptClimbToJump = true;
+            _hasWallJumped = true;
             m_Rigidbody2D.velocity = m_FacingRight ? new Vector2(-JumpFromClimbingForce.x, JumpFromClimbingForce.y) : JumpFromClimbingForce;
             Look(!m_FacingRight);
-            _hasAlreadyClimbedOnce = false;
-            OnJumpEvent.Invoke();
         }
     }
-    private bool _interruptClimbToJump;
+    
 
     private void Jump(Vector2 jumpForce, ForceMode2D forceMode2D = ForceMode2D.Force)
     {
         // Add a vertical force to the player.
-        Debug.Log("jump");
         m_Grounded = false;
         m_Rigidbody2D.AddForce(jumpForce, forceMode2D);
         OnJumpEvent.Invoke();
@@ -325,8 +324,19 @@ public class CharacterController2D : MonoBehaviour
 
     private bool DetectAndClimbObstacle()
     {
-        if (_hasAlreadyClimbedOnce || _lastClimbTime + MinIntervalBetweenTwoClimbsOnSameObstacle > Time.time)
-            return true;
+        //if (!_hasWallJumped && (_hasAlreadyClimbedOnce || _lastClimbTime + MinIntervalBetweenTwoClimbsOnSameObstacle > Time.time))
+        //{
+        //    Debug.Log("climb same obstacle");
+        //    return true;
+        //}
+
+        // If something above, do not climb
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(m_CeilingCheck.transform.position, m_CeilingCheck.radius, m_WhatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+                return false;
+        }
 
         var obstacleSize = ObstacleSize.None;
         var obstacleApproxPosition = Vector2.zero;
@@ -356,9 +366,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void ClimbOverObstacle(ObstacleSize obstacleSize, Vector2 obstacleApproxPosition)
     {
-        _hasAlreadyClimbedOnce = true;
-        _lastClimbTime = Time.time;
-
         if ((obstacleSize == ObstacleSize.Above6 && m_Grounded)
             || (obstacleSize >= ObstacleSize.Above3 && !m_Grounded))
         {
@@ -408,9 +415,11 @@ public class CharacterController2D : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        m_Rigidbody2D.simulated = true;
+        yield return new WaitForSeconds(0.3f);
+        _hasWallJumped = _interruptClimbToJump;
         _interruptClimbToJump = false;
         m_Climbing = false;
-        m_Rigidbody2D.simulated = true;
     }
 
 
