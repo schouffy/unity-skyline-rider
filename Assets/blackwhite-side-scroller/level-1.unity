@@ -11248,17 +11248,23 @@ PrefabInstance:
     - target: {fileID: 7212177298887007249, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}
       propertyPath: JumpFromClimbingForce.y
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007249, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: CharacterDiesFromFallFX
+      value: 
+      objectReference: {fileID: 8370967782867503783, guid: 4cefa7cd1795f794c86e9110a099aca1,
+        type: 3}
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 147.09
+      value: 130.87
       objectReference: {fileID: 0}
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -61.57
+      value: -64.27
       objectReference: {fileID: 0}
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}

@@ -92,19 +92,22 @@ Faire les premières maps habillées avec props
 2- Apparition d'ennemis : parkour et infiltration
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
-	- fail des plateformes superposées (utiliser le ceiling check pour ne pas grimper)
-	- ragdoll et blood spatter quand fatal fall
-		- tweak ragdoll ?
+	X- ne pas pouvoir climb en boucle à la même plateforme
 	- fall puis climb -> animations KO
-	- ne pas pouvoir climb en boucle à la même plateforme
 	- ne pas pouvoir climb quand je suis en train de chuter (? pas sur à réfléchir)
+	- animations climb/jump pas ouf
+	- tweak ragdoll ?
+	- fail des plateformes superposées (utiliser le ceiling check pour ne pas grimper)
 	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
 	- contrôles manette
-	- animations climb/jump pas ouf
-	- gestion correcte de la mort (prompt + attente pression touche pour reload)
+	- réduire le collider quand je saute (il dépasse sous les pieds là)
+	
 
 
 système d'instructions/tuto
+gestion correcte de la mort (prompt + attente pression touche pour reload)
+checkpoints ?
+fin de niveau
 
 ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
 

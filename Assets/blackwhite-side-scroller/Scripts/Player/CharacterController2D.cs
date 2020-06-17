@@ -35,6 +35,7 @@ public class CharacterController2D : MonoBehaviour
     public float MaxVerticalVelocityBeforeFallIsFatal;
     public Vector2 JumpFromSlidingForce;
     public Vector2 JumpFromClimbingForce;
+    public GameObject CharacterDiesFromFallFX;
 
     private bool m_Grounded;            // Whether or not the player is grounded.
     private bool m_Climbing;
@@ -123,7 +124,8 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
-                
+                _obstacleCurrentlyClimbing = null;
+
                 _hasJumped = false;
                 if (!wasGrounded)
                     OnLandEvent.Invoke();
@@ -191,9 +193,11 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void Die()
+    private void Die()
     {
         _isControllable = false;
+        Instantiate(CharacterDiesFromFallFX, transform.position, Quaternion.Euler(0, 0, 0));
+        GetComponent<PlayerAttackable>().Die(m_Rigidbody2D.velocity * 50f);
         OnDieEvent.Invoke();
     }
 
@@ -249,15 +253,6 @@ public class CharacterController2D : MonoBehaviour
             // And then smoothing it out and applying it to the character
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-            //if (targetVelocity != Vector3.zero)
-            //{
-            //	LowerBodyAnimator.SetBool("walking", true);
-            //}
-            //else
-            //{
-            //	LowerBodyAnimator.SetBool("walking", false);
-            //}
-
             // If the input is moving the player right and the player is facing left and aiming right or not aiming...
             if (move > 0 && !m_FacingRight && (!_player.IsAiming || _player.IsAimingRight))
             {
@@ -293,11 +288,6 @@ public class CharacterController2D : MonoBehaviour
         {
             // If obstacle is encountered mid-air and jump button is down, jump over it
             // Do the same if player comes from a wall jump because it makes controls easier
-            //if (DetectAndClimbObstacle() && _hasWallJumped)
-            //{
-            //    //_hasWallJumped = false;
-            //    Debug.Log("has auto climbed.");
-            //}
             DetectAndClimbObstacle();
         }
         else if (m_Climbing && jump)
@@ -340,6 +330,7 @@ public class CharacterController2D : MonoBehaviour
 
         var obstacleSize = ObstacleSize.None;
         var obstacleApproxPosition = Vector2.zero;
+        GameObject obstacleObject = null;
         for (var i = 0; i < ObstacleRaycastStartPositions.Length; ++i)
         {
             var startPos = ObstacleRaycastStartPositions[i];
@@ -348,6 +339,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 obstacleSize = (ObstacleSize)(i + 1);
                 obstacleApproxPosition = hit.point;
+                obstacleObject = hit.collider.gameObject;
             }
             else if (obstacleSize == ObstacleSize.None && (ObstacleSize)(i + 1) == ObstacleSize.Above1)
             {
@@ -357,15 +349,22 @@ public class CharacterController2D : MonoBehaviour
         }
         if (obstacleSize != ObstacleSize.None)
         {
+            if (obstacleObject == _obstacleCurrentlyClimbing)
+                return false;
+
             // if there is an obstacle in front, climb it
-            ClimbOverObstacle(obstacleSize, obstacleApproxPosition);
+            ClimbOverObstacle(obstacleSize, obstacleApproxPosition, obstacleObject);
             return true;
         }
         return false;
     }
 
-    private void ClimbOverObstacle(ObstacleSize obstacleSize, Vector2 obstacleApproxPosition)
+    private GameObject _obstacleCurrentlyClimbing;
+
+    private void ClimbOverObstacle(ObstacleSize obstacleSize, Vector2 obstacleApproxPosition, GameObject obstacleObject)
     {
+        _obstacleCurrentlyClimbing = obstacleObject;
+
         if ((obstacleSize == ObstacleSize.Above6 && m_Grounded)
             || (obstacleSize >= ObstacleSize.Above3 && !m_Grounded))
         {
