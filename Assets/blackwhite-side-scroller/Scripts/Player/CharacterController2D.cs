@@ -33,6 +33,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private float m_groundApproachingDistance = 1f;            // A mask determining what is ground to the character
     public float MaxVerticalVelocityBeforeFallIsFatal;
+    public float MaxVerticalVelocityBeforeClimbingIsImpossible;
     public Vector2 JumpFromSlidingForce;
     public Vector2 JumpFromClimbingForce;
     public GameObject CharacterDiesFromFallFX;
@@ -71,6 +72,7 @@ public class CharacterController2D : MonoBehaviour
     [System.Serializable]
     public class ObstacleClimbEvent : UnityEvent<ObstacleSize> { }
     public ObstacleClimbEvent OnClimbStartEvent;
+    public UnityEvent OnClimbEndEvent;
 
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
@@ -106,6 +108,9 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnClimbStartEvent == null)
             OnClimbStartEvent = new ObstacleClimbEvent();
+
+        if (OnClimbEndEvent == null)
+            OnClimbEndEvent = new UnityEvent();
 
         if (OnSlideStartEvent == null)
             OnSlideStartEvent = new UnityEvent();
@@ -197,8 +202,9 @@ public class CharacterController2D : MonoBehaviour
     {
         _isControllable = false;
         Instantiate(CharacterDiesFromFallFX, transform.position, Quaternion.Euler(0, 0, 0));
-        GetComponent<PlayerAttackable>().Die(m_Rigidbody2D.velocity * 50f);
-        OnDieEvent.Invoke();
+        GetComponent<PlayerAttackable>().Die(m_Rigidbody2D.velocity * 100f);
+        Time.timeScale = 0.5f;
+        //OnDieEvent.Invoke();
     }
 
     public void Move(float move, bool crouch, bool jump)
@@ -314,12 +320,6 @@ public class CharacterController2D : MonoBehaviour
 
     private bool DetectAndClimbObstacle()
     {
-        //if (!_hasWallJumped && (_hasAlreadyClimbedOnce || _lastClimbTime + MinIntervalBetweenTwoClimbsOnSameObstacle > Time.time))
-        //{
-        //    Debug.Log("climb same obstacle");
-        //    return true;
-        //}
-
         // If something above, do not climb
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_CeilingCheck.transform.position, m_CeilingCheck.radius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -350,6 +350,8 @@ public class CharacterController2D : MonoBehaviour
         if (obstacleSize != ObstacleSize.None)
         {
             if (obstacleObject == _obstacleCurrentlyClimbing)
+                return false;
+            if (m_Rigidbody2D.velocity.y < -MaxVerticalVelocityBeforeClimbingIsImpossible)
                 return false;
 
             // if there is an obstacle in front, climb it
@@ -415,6 +417,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         m_Rigidbody2D.simulated = true;
+        OnClimbEndEvent.Invoke();
         yield return new WaitForSeconds(0.3f);
         _hasWallJumped = _interruptClimbToJump;
         _interruptClimbToJump = false;

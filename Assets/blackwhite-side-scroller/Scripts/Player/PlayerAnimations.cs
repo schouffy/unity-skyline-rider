@@ -74,11 +74,12 @@ public class PlayerAnimations : MonoBehaviour
     public void StartClimbing(ObstacleSize obstacleSize)
     {
         Animator.SetFloat("ObstacleHeight", (float)obstacleSize);
-        Animator.SetTrigger("Climb");
+        Animator.SetBool("Climb", true);
     }
 
     public void EndClimbing()
     {
+        Animator.SetBool("Climb", false);
     }
 
     public void StartFatalFall()

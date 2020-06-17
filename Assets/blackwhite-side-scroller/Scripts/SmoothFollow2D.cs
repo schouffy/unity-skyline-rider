@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class SmoothFollow2D : MonoBehaviour
 {
-	public float LerpSpeed = 10f;
+	public float LerpSpeedX = 5f;
+	public float LerpSpeedY = 10f;
 	public Transform m_Target;
 	public float m_XOffset = 0;
 	public float m_YOffset = 0;
-
-	private float margin = 0.1f;
 
 	void Awake()
 	{
@@ -41,8 +40,10 @@ public class SmoothFollow2D : MonoBehaviour
 			//	targetY = Mathf.Lerp(transform.position.y, targetY, m_DampTime * Time.deltaTime);
 
 			if (lerp)
-				transform.position =
-					Vector3.Slerp(transform.position, new Vector3(targetX, targetY, transform.position.z), LerpSpeed * Time.deltaTime);
+				transform.position = new Vector3(
+						Mathf.Lerp(transform.position.x, targetX, LerpSpeedX * Time.deltaTime),
+						Mathf.Lerp(transform.position.y, targetY, LerpSpeedY * Time.deltaTime),
+						transform.position.z);
 			else
 				transform.position = new Vector3(targetX, targetY, transform.position.z);
 		}
