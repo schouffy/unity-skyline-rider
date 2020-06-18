@@ -27,15 +27,18 @@ playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 POLISH
 	X- tweak ragdoll ?
 		- Copier la position des membres au moment du switch => ça ne semble pas nécessaire
+	- trigger mal placé sur la zone tuto ?
 	- quand je vire le crouch collider mes collisions merdent ? Si je le vire pas, je passe plusieurs fois dans certains triggers (une fois par collider)
+	- réduire le collider quand je saute (il dépasse sous les pieds là), cf 2ème montée de level-1
 	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
-	- réduire le collider quand je saute (il dépasse sous les pieds là)
 	- contrôles manette
-	- animations UI
+	- temporiser avant d'afficher l'écran de mort
+	
 	- animations climb/jump pas ouf
 	- fall puis climb -> animations KO.
+	- double saut sur la 2ème montée de level-1
+	
 	- Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
-
 	- checkpoints ?
 		- landmark, hint visuel de la sauvegarde, sauvegarde de position
 	

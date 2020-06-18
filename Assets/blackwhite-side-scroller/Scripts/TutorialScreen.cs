@@ -16,6 +16,13 @@ public class TutorialScreen : MonoBehaviour
 
     public void Hide()
     {
+        StartCoroutine(_Hide());
+    }
+
+    private IEnumerator _Hide()
+    {
+        GetComponent<Animator>().SetTrigger("hide");
+        yield return new WaitForSeconds(0.3f);
         gameObject.SetActive(false);
     }
 }
