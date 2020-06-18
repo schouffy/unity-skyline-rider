@@ -4,21 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-public class SteepGroundDisabler : GameTrigger
+public class FinishTrigger : GameTrigger
 {
-    public UnityEvent OnPlayerEnterEvent;
+    public UnityEvent OnPlayerEnter;
 
     protected override void Start()
     {
         base.Start();
+
+        if (OnPlayerEnter == null)
+            OnPlayerEnter = new UnityEvent();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == Constants.TagPlayer)
         {
-            OnPlayerEnterEvent.Invoke();
+            OnPlayerEnter.Invoke();
         }
     }
 }

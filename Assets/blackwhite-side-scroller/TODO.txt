@@ -95,11 +95,18 @@ playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 	X- ne pas pouvoir climb en boucle à la même plateforme
 	X- ne pas pouvoir climb quand je suis en train de chuter (? pas sur à réfléchir)
 	X- tweak ragdoll ?
-		- flip du bon côté au moment du spawn
-	- système d'instructions/tuto
-	- gestion correcte de la mort (prompt + attente pression touche pour reload)
-	- checkpoints ?
+		X- flip du bon côté au moment du spawn
+	X- gestion correcte de la mort (prompt + attente pression touche pour reload)
+	X- système d'instructions/tuto
+		- hint visuel du tuto (sprite [?])
 	- fin de niveau
+		- asset visuel de fin de niveau, animation de course, perso qui disparait qque part, 
+		- désactivation perso, affichage écran de fin, calcul des stats, passage niveau suivant
+	- checkpoints ?
+		- landmark, hint visuel de la sauvegarde, sauvegarde de position
+	- animations UI
+	- phrases contextuelles de mort ?
+	
 	- animations climb/jump pas ouf
 	- fall puis climb -> animations KO
 	- fail des plateformes superposées (utiliser le ceiling check pour ne pas grimper)

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.blackwhite_side_scroller.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ public class RadioHitProjectile : Projectile
         {
             StartCoroutine(RenderBulletPath(hitInfo.point));
 
-            if (hitInfo.collider.gameObject.tag == "Player")
+            if (hitInfo.collider.gameObject.tag == Constants.TagPlayer)
             {
                 hitInfo.collider.gameObject.GetComponentInParent<PlayerAttackable>().GetHitByBullet(this, hitInfo.point);
             }

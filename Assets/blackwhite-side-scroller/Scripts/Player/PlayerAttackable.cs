@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerAttackable : MonoBehaviour
 {
@@ -8,6 +9,16 @@ public class PlayerAttackable : MonoBehaviour
     public GameObject HitFX;
     public PlayerRagdoll PlayerRagdoll;
     public Transform PlayerRig;
+
+
+    [Header("Events")]
+    public UnityEvent OnDieEvent;
+
+    private void Start()
+    {
+        if (OnDieEvent == null)
+            OnDieEvent = new UnityEvent();
+    }
 
     public void GetHitByBullet(Projectile projectile, Vector3 impactPosition)
     {
@@ -23,9 +34,10 @@ public class PlayerAttackable : MonoBehaviour
     {
         RagdollHelper.CreateCollidersForRagdoll(transform.position);
         var ragdoll = Instantiate(PlayerRagdoll, transform.position, transform.rotation);
+        ragdoll.transform.localScale = transform.localScale;
         ragdoll.CopyPose(PlayerRig);
         ragdoll.AddForce(forceToAddToRagdoll);
+        OnDieEvent.Invoke();
         GameObject.Destroy(this.gameObject);
     }
-
 }

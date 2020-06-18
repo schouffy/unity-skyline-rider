@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.blackwhite_side_scroller.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttackable>();
+        _player = GameObject.FindGameObjectWithTag(Constants.TagPlayer).GetComponent<PlayerAttackable>();
         _alive = true;
         if (Waypoints != null && Waypoints.Length > 0)
         {
@@ -87,7 +88,7 @@ public class EnemyAI : MonoBehaviour
         {
             PlayerCanBeSeen = false;
             var hitInfo = Physics2D.Raycast(EyePosition.position, playerPoint.position - EyePosition.position, 50f, RaycastToPlayerLayers);
-            if (hitInfo.collider != null && hitInfo.collider.gameObject.tag == "Player")
+            if (hitInfo.collider != null && hitInfo.collider.gameObject.tag == Constants.TagPlayer)
             {
                 whereToAim = hitInfo.point;
                 return true;

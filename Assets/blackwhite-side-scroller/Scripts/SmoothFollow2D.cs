@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.blackwhite_side_scroller.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class SmoothFollow2D : MonoBehaviour
 	{
 		if (m_Target == null)
 		{
-			m_Target = GameObject.FindGameObjectWithTag("Player").transform;
+			m_Target = GameObject.FindGameObjectWithTag(Constants.TagPlayer).transform;
 		}
 		Move(false);
 	}

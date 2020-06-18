@@ -65,7 +65,6 @@ public class CharacterController2D : MonoBehaviour
     public UnityEvent OnJumpEvent;
     public UnityEvent OnFallEvent;
     public UnityEvent OnLandEvent;
-    public UnityEvent OnDieEvent;
     public UnityEvent OnGroundApproachingEvent;
     public UnityEvent OnSlideStartEvent;
 
@@ -96,9 +95,6 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
-
-        if (OnDieEvent == null)
-            OnDieEvent = new UnityEvent();
 
         if (OnGroundApproachingEvent == null)
             OnGroundApproachingEvent = new UnityEvent();
@@ -200,11 +196,10 @@ public class CharacterController2D : MonoBehaviour
 
     private void Die()
     {
-        _isControllable = false;
+        //_isControllable = false;
         Instantiate(CharacterDiesFromFallFX, transform.position, Quaternion.Euler(0, 0, 0));
         GetComponent<PlayerAttackable>().Die(m_Rigidbody2D.velocity * 100f);
         Time.timeScale = 0.5f;
-        //OnDieEvent.Invoke();
     }
 
     public void Move(float move, bool crouch, bool jump)
