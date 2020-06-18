@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class FinishTrigger : GameTrigger
 {
     public UnityEvent OnPlayerEnter;
+    public Transform EndOfLevelPosition;
 
     protected override void Start()
     {
@@ -20,6 +21,12 @@ public class FinishTrigger : GameTrigger
     {
         if (collision.gameObject.tag == Constants.TagPlayer)
         {
+            // stop camera follow
+            Camera.main.GetComponent<SmoothFollow2D>().enabled = false;
+
+            // move character to final destination
+            collision.GetComponentInParent<CharacterController2D>().MoveToEndOfLevel(EndOfLevelPosition.position);
+
             OnPlayerEnter.Invoke();
         }
     }

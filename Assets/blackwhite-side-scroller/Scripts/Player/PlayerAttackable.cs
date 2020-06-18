@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.blackwhite_side_scroller.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;

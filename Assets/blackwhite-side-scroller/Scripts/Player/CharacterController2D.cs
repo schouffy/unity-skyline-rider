@@ -202,6 +202,22 @@ public class CharacterController2D : MonoBehaviour
         Time.timeScale = 0.5f;
     }
 
+    public void MoveToEndOfLevel(Vector2 endOfLevelPosition)
+    {
+        _isControllable = false;
+        StartCoroutine(_MoveToEndOfLevel(endOfLevelPosition));
+    }
+
+    private IEnumerator _MoveToEndOfLevel(Vector2 endOfLevelPosition)
+    {
+        while (true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endOfLevelPosition, 2f * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+
     public void Move(float move, bool crouch, bool jump)
     {
         if (!_isControllable)

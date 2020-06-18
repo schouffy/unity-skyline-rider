@@ -1,17 +1,42 @@
-﻿using System;
+﻿using Assets.blackwhite_side_scroller.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class FinishScreen : MonoBehaviour
 {
     public Text StatsText;
 
-    public void Display()
+    [Header("Events")]
+    public UnityEvent OnKeyPress;
+
+    private void Start()
     {
-        String displayCompletionTime = "170 seconds";
-        StatsText.text = $"Time: {displayCompletionTime}\nDeath count: {5}";
+        if (OnKeyPress == null)
+            OnKeyPress = new UnityEvent();
+    }
+
+    public void Show()
+    {
+        String displayCompletionTime = Math.Round(Constants.GameController.GetElapsedTime(), 2) + " seconds";
+        StatsText.text = $"Time: {displayCompletionTime}\nDeath count: {Constants.GameController.GetDeathCount()}";
         gameObject.SetActive(true);
+        StartCoroutine(ListenToKeyPress());
+    }
+
+    private IEnumerator ListenToKeyPress()
+    {
+        while (true)
+        {
+            if (Input.anyKeyDown)
+            {
+                OnKeyPress.Invoke();
+                break;
+            }
+            yield return null;
+        }
     }
 }

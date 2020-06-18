@@ -1,25 +1,25 @@
-﻿using System;
+﻿using Assets.blackwhite_side_scroller.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InGameUIManager : MonoBehaviour
+public class DeathScreen : MonoBehaviour
 {
-    public GameObject DeathScreen;
-
     [Header("Events")]
-    public UnityEvent OnKeyPressAfterDeath;
+    public UnityEvent OnKeyPress;
 
     private void Start()
     {
-        if (OnKeyPressAfterDeath == null)
-            OnKeyPressAfterDeath = new UnityEvent();
+        if (OnKeyPress == null)
+            OnKeyPress = new UnityEvent();
     }
 
-    public void ShowDeathScreen()
+    public void Show()
     {
-        DeathScreen.SetActive(true);
+        Constants.GameController.IncrementDeathCount();
+        gameObject.SetActive(true);
         StartCoroutine(ListenToKeyPress());
     }
 
@@ -29,15 +29,10 @@ public class InGameUIManager : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
-                OnKeyPressAfterDeath.Invoke();
+                OnKeyPress.Invoke();
                 break;
             }
             yield return null;
         }
-    }
-
-    public void ShowTutorial(String text)
-    {
-        Debug.Log("ShowTutorial " + text);
     }
 }
