@@ -38,6 +38,7 @@ public class PlayerAttackable : MonoBehaviour
         ragdoll.transform.localScale = transform.localScale;
         ragdoll.CopyPose(PlayerRig);
         ragdoll.AddForce(forceToAddToRagdoll);
+        Time.timeScale = 0.5f;
         OnDieEvent.Invoke();
         GameObject.Destroy(this.gameObject);
     }

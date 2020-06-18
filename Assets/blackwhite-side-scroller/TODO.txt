@@ -1,26 +1,6 @@
 
-X idle
-X marcher
-X courir
-X blending
-X pb d'échelle sprites et modèles 3D
-	PPU lors de l'import des sprites: 16, no filter, compression none
-	réso 320x180, Assets PPU 16 sur la caméra
-X cleaning idle/move dans animation controller et scripts
-X 3 ou 4 presets de vitesse pour éviter le blending trop violent
-X caméra qui suit basiquement
-X clean du personnage dans blender et les crottes qui se décollent de ses pieds
-
-X se baisser et se déplacer comme ça
-X sauter
-
-X Améliorer saut (décomposer, raycast,..)
-
-X enjamber
-X franchir, grimper
-
-X s'accrocher
-X Hauteur max de grimpe (depuis sol + depuis saut)
+PPU lors de l'import des sprites: 16, no filter, compression none
+réso 320x180, Assets PPU 16 sur la caméra
 
 X mockup/proto graphique 
 	https://www.google.com/search?q=gameboy+art+style&sxsrf=ALeKk02M3qK5U2uhgwxYk2dZFHSK57s-tw:1590506270644&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjT9JjK6dHpAhUEdxoKHepwAzgQ_AUoAXoECAsQAw&biw=1858&bih=1013#imgrc=qvfbk5_ZRgWpuM
@@ -33,58 +13,9 @@ X mockup/proto graphique
 		Batiment en ruine
 
 
-X trouver une technique pour ne pas perdre trop de temps avec le snapping
-X map de test avec tous les mouvements de base
-	marcher/courir
-	tomber
-	sauter
-	enjamber
-	grimper
-	grimper après un saut
-X mourir quand on tombe dans un trou
-X chute sans sauter
-X mourir après chute trop haute (+ animation "perte de controle" en l'air)
-
-
-
-
-playtest + animations. 
-	X- on peut grimper sur des murs de n'importe quelle hauteur en maintenant/hammerant espace ?
-	X- anim idle random se lance quand on recharge la scène
-	X- revoir les animations de grimpe pour chaque hauteur + vitesse de ces animations
-	X- ne pas charger l'animation Fall si on tombe de "pas assez haut"
-ennemis basiques
-	X- patrouille
-	X- Voit le joueur
-	X- vise le joueur
-	X- tire sur le joueur
-	X- le joueur meurt
-	X- animations
-
-
-POLISH
-X Effets de particules quand on court, saute, atterit...
-FX de tirs, sang, débris, projectiles
-	X- tirs: fumée qui part rapidement en avant + puff qui reste
-	X- débris: fumée + débris physiqués doivent se retrouver au sol, sans collider pour pas gêner.
-	X- projectiles: balles "traçantes"
-	X- sang: particles + coller des splatters sur les surfaces autour
-		X spatter plus petit, ne pas les superposer, attention aux "joints" entre différents colliders. A playtester.
-		X Virer les particules au bout d'un moment, mais laisser les spatters sur la map.
-ragdoll joueur quand il meurt / animations / les deux ?
-	X Spawn un autre joueur non controllable, en ragdoll, quand le joueur meurt.
-	X dupliquer les objets environnants qui ont des colliders2D, et modifier les copies pour en faire des colliders 3D
-	- Copier la position des membres au moment du switch => ça ne semble pas nécessaire
-suivi caméra
-	X quand on va à droite/gauche
-	- attention au parallax sur l'axe Y => Pour l'instant je me limite sur la hauteur des niveaux. Si ça pose pb, Soit trouver un moyen, soit faire des sprites plus hauts
 glisser sur des pentes
-	X- particules
-	X- parfois ça saute loin, parfois non
 	- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
 	- gérer dans les deux sens, orienter le joueur dans le sens de la descente
-X sauter quand contre un mur
-
 
 
 Faire les premières maps habillées avec props
@@ -92,29 +23,29 @@ Faire les premières maps habillées avec props
 2- Apparition d'ennemis : parkour et infiltration
 
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
-	X- ne pas pouvoir climb en boucle à la même plateforme
-	X- ne pas pouvoir climb quand je suis en train de chuter (? pas sur à réfléchir)
+
+POLISH
 	X- tweak ragdoll ?
-		X- flip du bon côté au moment du spawn
-	X- gestion correcte de la mort (prompt + attente pression touche pour reload)
-	X- système d'instructions/tuto
-		X- hint visuel du tuto (sprite [?])
-	- fin de niveau
-		X- asset visuel de fin de niveau, animation de course, perso qui disparait qque part, stop camera follow
-		X- désactivation perso, affichage écran de fin, calcul des stats, fade out, passage niveau suivant
+		- Copier la position des membres au moment du switch => ça ne semble pas nécessaire
+	- quand je vire le crouch collider mes collisions merdent ? Si je le vire pas, je passe plusieurs fois dans certains triggers (une fois par collider)
+	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
+	- réduire le collider quand je saute (il dépasse sous les pieds là)
+	- contrôles manette
+	- animations UI
+	- animations climb/jump pas ouf
+	- fall puis climb -> animations KO.
+	- Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
+
 	- checkpoints ?
 		- landmark, hint visuel de la sauvegarde, sauvegarde de position
-	- animations UI
+	
 	- phrases contextuelles de mort ?
 	
-	- quand je vire le crouch collider mes collisions merdent ? Si je le vire pas, je passe plusieurs fois dans certains triggers (une fois par collider)
-	- animations climb/jump pas ouf
-	- fall puis climb -> animations KO
-	- fail des plateformes superposées (utiliser le ceiling check pour ne pas grimper)
-	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
-	- contrôles manette
-	- réduire le collider quand je saute (il dépasse sous les pieds là)
-	- fade out incorrect quand je meurs
+	
+	
+	
+	
+	
 	
 
 ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)

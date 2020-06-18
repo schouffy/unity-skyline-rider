@@ -11,11 +11,13 @@ public class LevelLoader : MonoBehaviour
 
     public void RestartCurrentLevel()
     {
+        Time.timeScale = 1;
         StartCoroutine(Reload());
     }
 
     public void LoadNextLevel()
     {
+        Time.timeScale = 1;
         StartCoroutine(_LoadNextLevel());
     }
 

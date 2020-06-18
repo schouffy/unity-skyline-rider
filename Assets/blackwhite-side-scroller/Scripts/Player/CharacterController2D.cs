@@ -199,7 +199,6 @@ public class CharacterController2D : MonoBehaviour
         //_isControllable = false;
         Instantiate(CharacterDiesFromFallFX, transform.position, Quaternion.Euler(0, 0, 0));
         GetComponent<PlayerAttackable>().Die(m_Rigidbody2D.velocity * 100f);
-        Time.timeScale = 0.5f;
     }
 
     public void MoveToEndOfLevel(Vector2 endOfLevelPosition)
