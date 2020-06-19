@@ -88,6 +88,53 @@ Transform:
   m_Father: {fileID: 3703533685472778788}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7112949596393305311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567151841231624502}
+  - component: {fileID: 3890223862095032977}
+  m_Layer: 8
+  m_Name: JumpingCollider
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1567151841231624502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112949596393305311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.022, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7212177298887007250}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &3890223862095032977
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112949596393305311}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.052243114, y: 1.03}
+  m_Size: {x: 0.2836666, y: 1.27}
+  m_Direction: 0
 --- !u!1 &7212177298288718239
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +388,7 @@ Transform:
   - {fileID: 7212177300319420134}
   - {fileID: 7212177298456080048}
   m_Father: {fileID: 7212177298887007250}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7212177298887007245
 GameObject:
@@ -380,6 +427,7 @@ Transform:
   - {fileID: 7212177300137137229}
   - {fileID: 7212177298352493195}
   - {fileID: 7212177298720066542}
+  - {fileID: 1567151841231624502}
   - {fileID: 7212177298970018330}
   - {fileID: 7212177298886671649}
   - {fileID: 7212177299326699158}
@@ -469,10 +517,14 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 7212177300137137228}
   m_CeilingCheck: {fileID: 511130112299328005}
   m_CrouchDisableCollider: {fileID: 7212177298720066543}
+  m_StandingCollider: {fileID: 7212177298720066543}
+  m_JumpingCollider: {fileID: 3890223862095032977}
   m_groundApproachingDistance: 1
   MaxVerticalVelocityBeforeFallIsFatal: 16
+  MaxVerticalVelocityBeforeClimbingIsImpossible: 0
   JumpFromSlidingForce: {x: 210, y: 1080}
   JumpFromClimbingForce: {x: 0, y: 0}
+  CharacterDiesFromFallFX: {fileID: 0}
   ObstacleRaycastStartPositions:
   - {fileID: 7212177299815388609}
   - {fileID: 7212177298918724359}
@@ -489,7 +541,6 @@ MonoBehaviour:
   ClimbTransitionSpeed: 5
   MaxClimbDistanceIfObstacleIsTooHigh: 2
   MaxClimbDistanceAfterJumpIfObstacleIsTooHigh: 1.5
-  MinIntervalBetweenTwoClimbsOnSameObstacle: 0.8
   OnJumpEvent:
     m_PersistentCalls:
       m_Calls:
@@ -521,20 +572,6 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
-  OnDieEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RestartCurrentLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   OnGroundApproachingEvent:
     m_PersistentCalls:
       m_Calls:
@@ -566,6 +603,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnClimbEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -605,6 +645,9 @@ MonoBehaviour:
   HitFX: {fileID: 8370967782867503783, guid: 4cefa7cd1795f794c86e9110a099aca1, type: 3}
   PlayerRagdoll: {fileID: 0}
   PlayerRig: {fileID: 0}
+  OnDieEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7212177298903891257
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7212177298970018330
 Transform:
   m_ObjectHideFlags: 0
@@ -724,7 +767,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7212177298887007250}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &7212177298970018329
 CapsuleCollider2D:
@@ -801,7 +844,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7212177298887007250}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7212177299326699157
 BoxCollider2D:
@@ -980,7 +1023,7 @@ Transform:
   - {fileID: 7212177298910412003}
   - {fileID: 7212177299227197128}
   m_Father: {fileID: 7212177298887007250}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7212177300137137230
 GameObject:

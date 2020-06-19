@@ -27,14 +27,11 @@ playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 POLISH
 	X- tweak ragdoll ?
 		- Copier la position des membres au moment du switch => ça ne semble pas nécessaire
-	- réduire le collider quand je saute (il dépasse sous les pieds là), cf 2ème montée de level-1
-	- double saut sur la 2ème montée de level-1
 	- animations climb/jump pas ouf
 	- fall puis climb -> animations KO.
 	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
 	- contrôles manette
-	- temporiser avant d'afficher l'écran de mort
-	- forcer le joueur à courir quand il part dans l'ascenseur
+	
 	
 	- Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 	- checkpoints ?

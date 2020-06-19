@@ -30,6 +30,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private CircleCollider2D m_GroundCheck;                    // A position marking where to check if the player is grounded.
     [SerializeField] private CircleCollider2D m_CeilingCheck;                   // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+    [SerializeField] private Collider2D m_StandingCollider;
+    [SerializeField] private Collider2D m_JumpingCollider;
+
     [SerializeField] private float m_groundApproachingDistance = 1f;            // A mask determining what is ground to the character
     public float MaxVerticalVelocityBeforeFallIsFatal;
     public float MaxVerticalVelocityBeforeClimbingIsImpossible;
@@ -160,6 +163,17 @@ public class CharacterController2D : MonoBehaviour
             _dieOnLand = true;
             Animator.StartFatalFall();
         }
+
+        if (m_Grounded)
+        {
+            m_StandingCollider.enabled = true;
+            m_JumpingCollider.enabled = false;
+        }
+        else
+        {
+            m_StandingCollider.enabled = false;
+            m_JumpingCollider.enabled = true;
+        }
     }
 
     public void StartSliding(SteepGround steepGroundToSlideOn)
@@ -210,7 +224,8 @@ public class CharacterController2D : MonoBehaviour
     {
         while (true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endOfLevelPosition, 2f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, endOfLevelPosition, 4f * Time.deltaTime);
+            Animator.SetSpeed(1.0f);
             yield return null;
         }
     }
