@@ -1,11 +1,7 @@
 ﻿using Assets.blackwhite_side_scroller.Scripts;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
-
 
 public class TutorialTrigger : GameTrigger
 {
@@ -16,6 +12,7 @@ public class TutorialTrigger : GameTrigger
     public class UnityStringEvent : UnityEvent<String> { }
     public UnityStringEvent OnPlayerEnter;
     public UnityEvent OnPlayerExit;
+    private static Transform _player;
 
     protected override void Start()
     {

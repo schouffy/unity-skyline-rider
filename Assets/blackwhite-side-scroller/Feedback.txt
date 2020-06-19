@@ -1,0 +1,6 @@
+Gabriel
+- la position du personnage en marche rapide me semble bizarre
+- je veux des glissades !
+- on avait parlé d'une ombre avec le meilleur temps à battre (du moins à étudier)
+- plus de mouvement de parcours (je pense au passage de bloc d'1m de haut)
+- peut-être essayer de le rendre plus rapide/nerveux au niveau des déplacements

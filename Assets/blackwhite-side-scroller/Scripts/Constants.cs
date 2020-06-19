@@ -12,6 +12,7 @@ namespace Assets.blackwhite_side_scroller.Scripts
         public static String TagPlayer => "Player";
         public static String TagGameController => "GameController";
 
+        public static GameObject Player => GameObject.FindWithTag(TagPlayer);
         public static GameController GameController => GameObject.FindWithTag(TagGameController).GetComponent<GameController>();
     }
 }

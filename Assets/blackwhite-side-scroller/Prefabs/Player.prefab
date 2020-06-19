@@ -104,7 +104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1567151841231624502
 Transform:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7112949596393305311}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 7212177298720066542}
   - component: {fileID: 7212177298720066543}
   m_Layer: 8
-  m_Name: StandingCollider
+  m_Name: Collider
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,8 +517,17 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 7212177300137137228}
   m_CeilingCheck: {fileID: 511130112299328005}
   m_CrouchDisableCollider: {fileID: 7212177298720066543}
-  m_StandingCollider: {fileID: 7212177298720066543}
-  m_JumpingCollider: {fileID: 3890223862095032977}
+  CharacterCollider: {fileID: 7212177298720066543}
+  m_StandingCollider:
+    OffsetX: 0.05224311
+    OffsetY: 0.9
+    SizeX: 0.2836666
+    SizeY: 1.74814
+  m_JumpingCollider:
+    OffsetX: 0.05224311
+    OffsetY: 1.03
+    SizeX: 0.2836666
+    SizeY: 1.27
   m_groundApproachingDistance: 1
   MaxVerticalVelocityBeforeFallIsFatal: 16
   MaxVerticalVelocityBeforeClimbingIsImpossible: 0
@@ -750,7 +759,7 @@ GameObject:
   - component: {fileID: 7212177298970018329}
   m_Layer: 8
   m_Name: CrouchingCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

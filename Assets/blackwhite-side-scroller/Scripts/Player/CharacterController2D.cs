@@ -18,6 +18,15 @@ public enum ObstacleSize
     Above6
 }
 
+[System.Serializable]
+public class CapsuleColliderProperties
+{
+    public float OffsetX;
+    public float OffsetY;
+    public float SizeX;
+    public float SizeY;
+}
+
 public class CharacterController2D : MonoBehaviour
 {
     public PlayerAnimations Animator;
@@ -30,8 +39,9 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private CircleCollider2D m_GroundCheck;                    // A position marking where to check if the player is grounded.
     [SerializeField] private CircleCollider2D m_CeilingCheck;                   // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
-    [SerializeField] private Collider2D m_StandingCollider;
-    [SerializeField] private Collider2D m_JumpingCollider;
+    [SerializeField] private CapsuleCollider2D CharacterCollider;
+    [SerializeField] private CapsuleColliderProperties m_StandingCollider;
+    [SerializeField] private CapsuleColliderProperties m_JumpingCollider;
 
     [SerializeField] private float m_groundApproachingDistance = 1f;            // A mask determining what is ground to the character
     public float MaxVerticalVelocityBeforeFallIsFatal;
@@ -137,7 +147,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     StartSliding(colliders[i].GetComponent<SteepGround>());
                 }
-                if (_dieOnLand)
+                if (_dieOnLand && !_dead)
                 {
                     Die();
                 }
@@ -166,14 +176,18 @@ public class CharacterController2D : MonoBehaviour
 
         if (m_Grounded)
         {
-            m_StandingCollider.enabled = true;
-            m_JumpingCollider.enabled = false;
+            ApplyColliderProperties(m_StandingCollider);
         }
         else
         {
-            m_StandingCollider.enabled = false;
-            m_JumpingCollider.enabled = true;
+            ApplyColliderProperties(m_JumpingCollider);
         }
+    }
+
+    private void ApplyColliderProperties(CapsuleColliderProperties properties)
+    {
+        CharacterCollider.offset = new Vector2(properties.OffsetX, properties.OffsetY);
+        CharacterCollider.size = new Vector2(properties.SizeX, properties.SizeY);
     }
 
     public void StartSliding(SteepGround steepGroundToSlideOn)
@@ -207,9 +221,11 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    private bool _dead;
     private void Die()
     {
-        //_isControllable = false;
+        _dead = true;
+        _isControllable = false;
         Instantiate(CharacterDiesFromFallFX, transform.position, Quaternion.Euler(0, 0, 0));
         GetComponent<PlayerAttackable>().Die(m_Rigidbody2D.velocity * 100f);
     }
@@ -330,6 +346,7 @@ public class CharacterController2D : MonoBehaviour
             _hasWallJumped = true;
             m_Rigidbody2D.velocity = m_FacingRight ? new Vector2(-JumpFromClimbingForce.x, JumpFromClimbingForce.y) : JumpFromClimbingForce;
             Look(!m_FacingRight);
+            OnJumpEvent.Invoke();
         }
     }
     

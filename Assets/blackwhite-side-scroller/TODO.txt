@@ -13,9 +13,7 @@ X mockup/proto graphique
 		Batiment en ruine
 
 
-glisser sur des pentes
-	- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
-	- gérer dans les deux sens, orienter le joueur dans le sens de la descente
+
 
 
 Faire les premières maps habillées avec props
@@ -25,32 +23,29 @@ Faire les premières maps habillées avec props
 playtest + animations. Avant d'aller plus loin tout ça doit bien fonctionner
 
 POLISH
-	X- tweak ragdoll ?
-		- Copier la position des membres au moment du switch => ça ne semble pas nécessaire
-	- animations climb/jump pas ouf
-	- fall puis climb -> animations KO.
-	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
+	
 	- contrôles manette
-	
-	
-	- Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
+	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
 	- checkpoints ?
 		- landmark, hint visuel de la sauvegarde, sauvegarde de position
-	- phrases contextuelles de mort ?
-	
-	
-	
-	
-	
-	
+	- saut depuis glissade
+	- Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
+	- glisser sur des pentes
+		- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
+		- gérer dans les deux sens, orienter le joueur dans le sens de la descente
 	
 
-ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
+Faire level-2 : Apparition d'ennemis : parkour et infiltration
+	ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
 
 Ajouter sons
 screenshake ?
-slow mo quand tu meurs
-coyote time ?
+
+rendre le décor un peu plus vivant (oiseaux, pluie, orage...)
+
+
+
+
 
 attaquer avec un sabre
 
@@ -66,7 +61,7 @@ roulade auto après saut vertigineux
 
 échelle
 
-rendre le décor un peu plus vivant (oiseaux, pluie, orage...)
+
 
 
 
@@ -77,3 +72,11 @@ déroulement
 3- infiltration et utilisation environnement pour se débarasser d'ennemis
 4- découverte arme de melée
 5- découverte flingue
+
+
+
+
+Nice to have
+- coyote time ?
+- tweak ragdoll ? Copier la position des membres au moment du swap d'assets => ça ne semble pas nécessaire
+- phrases contextuelles de mort ?
