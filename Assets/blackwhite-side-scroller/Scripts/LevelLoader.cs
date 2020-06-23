@@ -9,6 +9,13 @@ public class LevelLoader : MonoBehaviour
     public Animator UIAnimator;
     public float TransitionTime = 1f;
 
+    public void Awake()
+    {
+        var playerSpawnLocation = Constants.GameController.GetRespawnLocation();
+        if (playerSpawnLocation != null)
+            Constants.Player.transform.position = playerSpawnLocation.Value;
+    }
+
     public void RestartCurrentLevel()
     {
         Time.timeScale = 1;

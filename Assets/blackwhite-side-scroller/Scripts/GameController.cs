@@ -3,6 +3,7 @@
 public class GameController : MonoBehaviour
 {
     private static int _deathCount = 0;
+    private static Vector3? RespawnLocation = null;
 
     public float GetElapsedTime()
     {
@@ -21,5 +22,15 @@ public class GameController : MonoBehaviour
     public int GetDeathCount()
     {
         return _deathCount;
+    }
+
+    public void ActivateCheckpoint(CheckpointTrigger checkpoint)
+    {
+        RespawnLocation = checkpoint.RespawnLocation.transform.position;
+    }
+
+    public Vector3? GetRespawnLocation()
+    {
+        return RespawnLocation;
     }
 }

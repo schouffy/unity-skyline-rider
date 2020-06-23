@@ -11,7 +11,7 @@ public class SmoothFollow2D : MonoBehaviour
 	public float m_XOffset = 0;
 	public float m_YOffset = 0;
 
-	void Awake()
+	void Start()
 	{
 		if (m_Target == null)
 		{
