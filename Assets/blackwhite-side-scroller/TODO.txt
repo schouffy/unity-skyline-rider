@@ -19,10 +19,8 @@ Faire level-2 : Apparition d'ennemis : parkour et infiltration
 
 POLISH
 
-
-	
-	- modifier un peu l'anim de course
 	- meilleure anim idle
+	- Checkpoints et stats (temps/deaths)
 	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
 	- contrôles manette
 	- Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
@@ -30,16 +28,24 @@ POLISH
 		- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
 		- gérer dans les deux sens, orienter le joueur dans le sens de la descente
 		- grand saut > saut immédiat : on meurt sur la pente mais on peut tjs contrôler le joueur
-	
+	- enemy AI
+		- Ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
+		- peut me voir quand je suis dans son dos
+		- peut me tirer desssu quand je passe dans son dos
+		- peuvent me tirer dessus alors que je ne les vois plus à l'écran
+		- doivent pouvoir m'entendre si je suis juste derrière eux ou si je les touche
 
-Faire level-2 : Apparition d'ennemis : parkour et infiltration
-	ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
 
-Ajouter sons
 
+se baisser
+glissade plus ou moins longtemps
+roulade
+roulade auto après saut vertigineux 
+
+Anims de sauts stylés en random, franchissement d'obstacles
 
 rendre le décor un peu plus vivant (oiseaux, pluie, orage...)
-
+- aérer un peu les niveaux avec des petits gestes parkour stylés
 
 
 attaquer avec un sabre
@@ -52,10 +58,8 @@ tirer
 screenshake ?
 léger slow mo/freeze quand on bute un ennemi
 
-se baisser
-glissade plus ou moins longtemps
-roulade
-roulade auto après saut vertigineux 
+Ajouter sons
+
 
 échelle
 
@@ -76,5 +80,3 @@ déroulement
 
 Nice to have
 - coyote time ?
-- tweak ragdoll ? Copier la position des membres au moment du swap d'assets => ça ne semble pas nécessaire
-- phrases contextuelles de mort ?

@@ -29,6 +29,11 @@ public class GameController : MonoBehaviour
         RespawnLocation = checkpoint.RespawnLocation.transform.position;
     }
 
+    public void ClearCheckpoint()
+    {
+        RespawnLocation = null;
+    }
+
     public Vector3? GetRespawnLocation()
     {
         return RespawnLocation;

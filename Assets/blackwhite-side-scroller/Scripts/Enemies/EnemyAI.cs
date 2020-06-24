@@ -161,9 +161,9 @@ public class EnemyAI : MonoBehaviour
             return;
 
         if (Waypoints[_currentWaypointIndex].transform.position.x < transform.position.x)
-            transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         else
-            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
     }
 
 

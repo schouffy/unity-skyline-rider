@@ -24,6 +24,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        Constants.GameController.ClearCheckpoint();
         Time.timeScale = 1;
         StartCoroutine(_LoadNextLevel());
     }
