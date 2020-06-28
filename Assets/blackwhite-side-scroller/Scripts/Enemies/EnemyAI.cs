@@ -1,6 +1,7 @@
 ﻿using Assets.blackwhite_side_scroller.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -8,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     public enum EnemyAIStatus
     {
         Idle,
+        Suspicious,
         Aiming
     }
 
@@ -25,6 +27,10 @@ public class EnemyAI : MonoBehaviour
     public Transform WeaponTip;
     public GameObject BulletPrefab;
     public Animator Animator;
+    public int SuspicionLevel; // percent
+    private float SuspicionLevelFloat; // percent
+    private int SuspicionIncreaseRate = 50; // how much suspicion can change in 0.1 second, if player is at 1 meter distance
+    private int SuspicionDecreaseRate = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +43,7 @@ public class EnemyAI : MonoBehaviour
             StartCoroutine(Patrol());
         }
         Status = EnemyAIStatus.Idle;
+        SuspicionLevel = 0;
     }
 
     IEnumerator Patrol()
@@ -68,14 +75,14 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        // idle -> suspicious -> aiming
         if (PlayerInRange)
         {
             if (Status == EnemyAIStatus.Idle)
             {
                 if (CanPlayerBeSeen(out _))
                 {
-                    StartCoroutine(AimContinuouslyAtPlayer());
-                    StartCoroutine(AimAndShootAtPlayer());
+                    StartCoroutine(GetSuspicious());
                 }
             }
         }
@@ -102,6 +109,45 @@ public class EnemyAI : MonoBehaviour
         var angle = Vector2.Angle(Vector2.down, aimPosition - (Vector2)WeaponTip.position);
 
         return angle;
+    }
+
+    IEnumerator GetSuspicious()
+    {
+        Status = EnemyAIStatus.Suspicious;
+
+        if (SuspicionLevel <= 0)
+            SuspicionLevel = 1;
+        else if (SuspicionLevel == 100)
+            SuspicionLevel = 99;
+
+        SuspicionLevelFloat = SuspicionLevel;
+        while (SuspicionLevel > 0 && SuspicionLevel < 100)
+        {
+            if (CanPlayerBeSeen(out _))
+            {
+                var distanceFromPlayer = Vector2.Distance(_player.transform.position, transform.position);
+                SuspicionLevelFloat += SuspicionIncreaseRate / distanceFromPlayer;
+                SuspicionLevel = (int)SuspicionLevelFloat;
+            }
+            else
+                SuspicionLevel -= SuspicionDecreaseRate;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        if (SuspicionLevel <= 0)
+        {
+            Debug.Log("Lost sight of enemy. Idle.");
+            SuspicionLevel = 0;
+            Status = EnemyAIStatus.Idle;
+        }
+        else if (SuspicionLevel >= 100)
+        {
+            SuspicionLevel = 100;
+            Debug.Log("Enemy in sight. Aim.");
+            Status = EnemyAIStatus.Aiming;
+            StartCoroutine(AimContinuouslyAtPlayer());
+            StartCoroutine(AimAndShootAtPlayer());
+        }
     }
 
     IEnumerator AimContinuouslyAtPlayer()
@@ -140,7 +186,8 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                Status = EnemyAIStatus.Idle;
+                // Can't see player anymore. Revert to suspicious
+                StartCoroutine(GetSuspicious());
             }
         }
     }
@@ -166,5 +213,9 @@ public class EnemyAI : MonoBehaviour
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
     }
 
+    void OnDrawGizmos()
+    {
+        Handles.Label(transform.position, "Suspicion :" + SuspicionLevel);
+    }
 
 }
