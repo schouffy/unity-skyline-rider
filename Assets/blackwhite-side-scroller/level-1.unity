@@ -4319,7 +4319,7 @@ MonoBehaviour:
   LerpSpeedX: 5
   LerpSpeedY: 10
   m_Target: {fileID: 1356317073}
-  m_XOffset: 4
+  m_XOffset: 0.5
   m_YOffset: 1.4
 --- !u!1 &659589127
 GameObject:
@@ -13651,15 +13651,20 @@ PrefabInstance:
       propertyPath: m_CrouchDisableCollider
       value: 
       objectReference: {fileID: 1517820349}
+    - target: {fileID: 7212177298887007249, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: MaxCoyoteTimeTreshold
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.74
+      value: 97.93
       objectReference: {fileID: 0}
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -63.59
+      value: -60.22
       objectReference: {fileID: 0}
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}
@@ -13705,6 +13710,76 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnEnableEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnDisableEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 656624086}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetCameraConfiguration
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnEnableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: SlideSteep
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 656624086}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetCameraConfiguration
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7212177298887007251, guid: c633579c67b450f45802a18a5b6e8707,
+        type: 3}
+      propertyPath: OnDisableEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 7212177298887007254, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}

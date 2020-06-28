@@ -1,7 +1,14 @@
 ﻿using Assets.blackwhite_side_scroller.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public enum CameraConfiguration
+{
+	Default,
+	SlideSteep
+}
 
 public class SmoothFollow2D : MonoBehaviour
 {
@@ -47,6 +54,20 @@ public class SmoothFollow2D : MonoBehaviour
 						transform.position.z);
 			else
 				transform.position = new Vector3(targetX, targetY, transform.position.z);
+		}
+	}
+
+	public void SetCameraConfiguration(CameraConfiguration configuration)
+	{
+		if (configuration == CameraConfiguration.Default)
+		{
+			m_YOffset = 1.4f;
+			LerpSpeedY = 10f;
+		}
+		else if (configuration == CameraConfiguration.SlideSteep)
+		{
+			m_YOffset = -2f;
+			LerpSpeedY = 3f;
 		}
 	}
 }

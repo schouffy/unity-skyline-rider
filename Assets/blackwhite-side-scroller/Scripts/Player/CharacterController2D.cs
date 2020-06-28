@@ -62,6 +62,8 @@ public class CharacterController2D : MonoBehaviour
     private bool _isControllable;
     private bool _interruptClimbToJump;
     private bool _hasWallJumped;
+    private float allowJumpBecauseOfCoyoteTimeUntilThisTime;
+    public float MaxCoyoteTimeTreshold;
 
     [Header("Climbing")]
     [Space]
@@ -157,7 +159,7 @@ public class CharacterController2D : MonoBehaviour
         
         //Debug.DrawRay(m_GroundCheck.transform.position, Vector2.down * m_groundApproachingDistance, Color.green);
         var ground = Physics2D.CircleCast(m_GroundCheck.transform.position, m_GroundCheck.radius, Vector2.down, m_groundApproachingDistance, m_WhatIsGround);
-        if (ground.collider != null)
+        if (!m_Grounded && !m_Climbing && !wasGrounded && ground.collider != null && m_Rigidbody2D.velocity.y < 0)
         {
             OnGroundApproachingEvent.Invoke();
         }
@@ -316,10 +318,15 @@ public class CharacterController2D : MonoBehaviour
                 Look(_player.IsAimingRight);
             }
         }
+
+        if (m_Grounded)
+            allowJumpBecauseOfCoyoteTimeUntilThisTime = Time.time + MaxCoyoteTimeTreshold;
+
         // If the player should jump...
-        if (m_Grounded && jump)
+        if ((m_Grounded || allowJumpBecauseOfCoyoteTimeUntilThisTime > Time.time) && jump)
         {
             _hasJumped = true;
+            allowJumpBecauseOfCoyoteTimeUntilThisTime = 0;
 
             if (!DetectAndClimbObstacle())
             {

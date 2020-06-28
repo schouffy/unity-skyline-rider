@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Assets.blackwhite_side_scroller.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum EndSlidingCondition
 {
@@ -16,7 +18,7 @@ public class SlidingCharacterController2D : MonoBehaviour
     public float ParticlesSpawnInterval;
     private float _lastParticleSpawnTime;
     public GameObject SlidingParticles;
-    
+
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, _destination, SlideSpeed * Time.deltaTime);
@@ -31,6 +33,16 @@ public class SlidingCharacterController2D : MonoBehaviour
         {
             GetComponent<CharacterController2D>().EndSliding(EndSlidingCondition.Fall);
         }
+    }
+
+    void OnDisable()
+    {
+        Constants.MainCamera.GetComponent<SmoothFollow2D>().SetCameraConfiguration(CameraConfiguration.Default);
+    }
+
+    void OnEnable()
+    {
+        Constants.MainCamera.GetComponent<SmoothFollow2D>().SetCameraConfiguration(CameraConfiguration.SlideSteep);
     }
 
     public void SetSlideDestination(Vector2 position)

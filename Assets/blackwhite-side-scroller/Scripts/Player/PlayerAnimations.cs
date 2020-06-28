@@ -59,6 +59,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void LandAfterJump()
     {
+        Animator.ResetTrigger("JumpStart");
         var currentClip = Animator.GetCurrentAnimatorClipInfo(0);
         if (currentClip.Length == 1 && currentClip[0].clip != null 
             && (currentClip[0].clip.name == "JumpMid" || currentClip[0].clip.name == "Fall" || currentClip[0].clip.name == "JumpLostControl"))
@@ -73,6 +74,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void StartClimbing(ObstacleSize obstacleSize)
     {
+        Animator.ResetTrigger("JumpStart");
         Animator.SetFloat("ObstacleHeight", (float)obstacleSize);
         Animator.SetBool("IsClimbing", true);
         Animator.SetTrigger("Climb");

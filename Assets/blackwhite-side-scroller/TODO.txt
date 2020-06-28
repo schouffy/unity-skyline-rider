@@ -16,24 +16,20 @@ X mockup/proto graphique
 POLISH
 
 	
-	- meilleure anim de course
-		- l'anim du perso qui court n'aide pas à renforcer le côté vitesse à mon avis. On dirait qu'il se replie sur lui-même en restant droit, au lieu de se pencher en avant pour courir rapidement.
-	- meilleure anim idle (les pixels qui apparaissent et disparaissent sont pas ouf)
+	
+	- anim quand on se retourne
+	
 	- glisser sur des pentes
 		- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
+			- si le joueur revient en arrière sur une pente, le perso passe à moitié sous le sol et ne peut plus courir correctement après ça
 		- gérer dans les deux sens, orienter le joueur dans le sens de la descente
 		- grand saut > saut immédiat : on meurt sur la pente mais on peut tjs contrôler le joueur
-		- si le joueur revient en arrière sur une pente, le perso passe à moitié sous le sol et ne peut plus courir correctement après ça
+		
 	
 	
-	- le fait de pas pouvoir sauter quand on vient d'attérir en tombant juste de 2 mètres de hauteur (après le lampadaire pacman par exemple) est frustrant, surtout qu'il n'y a aucun moyen de tomber sur la plateforme en dessous en gardant sa possibilité de saut. Pas compter ça comme un "atterissage" si la différence de hauteur est faible ? Ou éviter ce genre de cas dans le level design ?
-	- Coyote time
-		- je pense que tu devrais être un peu plus généreux avec le joueur pour le laisser sauter alors qu'il s'apprête à tomber. Pour l'instant, si j'appuie sur la barre d'espace quand mon perso arrive à la limite de la plateforme, le saut n'est souvent pas validé (et je tombe comme une merde) alors que j'ai encore au moins 1 jambe en contact avec le sol. Je me suis adapté, mais ça parait frustrant pour pas grand chose sur un ptit proto qui sera joué que quelques minutes.
-	- Améliorer caméra
-		- le changement de direction (droite / gauche) n'est pas super agréable je trouve. La caméra change de position très rapidement (on "perd" un peu trop le perso avec ça), et le perso ne réagit pas si on était en course. Une petite anim de glissade avec une transition de caméra qui colle bien aiderait j'imagine. Pendant les wall jump, ça passe un poil mieux, mais la caméra reste violente je trouve.
-		- quand on slide, la caméra devrait peut-être se décaler un peu plus vers le bas pour pouvoir mieux anticiper ce qui va arriver ? (surtout que tu mets du vide derrière le slide, on le voit que très tard pour l'instant)
-
-
+	- le fait de pas pouvoir sauter quand on vient d'attérir en tombant juste de 2 mètres de hauteur (après le lampadaire pacman par exemple) est frustrant, 
+	surtout qu'il n'y a aucun moyen de tomber sur la plateforme en dessous en gardant sa possibilité de saut. Pas compter ça comme un "atterissage" 
+	si la différence de hauteur est faible ? Ou éviter ce genre de cas dans le level design ?
 
 	
 	
