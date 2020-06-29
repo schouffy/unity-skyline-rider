@@ -43,7 +43,10 @@ public class PlayerAnimations : MonoBehaviour
 
     void HandleMovementAnimation()
     {
-        Animator.SetFloat("Speed", Mathf.Abs(RigidBody.velocity.x) / 5.8f);
+        var speed = Mathf.Abs(RigidBody.velocity.x) / 5.8f;
+        if (speed > 0.1f)
+            Animator.ResetTrigger("TurnAround");
+        Animator.SetFloat("Speed", speed);
     }
 
     void HandleCrouchAnimations()
@@ -60,10 +63,23 @@ public class PlayerAnimations : MonoBehaviour
     public void LandAfterJump()
     {
         Animator.ResetTrigger("JumpStart");
-        var currentClip = Animator.GetCurrentAnimatorClipInfo(0);
-        if (currentClip.Length == 1 && currentClip[0].clip != null 
-            && (currentClip[0].clip.name == "JumpMid" || currentClip[0].clip.name == "Fall" || currentClip[0].clip.name == "JumpLostControl"))
-            Animator.SetBool("JumpEnd", true);
+        if (Animator.GetBool("JumpEnd"))
+            return;
+
+        var jumpMomentum = RigidBody.velocity;
+        if (jumpMomentum.x == 0 && jumpMomentum.y > -6)
+            Animator.SetFloat("JumpMomentum", 0);
+        else if (Mathf.Abs(jumpMomentum.x) > 8)
+            Animator.SetFloat("JumpMomentum", 1);
+        else if (jumpMomentum.y < -11)
+            Animator.SetFloat("JumpMomentum", 1);
+        else
+            Animator.SetFloat("JumpMomentum", ((Mathf.Abs(RigidBody.velocity.x) + Mathf.Abs(RigidBody.velocity.y)) / 30f));
+
+        //var currentClip = Animator.GetCurrentAnimatorClipInfo(0);
+        //if (currentClip.Length == 1 && currentClip[0].clip != null 
+        //    && (currentClip[0].clip.name != "JumpEnd"))//currentClip[0].clip.name == "JumpMid" || currentClip[0].clip.name == "Fall" || currentClip[0].clip.name == "JumpLostControl"))
+        Animator.SetBool("JumpEnd", true);
     }
 
     public void StartFall()
@@ -107,6 +123,11 @@ public class PlayerAnimations : MonoBehaviour
     public void SetSpeed(float speed)
     {
         Animator.SetFloat("Speed", speed);
+    }
+
+    public void TurnAround()
+    {
+        Animator.SetTrigger("TurnAround");
     }
 
 }

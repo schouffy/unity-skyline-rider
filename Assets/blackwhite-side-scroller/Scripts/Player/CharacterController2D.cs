@@ -43,7 +43,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private CapsuleColliderProperties m_StandingCollider;
     [SerializeField] private CapsuleColliderProperties m_JumpingCollider;
 
-    [SerializeField] private float m_groundApproachingDistance = 1f;            // A mask determining what is ground to the character
+    [SerializeField] private float m_groundApproachingDistance = 1f;
     public float MaxVerticalVelocityBeforeFallIsFatal;
     public float MaxVerticalVelocityBeforeClimbingIsImpossible;
     public Vector2 JumpFromSlidingForce;
@@ -81,6 +81,7 @@ public class CharacterController2D : MonoBehaviour
     public UnityEvent OnLandEvent;
     public UnityEvent OnGroundApproachingEvent;
     public UnityEvent OnSlideStartEvent;
+    public UnityEvent OnTurnAroundEvent;
 
     [System.Serializable]
     public class ObstacleClimbEvent : UnityEvent<ObstacleSize> { }
@@ -124,6 +125,9 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnSlideStartEvent == null)
             OnSlideStartEvent = new UnityEvent();
+
+        if (OnTurnAroundEvent == null)
+            OnTurnAroundEvent = new UnityEvent();
     }
 
     private void Update()
@@ -142,7 +146,7 @@ public class CharacterController2D : MonoBehaviour
                 _obstacleCurrentlyClimbing = null;
 
                 _hasJumped = false;
-                if (!wasGrounded)
+                //if (!wasGrounded)
                     OnLandEvent.Invoke();
 
                 if (colliders[i].sharedMaterial != null && colliders[i].sharedMaterial.name == "SlidingSteep")
@@ -476,6 +480,10 @@ public class CharacterController2D : MonoBehaviour
     private void Look(bool right)
     {
         // Switch the way the player is labelled as facing.
+
+        if (m_FacingRight != right)
+            OnTurnAroundEvent.Invoke();
+
         m_FacingRight = right;
 
         // Multiply the player's x local scale by -1.

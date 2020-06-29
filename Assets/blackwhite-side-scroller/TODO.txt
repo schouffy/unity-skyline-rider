@@ -14,28 +14,26 @@ X mockup/proto graphique
 
 
 POLISH
-
 	
-	
-	- anim quand on se retourne
+	- contrôles manette
+		A au lieu de Y pour sauter
+		D-pad pour diriger aussi
+		pas de blending, 1 allure marche et 1 allure course
+		1 seule allure pour marcher baissé
+		
+	- anim quand on se retourne alors qu'on était en train de courir
 	
 	- glisser sur des pentes
+		- la destination est pas super propre, parfois ça saccade
 		- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
 			- si le joueur revient en arrière sur une pente, le perso passe à moitié sous le sol et ne peut plus courir correctement après ça
 		- gérer dans les deux sens, orienter le joueur dans le sens de la descente
 		- grand saut > saut immédiat : on meurt sur la pente mais on peut tjs contrôler le joueur
 		
 	
-	
-	- le fait de pas pouvoir sauter quand on vient d'attérir en tombant juste de 2 mètres de hauteur (après le lampadaire pacman par exemple) est frustrant, 
-	surtout qu'il n'y a aucun moyen de tomber sur la plateforme en dessous en gardant sa possibilité de saut. Pas compter ça comme un "atterissage" 
-	si la différence de hauteur est faible ? Ou éviter ce genre de cas dans le level design ?
-
-	
-	
 	- Checkpoints et stats (temps/deaths)
 	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
-	- contrôles manette
+	
 	- Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 	
 	
@@ -45,7 +43,7 @@ POLISH
 		- Ajouter feedback sur les ennemis (point d'exclamation qui se remplit quand ils nous voient, tir au moment où il est plein)
 			- dépend de l'éloignement avec le joueur
 		- corriger: peut me voir quand je suis dans son dos
-		- corriger: peut me tirer desssu quand je passe dans son dos
+		- corriger: peut me tirer desssu quand je passe dans son dos / tire en visant à l'oppos
 		- corriger: peuvent me tirer dessus alors que je ne les vois plus à l'écran
 		- doivent pouvoir m'entendre si je suis juste derrière eux ou si je les touche
 

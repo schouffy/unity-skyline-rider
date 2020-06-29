@@ -1,5 +1,4 @@
 Gabriel
-- la position du personnage en marche rapide me semble bizarre
 - je veux des glissades !
 - on avait parlé d'une ombre avec le meilleur temps à battre (du moins à étudier)
 - plus de mouvement de parcours (je pense au passage de bloc d'1m de haut)
@@ -8,9 +7,7 @@ Gabriel
 
 Clear_Strelok
 
-Il faudrait à mon avis que l'animation d’atterrissage soit différente selon la distance et la force du saut, si c'est seulement possible.
-Je ne saurais dire comment équilibrer ça, mais je remarque pour l'instant que tomber d'une petite hauteur marque un léger temps d'arrêt agaçant
-alors qu'un saut assez long déclenche la même animation, peu satisfaisante dans ce contexte.
+
 
 L'inertie du personnage m'a posé quelques problèmes lors du saut nécessitant de calculer sa courbe. C'est peut-être que je suis simplement
 mauvais au jeu, mais j'ai l'impression que le personnage part au quart de tour à sa vitesse maximale alors que l'animation initiale
