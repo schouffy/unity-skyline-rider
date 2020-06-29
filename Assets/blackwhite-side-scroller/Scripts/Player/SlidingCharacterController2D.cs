@@ -18,10 +18,11 @@ public class SlidingCharacterController2D : MonoBehaviour
     public float ParticlesSpawnInterval;
     private float _lastParticleSpawnTime;
     public GameObject SlidingParticles;
+    private SteepGround _groundCurrentlySlidingOn;
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _destination, SlideSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, ((Vector2)transform.position + new Vector2(10, -10)), SlideSpeed * Time.deltaTime);
 
         if (Time.time > _lastParticleSpawnTime + ParticlesSpawnInterval)
         {
@@ -29,9 +30,10 @@ public class SlidingCharacterController2D : MonoBehaviour
             GameObject.Destroy(particle, 1f);
         }
 
-        if (Vector2.Distance(transform.position, _destination) < 0.1f)
+        if (Vector2.Distance(transform.position, _destination) < 1f)
         {
             GetComponent<CharacterController2D>().EndSliding(EndSlidingCondition.Fall);
+            _groundCurrentlySlidingOn.DontGoBackCollider.gameObject.SetActive(true);
         }
     }
 
@@ -45,9 +47,11 @@ public class SlidingCharacterController2D : MonoBehaviour
         Constants.MainCamera.GetComponent<SmoothFollow2D>().SetCameraConfiguration(CameraConfiguration.SlideSteep);
     }
 
-    public void SetSlideDestination(Vector2 position)
+    public void SlideOn(SteepGround steepGround)
     {
-        _destination = position;
+        _groundCurrentlySlidingOn = steepGround;
+        _destination = steepGround.SlideDestination.position;
+
     }
 
     public void Jump()

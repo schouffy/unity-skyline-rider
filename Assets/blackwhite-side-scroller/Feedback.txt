@@ -41,5 +41,8 @@ en tombant sur une plateforme plus bas histoire d'avoir un 1er cas moins punitif
 ou pas de la fin. (juste une barre avec un point pour la progression du joueur entre le début et l'ascenseur de fin par exemple)
 - une ptite zik et quelques SFX rapidos pour que ce soit un peu moins triste ? 
 Dans tous les cas, félicitations pour le proto, le style visuel épuré à la canabalt parait être un bon choix vu le peu de temps et est plutôt efficace.
-Perso, je trouve que c'est surtout le feeling du joueur qui gagnerait à être fignolé (peaufiner un peu les anims pour rendre le tout un peu plus fluide et dynamique, tweaker un peu la vitesse même si c'est sûrement déjà trop tard pour ça, tricher un peu en programmation pour être généreux avec le joueur pour fluidifier encore un peu plus le tout, etc...), et après en profiter sur un 2nd niveau qui utilise un peu plus les différentes possibilités plutôt que rester sur un niveau simple qui fait vraiment tuto ?
+Perso, je trouve que c'est surtout le feeling du joueur qui gagnerait à être fignolé (peaufiner un peu les anims pour rendre le tout un peu plus fluide et dynamique,
+tweaker un peu la vitesse même si c'est sûrement déjà trop tard pour ça, tricher un peu en programmation pour être généreux avec le joueur pour fluidifier encore un peu 
+plus le tout, etc...), et après en profiter sur un 2nd niveau qui utilise un peu plus les différentes possibilités plutôt que rester sur un niveau simple qui fait 
+vraiment tuto ?
 Bon courage pour la fin du proto, et pour les suivants si j'ai bien compris 

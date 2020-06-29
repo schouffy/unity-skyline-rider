@@ -5,6 +5,7 @@ using UnityEngine;
 public class SteepGround : MonoBehaviour
 {
     public Transform SlideDestination;
+    public Collider2D DontGoBackCollider;
 
     public void DisableSliding()
     {

@@ -20,23 +20,16 @@ POLISH
 		D-pad pour diriger aussi
 		pas de blending, 1 allure marche et 1 allure course
 		1 seule allure pour marcher baissé
-		
+
 	- anim quand on se retourne alors qu'on était en train de courir
-	
-	- glisser sur des pentes
-		- la destination est pas super propre, parfois ça saccade
-		- gérer le retour sur la plateforme depuis en bas => Je trouve pas de moyen élégant.
-			- si le joueur revient en arrière sur une pente, le perso passe à moitié sous le sol et ne peut plus courir correctement après ça
-		- gérer dans les deux sens, orienter le joueur dans le sens de la descente
-		- grand saut > saut immédiat : on meurt sur la pente mais on peut tjs contrôler le joueur
-		
+	- Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 	
 	- Checkpoints et stats (temps/deaths)
 	- parallax sur Y, pour ne pas arriver aux limites des background en haut et en bas ?
 	
-	- Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 	
 	
+	- auto grimper ou nécessité de maintenir espace ?
 
 
 - enemy AI

@@ -207,9 +207,10 @@ public class CharacterController2D : MonoBehaviour
         }
         m_Rigidbody2D.simulated = false;
         GetComponent<SlidingCharacterController2D>().enabled = true;
-        GetComponent<SlidingCharacterController2D>().SetSlideDestination(steepGroundToSlideOn.SlideDestination.position);
-        enabled = false;
+        GetComponent<SlidingCharacterController2D>().SlideOn(steepGroundToSlideOn);
         Animator.StartSliding();
+        enabled = false;
+        
     }
 
     public void EndSliding(EndSlidingCondition condition)
