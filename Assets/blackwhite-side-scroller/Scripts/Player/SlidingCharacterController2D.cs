@@ -27,7 +27,6 @@ public class SlidingCharacterController2D : MonoBehaviour
         if (Time.time > _lastParticleSpawnTime + ParticlesSpawnInterval)
         {
             var particle = Instantiate(SlidingParticles, ParticlesSpawnPoint.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
-            GameObject.Destroy(particle, 1f);
         }
 
         if (Vector2.Distance(transform.position, _destination) < 1f)

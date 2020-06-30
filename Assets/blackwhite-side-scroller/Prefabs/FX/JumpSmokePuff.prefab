@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4179773852822437316}
   - component: {fileID: 4179773852822437317}
   - component: {fileID: 4179773852822437318}
+  - component: {fileID: 3662276649338696790}
   m_Layer: 0
   m_Name: JumpSmokePuff
   m_TagString: Untagged
@@ -4812,3 +4813,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &3662276649338696790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4179773852822437319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dff58f3b7e3ace479206fdc76c1df9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Delay: 1
