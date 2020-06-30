@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.blackwhite_side_scroller.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,6 @@ public class Parallax : MonoBehaviour
 {
     private float length;
     private Vector2 startPos;
-    public GameObject Camera;
     public float ParallaxEffect;
     //public float ParallaxEffectVertical;
 
@@ -35,12 +35,12 @@ public class Parallax : MonoBehaviour
 
     void Update()
     {
-        float distX = (Camera.transform.position.x * ParallaxEffect);
+        float distX = (Constants.MainCamera.transform.position.x * ParallaxEffect);
         //float distY = (Camera.transform.position.y * ParallaxEffectVertical);
         //(Camera.transform.position.y - cameraOffset.y) * (1 - ParallaxEffectVertical)
         transform.position = new Vector3(startPos.x + distX, transform.position.y, transform.position.z);
 
-        float temp = (Camera.transform.position.x * (1 - ParallaxEffect));
+        float temp = (Constants.MainCamera.transform.position.x * (1 - ParallaxEffect));
         if (temp > startPos.x + length) startPos.x += length;
         else if (temp < startPos.x - length) startPos.x -= length;
     }

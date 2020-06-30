@@ -18,19 +18,20 @@ public class EnemyAI : MonoBehaviour
     private bool _alive;
     private int _currentWaypointIndex;
     public bool PlayerInRange;
-    private bool PlayerCanBeSeen;
     private PlayerAttackable _player;
     public Transform EyePosition;
     public LayerMask RaycastToPlayerLayers;
     public EnemyAIStatus Status;
     public float AimTimeBeforeShoot = 1f;
     public Transform WeaponTip;
+    public Transform AimOrigin;
     public GameObject BulletPrefab;
     public Animator Animator;
     public int SuspicionLevel; // percent
     private float SuspicionLevelFloat; // percent
-    private int SuspicionIncreaseRate = 50; // how much suspicion can change in 0.1 second, if player is at 1 meter distance
-    private int SuspicionDecreaseRate = 5;
+    private int SuspicionIncreaseRate = 70; // how much suspicion can change in 0.1 second, if player is at 1 meter distance
+    private int SuspicionDecreaseRate = 3;
+    public Renderer ModelRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -57,12 +58,13 @@ public class EnemyAI : MonoBehaviour
                 Animator.SetFloat("Speed", MovementSpeed);
                 transform.position = Vector2.MoveTowards(transform.position, currentWaypoint.transform.position, MovementSpeed * Time.deltaTime);
 
+                LookAtDestination();
+
                 if (Vector2.Distance(transform.position, currentWaypoint.transform.position) < 0.2f)
                 {
                     Animator.SetFloat("Speed", 0);
                     yield return new WaitForSeconds(currentWaypoint.WaitTime);
-                    _currentWaypointIndex = (_currentWaypointIndex + 1) % Waypoints.Length;
-                    LookAtDestination();
+                    _currentWaypointIndex = (_currentWaypointIndex + 1) % Waypoints.Length;                    
                 }
                 yield return 0;
             }
@@ -86,6 +88,9 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
+
+        if (!ModelRenderer.isVisible)
+            Status = EnemyAIStatus.Idle; // when enemy is not on screen, player doesn't get shot
     }
 
     bool CanPlayerBeSeen(out Vector2? whereToAim)
@@ -93,7 +98,9 @@ public class EnemyAI : MonoBehaviour
         whereToAim = null;
         foreach (var playerPoint in _player.PointsToRaycast)
         {
-            PlayerCanBeSeen = false;
+            if (playerPoint == null)
+                return false;
+
             var hitInfo = Physics2D.Raycast(EyePosition.position, playerPoint.position - EyePosition.position, 50f, RaycastToPlayerLayers);
             if (hitInfo.collider != null && hitInfo.collider.gameObject.tag == Constants.TagPlayer)
             {
@@ -106,8 +113,7 @@ public class EnemyAI : MonoBehaviour
 
     float AimAngleToBlendingAimAngle(Vector2 aimPosition)
     {
-        var angle = Vector2.Angle(Vector2.down, aimPosition - (Vector2)WeaponTip.position);
-
+        var angle = Vector2.Angle(Vector2.down, aimPosition - (Vector2)AimOrigin.position);
         return angle;
     }
 
@@ -123,11 +129,14 @@ public class EnemyAI : MonoBehaviour
         SuspicionLevelFloat = SuspicionLevel;
         while (SuspicionLevel > 0 && SuspicionLevel < 100)
         {
-            if (CanPlayerBeSeen(out _))
+            Animator.SetFloat("Speed", 0);
+            if (PlayerInRange && CanPlayerBeSeen(out _))
             {
                 var distanceFromPlayer = Vector2.Distance(_player.transform.position, transform.position);
                 SuspicionLevelFloat += SuspicionIncreaseRate / distanceFromPlayer;
                 SuspicionLevel = (int)SuspicionLevelFloat;
+
+                FacePlayer();
             }
             else
                 SuspicionLevel -= SuspicionDecreaseRate;
@@ -136,14 +145,12 @@ public class EnemyAI : MonoBehaviour
 
         if (SuspicionLevel <= 0)
         {
-            Debug.Log("Lost sight of enemy. Idle.");
             SuspicionLevel = 0;
             Status = EnemyAIStatus.Idle;
         }
         else if (SuspicionLevel >= 100)
         {
             SuspicionLevel = 100;
-            Debug.Log("Enemy in sight. Aim.");
             Status = EnemyAIStatus.Aiming;
             StartCoroutine(AimContinuouslyAtPlayer());
             StartCoroutine(AimAndShootAtPlayer());
@@ -157,12 +164,14 @@ public class EnemyAI : MonoBehaviour
 
         while (Status == EnemyAIStatus.Aiming)
         {
-            if (CanPlayerBeSeen(out var whereToShoot))
+            if (PlayerInRange && CanPlayerBeSeen(out var whereToShoot))
             {
+                FacePlayer();
+
                 // aim at player
                 Animator.SetFloat("Speed", 0);
                 Animator.SetBool("IsAiming", true);
-                Animator.SetFloat("AimAngle", AimAngleToBlendingAimAngle(whereToShoot.Value));
+                Animator.SetFloat("AimAngle", AimAngleToBlendingAimAngle(whereToShoot.Value));   
             }
             yield return new WaitForSeconds(0.1f);
         }
@@ -213,9 +222,12 @@ public class EnemyAI : MonoBehaviour
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
     }
 
-    void OnDrawGizmos()
+    void FacePlayer()
     {
-        Handles.Label(transform.position, "Suspicion :" + SuspicionLevel);
+        if (_player.transform.position.x < transform.position.x)
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
+        else
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
     }
 
 }

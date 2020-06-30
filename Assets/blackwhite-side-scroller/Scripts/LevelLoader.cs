@@ -30,13 +30,14 @@ public class LevelLoader : MonoBehaviour
     }
 
     private IEnumerator _LoadNextLevel()
-    {        
+    {
         UIAnimator.SetTrigger("Start");
 
         // Leave time for fade to black to happen
         yield return new WaitForSeconds(TransitionTime);
 
         Constants.GameController.ResetDeathCount();
+        Constants.GameController.ResetElapsedTime();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

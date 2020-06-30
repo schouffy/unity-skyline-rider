@@ -1,13 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    private static DateTime _timeSinceLevelLoad = DateTime.UtcNow;
     private static int _deathCount = 0;
     private static Vector3? RespawnLocation = null;
 
-    public float GetElapsedTime()
+    public double GetElapsedTime()
     {
-        return Time.timeSinceLevelLoad;
+        return (DateTime.UtcNow - _timeSinceLevelLoad).TotalMilliseconds / 1000f;
+    }
+
+    public void ResetElapsedTime()
+    {
+        _timeSinceLevelLoad = DateTime.UtcNow;
     }
 
     public void IncrementDeathCount()

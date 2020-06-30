@@ -327,7 +327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7212177298720066536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.022, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7212177298887007250}
@@ -528,12 +528,14 @@ MonoBehaviour:
     OffsetY: 1.03
     SizeX: 0.2836666
     SizeY: 1.27
-  m_groundApproachingDistance: 1
+  m_groundApproachingDistance: 0.2
   MaxVerticalVelocityBeforeFallIsFatal: 16
-  MaxVerticalVelocityBeforeClimbingIsImpossible: 0
-  JumpFromSlidingForce: {x: 210, y: 1080}
-  JumpFromClimbingForce: {x: 0, y: 0}
-  CharacterDiesFromFallFX: {fileID: 0}
+  MaxVerticalVelocityBeforeClimbingIsImpossible: 10
+  JumpFromSlidingForce: {x: 8, y: 6}
+  JumpFromClimbingForce: {x: 7, y: 8}
+  CharacterDiesFromFallFX: {fileID: 8370967782867503783, guid: 4cefa7cd1795f794c86e9110a099aca1,
+    type: 3}
+  MaxCoyoteTimeTreshold: 0.15
   ObstacleRaycastStartPositions:
   - {fileID: 7212177299815388609}
   - {fileID: 7212177298918724359}
@@ -580,7 +582,18 @@ MonoBehaviour:
         m_CallState: 2
   OnLandEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7212177298588925592}
+        m_MethodName: LandAfterJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGroundApproachingEvent:
     m_PersistentCalls:
       m_Calls:
@@ -598,6 +611,20 @@ MonoBehaviour:
   OnSlideStartEvent:
     m_PersistentCalls:
       m_Calls: []
+  OnTurnAroundEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7212177298588925592}
+        m_MethodName: TurnAround
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnClimbStartEvent:
     m_PersistentCalls:
       m_Calls:
@@ -614,7 +641,18 @@ MonoBehaviour:
         m_CallState: 2
   OnClimbEndEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7212177298588925592}
+        m_MethodName: EndClimbing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -652,11 +690,23 @@ MonoBehaviour:
   - {fileID: 7212177300305782412}
   - {fileID: 7212177299227197128}
   HitFX: {fileID: 8370967782867503783, guid: 4cefa7cd1795f794c86e9110a099aca1, type: 3}
-  PlayerRagdoll: {fileID: 0}
-  PlayerRig: {fileID: 0}
+  PlayerRagdoll: {fileID: 2178269062240844668, guid: aad6bd1552d19714990d5378f065ac85,
+    type: 3}
+  PlayerRig: {fileID: 8507195497582863058}
   OnDieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7212177298903891257
 GameObject:
   m_ObjectHideFlags: 0
