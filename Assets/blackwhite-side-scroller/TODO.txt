@@ -16,9 +16,10 @@ X mockup/proto graphique
 
 
 ================== Must have :
-- rendre le décor un peu plus vivant (oiseaux, pluie, orage...)
-	- oiseaux qui s'envolent
 - faire fonctionner à 30 fps + !!!!!!!!!!!!!!
+- Quand je place mon spawn loin en haut de la map, boucle infinie
+- endroit avec 2 ennemis n'accroche pas, trouver pourquoi.
+- Prefabs / events
 - contrôles manette
 		A au lieu de Y pour sauter
 		D-pad pour diriger aussi
