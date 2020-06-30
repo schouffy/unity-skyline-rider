@@ -61,7 +61,7 @@ public class SmoothFollow2D : MonoBehaviour
 	{
 		if (configuration == CameraConfiguration.Default)
 		{
-			m_YOffset = 1.4f;
+			m_YOffset = 2f;
 			LerpSpeedY = 10f;
 		}
 		else if (configuration == CameraConfiguration.SlideSteep)

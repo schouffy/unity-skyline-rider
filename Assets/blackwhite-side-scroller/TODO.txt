@@ -17,6 +17,8 @@ X mockup/proto graphique
 
 ================== Must have :
 - rendre le décor un peu plus vivant (oiseaux, pluie, orage...)
+	- oiseaux qui s'envolent
+- faire fonctionner à 30 fps + !!!!!!!!!!!!!!
 - contrôles manette
 		A au lieu de Y pour sauter
 		D-pad pour diriger aussi
@@ -29,7 +31,10 @@ X mockup/proto graphique
 - sons et musique
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 - polish
+- Virer les assets qui servent à rien (particles mais attention à celles que j'utilise)
 - juice : screenshake, léger slow mo/freeze quand on bute un ennemi
+- rendre le repo public
+
 
 ================== Nice to have :
 se baisser

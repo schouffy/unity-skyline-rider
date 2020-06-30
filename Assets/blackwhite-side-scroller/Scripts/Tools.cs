@@ -13,6 +13,7 @@ public class Tools : MonoBehaviour
     {
         Time.timeScale = 1;
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        Cursor.visible = false;
 
         Application.targetFrameRate = 30;
         QualitySettings.vSyncCount = 1;
