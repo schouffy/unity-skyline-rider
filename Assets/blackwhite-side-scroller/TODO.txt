@@ -16,8 +16,6 @@ X mockup/proto graphique
 
 
 ================== Must have :
-- faire fonctionner à 30 fps + !!!!!!!!!!!!!!
-- Quand je place mon spawn loin en haut de la map, boucle infinie
 - endroit avec 2 ennemis n'accroche pas, trouver pourquoi.
 - Prefabs / events
 - contrôles manette

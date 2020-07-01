@@ -11,13 +11,13 @@ public class PlayerControls : MonoBehaviour
     public float RunSpeed;
     public float[] SpeedSteps;
 
-    
 
     [Header("Debug info (read only)")]
     public float InputSpeed;
     public float StepSpeed;
-    public bool _jump;
     public bool _crouch;
+    public bool _jumpPressed;
+    public bool _jumpProcessed;
 
     void Start()
     {
@@ -31,17 +31,25 @@ public class PlayerControls : MonoBehaviour
         StepSpeed = SpeedSteps.ClosestTo(Mathf.Abs(InputSpeed)) * (InputSpeed > 0 ? 1 : -1);
         _horizontalMove = StepSpeed * RunSpeed;
 
-        _jump = Input.GetButtonDown("Jump");
-        _crouch = Input.GetButton("Crouch");
+        if (!_jumpPressed || _jumpProcessed)
+        {
+            _jumpPressed = Input.GetButtonDown("Jump");
+            if (_jumpPressed)
+                _jumpProcessed = false;
     }
 
     void FixedUpdate()
     {
+        _jumpProcessed = false;
         if (_controller.enabled)
-            _controller.Move(_horizontalMove * Time.fixedDeltaTime, _crouch, _jump);
-        else if (_slidingController.enabled && _jump)
+            _controller.Move(_horizontalMove * Time.fixedDeltaTime, _crouch, _jumpPressed);
+        else if (_slidingController.enabled && _jumpPressed)
             _slidingController.Jump();
 
-        _jump = false;
+        if (_jumpPressed)
+        {
+            _jumpPressed = false;
+            _jumpProcessed = true;
+        }
     }
 }

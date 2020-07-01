@@ -46,8 +46,8 @@ public class WeatherManager : MonoBehaviour
             if (hitInfo.collider != null)
             {
                 Instantiate(RaindropHitGroundPrefab, hitInfo.point, Quaternion.identity);
-                yield return new WaitForSeconds(1f / RaindropsSpawnRate);
             }
+            yield return new WaitForSeconds(1f / RaindropsSpawnRate);
         }
     }
 }

@@ -36,12 +36,4 @@ public class Player : MonoBehaviour
         IsAiming = isAiming;
         IsAimingRight = mouseScreenPosition.x >= transform.position.x;
     }
-
-    float AngleToBlendingAngle()
-    {
-        var mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var angle = Vector2.Angle(Vector2.down, mouseScreenPosition - transform.position);
-
-        return angle / 180f;
-    }
 }
