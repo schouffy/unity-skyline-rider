@@ -96,6 +96,7 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Sounds")]
     public AudioClip FallsHigh;
+    public AudioClip ClimbSfx;
 
     private void Awake()
     {
@@ -433,6 +434,7 @@ public class CharacterController2D : MonoBehaviour
             m_Rigidbody2D.velocity = Vector2.zero;
             var targetPosition = new Vector2(transform.position.x, transform.position.y + (m_Grounded ? MaxClimbDistanceIfObstacleIsTooHigh : MaxClimbDistanceAfterJumpIfObstacleIsTooHigh));
             StartCoroutine(MoveToTargetPosition(targetPosition));
+            GetComponent<AudioSource>().PlayOneShot(ClimbSfx);
             OnClimbStartEvent.Invoke(obstacleSize);
         }
         else
@@ -446,6 +448,7 @@ public class CharacterController2D : MonoBehaviour
                 // animate to this location
                 m_Rigidbody2D.velocity = Vector2.zero;
                 StartCoroutine(MoveToTargetPosition(hit.point));
+                GetComponent<AudioSource>().PlayOneShot(ClimbSfx);
                 OnClimbStartEvent.Invoke(obstacleSize);
             }
         }

@@ -35,4 +35,9 @@ public class DeathScreen : MonoBehaviour
             yield return null;
         }
     }
+
+    public void PlaySound()
+    {
+        GetComponent<AudioSource>().Play();
+    }
 }

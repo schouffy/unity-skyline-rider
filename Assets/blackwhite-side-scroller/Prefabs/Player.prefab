@@ -751,6 +751,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   FallsHigh: {fileID: 8300000, guid: 76403b86dd73f794b927eb405eb5ba45, type: 3}
+  ClimbSfx: {fileID: 8300000, guid: 79de256383fc3d54499e16a90fedd7e7, type: 3}
 --- !u!114 &7212177298887007251
 MonoBehaviour:
   m_ObjectHideFlags: 0

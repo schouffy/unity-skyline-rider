@@ -13,6 +13,8 @@ public class FinishScreen : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnKeyPress;
 
+    public AudioClip Sound;
+
     private void Start()
     {
         if (OnKeyPress == null)
@@ -24,6 +26,7 @@ public class FinishScreen : MonoBehaviour
         String displayCompletionTime = Math.Round(Constants.GameController.GetElapsedTime(), 2) + " seconds";
         StatsText.text = $"Time: {displayCompletionTime}\nDeath count: {Constants.GameController.GetDeathCount()}";
         gameObject.SetActive(true);
+        GetComponent<AudioSource>().PlayOneShot(Sound);
         StartCoroutine(ListenToKeyPress());
     }
 

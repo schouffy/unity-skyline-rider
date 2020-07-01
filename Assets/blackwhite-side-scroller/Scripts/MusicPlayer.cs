@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 // Object.DontDestroyOnLoad example.
@@ -22,6 +23,14 @@ public class MusicPlayer : MonoBehaviour
         {
             instance = this;
             GameObject.DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        foreach (AudioSource audio in GetComponents<AudioSource>().ToArray())
+        {
+            audio.pitch = Time.timeScale;
         }
     }
 }
