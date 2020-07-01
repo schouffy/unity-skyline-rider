@@ -36,6 +36,7 @@ public class PlayerControls : MonoBehaviour
             _jumpPressed = Input.GetButtonDown("Jump");
             if (_jumpPressed)
                 _jumpProcessed = false;
+        }
     }
 
     void FixedUpdate()

@@ -202,9 +202,8 @@ public class CharacterController2D : MonoBehaviour
             _dieOnLand = false; // Can't die from jumping on steep surfaces
             _isControllable = true;
         }
-        m_Rigidbody2D.simulated = false;
+        //m_Rigidbody2D.simulated = false;
         GetComponent<SlidingCharacterController2D>().enabled = true;
-        GetComponent<SlidingCharacterController2D>().SlideOn(steepGroundToSlideOn);
         Animator.StartSliding();
         enabled = false;
         
@@ -212,7 +211,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void EndSliding(EndSlidingCondition condition)
     {
-        GetComponent<Rigidbody2D>().simulated = true;
+        //GetComponent<Rigidbody2D>().simulated = true;
         GetComponent<SlidingCharacterController2D>().enabled = false;
         enabled = true;
         Animator.EndSliding();
@@ -371,7 +370,9 @@ public class CharacterController2D : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
+            {
                 return false;
+            }
         }
 
         var obstacleSize = ObstacleSize.None;
@@ -411,13 +412,13 @@ public class CharacterController2D : MonoBehaviour
 
     private void ClimbOverObstacle(ObstacleSize obstacleSize, Vector2 obstacleApproxPosition, GameObject obstacleObject)
     {
+        //Debug.Log($"Climb over obstacle {obstacleSize} ({obstacleObject.name}). grounded: {m_Grounded}, climbing: {m_Climbing}, haswalljumped: {_hasWallJumped}, interrupt: {_interruptClimbToJump}");
         _obstacleCurrentlyClimbing = obstacleObject;
 
         if ((obstacleSize == ObstacleSize.Above6 && m_Grounded)
             || (obstacleSize >= ObstacleSize.Above3 && !m_Grounded))
         {
             // if obstacle is too high, we can't go on top of it but we still try to climb it
-
             m_Climbing = true;
             // animate to this location
             m_Rigidbody2D.velocity = Vector2.zero;
@@ -445,6 +446,7 @@ public class CharacterController2D : MonoBehaviour
 
     private IEnumerator MoveToTargetPosition(Vector2 targetPosition)
     {
+        // The character is not moved by physics during climb
         m_Rigidbody2D.simulated = false;
 
         // First go up, then go forward
@@ -462,9 +464,12 @@ public class CharacterController2D : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        // Climbing is over (or cancelled) move it by physics again
         m_Rigidbody2D.simulated = true;
         OnClimbEndEvent.Invoke();
-        yield return new WaitForSeconds(0.3f);
+
+        yield return new WaitForSeconds(0.3f); // player can still input a wall jump for a while so we wait before reading _interruptClimbToJump
+
         _hasWallJumped = _interruptClimbToJump;
         _interruptClimbToJump = false;
         m_Climbing = false;

@@ -16,7 +16,7 @@ X mockup/proto graphique
 
 
 ================== Must have :
-- endroit avec 2 ennemis n'accroche pas, trouver pourquoi.
+- sons et musique
 - Prefabs / events
 - contrôles manette
 		A au lieu de Y pour sauter
@@ -27,7 +27,7 @@ X mockup/proto graphique
 	Société de l'oppression. Personne se fait abattre, laissé pour morte elle laisse tomber un objet et message (à livrer, urgent, adresse, récompense).
 		Joueur ramasse discrétos et le jeu démarre.
 	- écran to be continued pour la fin du jeu
-- sons et musique
+
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 - polish
 - Virer les assets qui servent à rien (particles mais attention à celles que j'utilise)

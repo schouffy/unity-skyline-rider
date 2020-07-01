@@ -12,13 +12,11 @@ public enum EndSlidingCondition
 
 public class SlidingCharacterController2D : MonoBehaviour
 {
-    private Vector2 _destination;
     public float SlideSpeed = 1f;
     public Transform ParticlesSpawnPoint;
     public float ParticlesSpawnInterval;
     private float _lastParticleSpawnTime;
     public GameObject SlidingParticles;
-    private SteepGround _groundCurrentlySlidingOn;
 
     void Update()
     {
@@ -29,11 +27,17 @@ public class SlidingCharacterController2D : MonoBehaviour
             var particle = Instantiate(SlidingParticles, ParticlesSpawnPoint.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
         }
 
-        if (Vector2.Distance(transform.position, _destination) < 1f)
-        {
-            GetComponent<CharacterController2D>().EndSliding(EndSlidingCondition.Fall);
-            _groundCurrentlySlidingOn.DontGoBackCollider.gameObject.SetActive(true);
-        }
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        //if (Vector2.Distance(transform.position, _destination) < 1f)
+        //{
+        //    _groundCurrentlySlidingOn.DontGoBackCollider.gameObject.SetActive(true);
+        //}
+    }
+
+    public void SlideReachedEnd()
+    {
+        GetComponent<CharacterController2D>().EndSliding(EndSlidingCondition.Fall);
     }
 
     void OnDisable()
@@ -44,13 +48,6 @@ public class SlidingCharacterController2D : MonoBehaviour
     void OnEnable()
     {
         Constants.MainCamera.GetComponent<SmoothFollow2D>().SetCameraConfiguration(CameraConfiguration.SlideSteep);
-    }
-
-    public void SlideOn(SteepGround steepGround)
-    {
-        _groundCurrentlySlidingOn = steepGround;
-        _destination = steepGround.SlideDestination.position;
-
     }
 
     public void Jump()
