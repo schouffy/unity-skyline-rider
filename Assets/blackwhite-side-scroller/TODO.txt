@@ -17,17 +17,17 @@ X mockup/proto graphique
 
 ================== Must have :
 - sons et musique
-- Prefabs / events
+
+- écran de démarrage + scénario (en BD pixel art ?)
+	Société de l'oppression. Personne se fait abattre, laissé pour morte elle laisse tomber un objet et message (à livrer, urgent, adresse, récompense).
+		Joueur ramasse discrétos et le jeu démarre.
+	- écran to be continued pour la fin du jeu
 - contrôles manette
 		A au lieu de Y pour sauter
 		D-pad pour diriger aussi
 		pas de blending, 1 allure marche et 1 allure course
 		1 seule allure pour marcher baissé
-- écran de démarrage + scénario (en BD pixel art ?)
-	Société de l'oppression. Personne se fait abattre, laissé pour morte elle laisse tomber un objet et message (à livrer, urgent, adresse, récompense).
-		Joueur ramasse discrétos et le jeu démarre.
-	- écran to be continued pour la fin du jeu
-
+- Prefabs / events
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 - polish
 - Virer les assets qui servent à rien (particles mais attention à celles que j'utilise)

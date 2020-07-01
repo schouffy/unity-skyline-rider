@@ -22,6 +22,7 @@ public class CheckpointTrigger : GameTrigger
         if (collision.gameObject.tag == Constants.TagPlayer)
         {
             GetComponent<Animator>().SetTrigger("activate");
+            GetComponent<AudioSource>().Play();
             OnPlayerEnter.Invoke();
         }
     }

@@ -18,6 +18,7 @@ public class BirdsTrigger : GameTrigger
         if (collision.gameObject.tag == Constants.TagPlayer)
         {
             BirdsParticleSystem.Play();
+            GetComponent<AudioSource>().Play();
             BirdsOnGround.SetActive(false);
             _alreadyFlownAway = true;
         }

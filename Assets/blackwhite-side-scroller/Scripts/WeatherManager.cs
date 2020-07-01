@@ -10,6 +10,8 @@ public class WeatherManager : MonoBehaviour
     public float RaindropsSpawnRate;
     public LayerMask RaindropsHitThese;
 
+    public AudioClip Thunder;
+
     private void Start()
     {
         StartCoroutine(TriggerLightnings());
@@ -24,12 +26,14 @@ public class WeatherManager : MonoBehaviour
     IEnumerator TriggerLightnings()
     {
         yield return new WaitForSeconds(Random.Range(10, 20));
+        GetComponent<AudioSource>().PlayOneShot(Thunder);
         GetComponent<Animator>().SetTrigger("Lightning");
 
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(25, 35));
             GetComponent<Animator>().SetTrigger("Lightning");
+            GetComponent<AudioSource>().PlayOneShot(Thunder);
         }
     }
 
