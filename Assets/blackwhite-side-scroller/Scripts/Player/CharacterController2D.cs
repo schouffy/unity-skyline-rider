@@ -94,6 +94,9 @@ public class CharacterController2D : MonoBehaviour
     public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
+    [Header("Sounds")]
+    public AudioClip FallsHigh;
+
     private void Awake()
     {
         _isControllable = true;
@@ -172,6 +175,7 @@ public class CharacterController2D : MonoBehaviour
         if (!m_Grounded && -m_Rigidbody2D.velocity.y > MaxVerticalVelocityBeforeFallIsFatal && !_dieOnLand)
         {
             Debug.Log("fatal fall + " + (-m_Rigidbody2D.velocity.y));
+            GetComponent<AudioSource>().PlayOneShot(FallsHigh);
             _isControllable = false;
             _dieOnLand = true;
             Animator.StartFatalFall();
@@ -198,6 +202,11 @@ public class CharacterController2D : MonoBehaviour
         if (_dieOnLand)
         {
             Debug.Log("Cancelling fatal fall");
+            var audio = GetComponent<AudioSource>();
+            if (audio.clip == FallsHigh)
+            {
+                audio.Stop();
+            }
             Animator.CancelFatalFall();
             _dieOnLand = false; // Can't die from jumping on steep surfaces
             _isControllable = true;

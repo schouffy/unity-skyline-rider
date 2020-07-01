@@ -17,6 +17,8 @@ X mockup/proto graphique
 
 ================== Must have :
 - sons et musique
+	- arrêter de courir quand je suis arrivé à la fin
+	- fade in et out la musique au début et à la fin des niveaux
 
 - écran de démarrage + scénario (en BD pixel art ?)
 	Société de l'oppression. Personne se fait abattre, laissé pour morte elle laisse tomber un objet et message (à livrer, urgent, adresse, récompense).

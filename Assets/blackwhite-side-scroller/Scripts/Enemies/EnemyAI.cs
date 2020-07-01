@@ -33,6 +33,11 @@ public class EnemyAI : MonoBehaviour
     private int SuspicionDecreaseRate = 3;
     public Renderer ModelRenderer;
 
+    [Header("Sounds")]
+    public AudioClip Gunfire;
+    public AudioClip Mmmmh;
+    public AudioClip Ah;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +89,7 @@ public class EnemyAI : MonoBehaviour
             {
                 if (CanPlayerBeSeen(out _))
                 {
+                    GetComponent<AudioSource>().PlayOneShot(Mmmmh);
                     StartCoroutine(GetSuspicious());
                 }
             }
@@ -150,6 +156,7 @@ public class EnemyAI : MonoBehaviour
         }
         else if (SuspicionLevel >= 100)
         {
+            GetComponent<AudioSource>().PlayOneShot(Ah);
             SuspicionLevel = 100;
             Status = EnemyAIStatus.Aiming;
             StartCoroutine(AimContinuouslyAtPlayer());
@@ -207,6 +214,8 @@ public class EnemyAI : MonoBehaviour
         bool isLookingRight = transform.localScale.x > 0;
         var bullet = Instantiate(BulletPrefab, WeaponTip.position, Quaternion.identity);
         bullet.transform.right = whereToShoot - (Vector2)WeaponTip.position;
+
+        GetComponent<AudioSource>().PlayOneShot(Gunfire);
 
         Animator.SetTrigger("Shoot");
     }

@@ -8,7 +8,7 @@ public class PlayerRagdoll : MonoBehaviour
 
     public void CopyPose(Transform rigRoot)
     {
-        Debug.Log("copy all transforms according to bone name");
+        //Debug.Log("copy all transforms according to bone name");
     }
 
     public void AddForce(Vector3 force)

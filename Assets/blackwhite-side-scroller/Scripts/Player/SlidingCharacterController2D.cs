@@ -17,6 +17,13 @@ public class SlidingCharacterController2D : MonoBehaviour
     public float ParticlesSpawnInterval;
     private float _lastParticleSpawnTime;
     public GameObject SlidingParticles;
+    private AudioSource _audio;
+    public AudioClip Sliding;
+
+    private void Awake()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -43,11 +50,16 @@ public class SlidingCharacterController2D : MonoBehaviour
     void OnDisable()
     {
         Constants.MainCamera.GetComponent<SmoothFollow2D>().SetCameraConfiguration(CameraConfiguration.Default);
+        _audio.loop = false;
+        _audio.Stop();
     }
 
     void OnEnable()
     {
         Constants.MainCamera.GetComponent<SmoothFollow2D>().SetCameraConfiguration(CameraConfiguration.SlideSteep);
+        _audio.loop = true;
+        _audio.clip = Sliding;
+        _audio.Play();
     }
 
     public void Jump()

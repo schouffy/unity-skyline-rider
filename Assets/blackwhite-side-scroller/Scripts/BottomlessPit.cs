@@ -24,8 +24,7 @@ public class BottomlessPit : GameTrigger
         {
             // stop camera follow
             Camera.main.GetComponent<SmoothFollow2D>().enabled = false;
-
-            // TODO play fall and crash sounds synchronized with fade to black
+            GetComponent<AudioSource>().Play();
 
             OnPlayerEnter.Invoke();
         }
