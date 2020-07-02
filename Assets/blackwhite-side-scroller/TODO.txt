@@ -17,9 +17,7 @@ X mockup/proto graphique
 
 ================== Must have :
 
-- level-3 avec un mélange plateforme et ennemis. Faire des passages un peu plus tricky
-	- habiller avec props
-	- à la fin du level-3, joueur ramasse une arme, recharge classe, vise un ennemi, qui se retourne et le vise aussi, coup de feu sur écran noir, puis écran de fin
+- à la fin du level-3, joueur ramasse une arme, recharge classe, vise un ennemi, qui se retourne et le vise aussi, coup de feu sur écran noir, puis écran de fin
 - écran de fin
 	"to be continued". Et je parle de moi, du contexte, recherche, contact etc...
 
