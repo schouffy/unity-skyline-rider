@@ -19,11 +19,10 @@ X mockup/proto graphique
 
 revoir le bruit des oiseaux
 
-- contrôles manette
 - Séquence de fin
 	- Rendre visible l'arme au sol
 	- Rendre visible l'arme dans les mains quand on la ramasse
-	- contenu écran de fin à vérifier. Parler du devlog, linkedin...
+	- contenu écran de fin à vérifier. Parler du devlog, linkedin, cv, ...
 		- liens cliquables ? https://va.lent.in/opening-links-in-a-unity-webgl-project/
 - écran de démarrage + scénario (en BD pixel art ?). Voir storyboard
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
