@@ -28,7 +28,7 @@ public class RadioHitProjectile : Projectile
             }
             else if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemies"))
             {
-                Debug.Log("TODO projectile hit enemy. Make it die");
+                //Debug.Log("TODO projectile hit enemy. Make it die");
             }
             else
             {

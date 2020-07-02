@@ -33,6 +33,8 @@ public class LevelLoader : MonoBehaviour
     {
         UIAnimator.SetTrigger("Start");
 
+        MusicPlayer.instance?.FinishMusic();
+
         // Leave time for fade to black to happen
         yield return new WaitForSeconds(TransitionTime);
 

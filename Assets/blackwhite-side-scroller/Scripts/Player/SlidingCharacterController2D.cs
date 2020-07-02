@@ -35,11 +35,6 @@ public class SlidingCharacterController2D : MonoBehaviour
         }
 
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
-        //if (Vector2.Distance(transform.position, _destination) < 1f)
-        //{
-        //    _groundCurrentlySlidingOn.DontGoBackCollider.gameObject.SetActive(true);
-        //}
     }
 
     public void SlideReachedEnd()

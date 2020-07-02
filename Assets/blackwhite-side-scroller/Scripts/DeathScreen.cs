@@ -25,6 +25,7 @@ public class DeathScreen : MonoBehaviour
 
     private IEnumerator ListenToKeyPress()
     {
+        yield return new WaitForSeconds(1f);
         while (true)
         {
             if (Input.anyKeyDown)

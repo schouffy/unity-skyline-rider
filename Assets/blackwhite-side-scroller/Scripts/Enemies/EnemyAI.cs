@@ -29,8 +29,8 @@ public class EnemyAI : MonoBehaviour
     public Animator Animator;
     public int SuspicionLevel; // percent
     private float SuspicionLevelFloat; // percent
-    private int SuspicionIncreaseRate = 70; // how much suspicion can change in 0.1 second, if player is at 1 meter distance
-    private int SuspicionDecreaseRate = 3;
+    public int SuspicionIncreaseRate = 70; // how much suspicion can change in 0.1 second, if player is at 1 meter distance
+    public int SuspicionDecreaseRate = 3;
     public Renderer ModelRenderer;
 
     [Header("Sounds")]
@@ -94,9 +94,6 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
-
-        if (!ModelRenderer.isVisible)
-            Status = EnemyAIStatus.Idle; // when enemy is not on screen, player doesn't get shot
     }
 
     bool CanPlayerBeSeen(out Vector2? whereToAim)

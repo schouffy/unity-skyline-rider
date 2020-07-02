@@ -16,25 +16,26 @@ X mockup/proto graphique
 
 
 ================== Must have :
-- sons et musique
-	- arrêter de courir quand je suis arrivé à la fin
-	- fade in et out la musique au début et à la fin des niveaux
 
-- écran de démarrage + scénario (en BD pixel art ?)
-	Société de l'oppression. Personne se fait abattre, laissé pour morte elle laisse tomber un objet et message (à livrer, urgent, adresse, récompense).
-		Joueur ramasse discrétos et le jeu démarre.
-	- écran to be continued pour la fin du jeu
+- level-3 avec un mélange plateforme et ennemis. Faire des passages un peu plus tricky
+	- habiller avec props
+	- à la fin du level-3, joueur ramasse une arme, recharge classe, vise un ennemi, qui se retourne et le vise aussi, coup de feu sur écran noir, puis écran de fin
+- écran de fin
+	"to be continued". Et je parle de moi, du contexte, recherche, contact etc...
+
 - contrôles manette
 		A au lieu de Y pour sauter
 		D-pad pour diriger aussi
 		pas de blending, 1 allure marche et 1 allure course
 		1 seule allure pour marcher baissé
-- Prefabs / events
+- écran de démarrage + scénario (en BD pixel art ?). Voir storyboard
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
-- polish
-- Virer les assets qui servent à rien (particles mais attention à celles que j'utilise)
-- juice : screenshake, léger slow mo/freeze quand on bute un ennemi
-- rendre le repo public
+
+- polish ?
+
+- rendre le repo public / renommer et réorga
+- Se renseigner sur la gestion des Prefabs / events
+- Se renseigner sur comment faire la partie audio "proprement"
 
 
 ================== Nice to have :

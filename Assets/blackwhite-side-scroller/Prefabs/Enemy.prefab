@@ -434,6 +434,8 @@ MonoBehaviour:
     type: 3}
   Animator: {fileID: 7277311990492574798}
   SuspicionLevel: 0
+  SuspicionIncreaseRate: 110
+  SuspicionDecreaseRate: 3
   ModelRenderer: {fileID: 7703000544189523838}
   Gunfire: {fileID: 8300000, guid: a3ff194253452e747863a04b65427f44, type: 3}
   Mmmmh: {fileID: 8300000, guid: 8b02f2c8c401d3e44b067846a87b682e, type: 3}
@@ -579,7 +581,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.334255, y: 1.194828}
+  m_Offset: {x: 4.58206, y: 1.194828}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -590,7 +592,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 12.978699, y: 7.5510025}
+  m_Size: {x: 11.474308, y: 7.5510025}
   m_EdgeRadius: 0
 --- !u!114 &7277311990280841450
 MonoBehaviour:

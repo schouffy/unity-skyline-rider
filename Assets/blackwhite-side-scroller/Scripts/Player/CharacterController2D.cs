@@ -254,8 +254,15 @@ public class CharacterController2D : MonoBehaviour
         while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, endOfLevelPosition, 4f * Time.deltaTime);
-            Animator.SetSpeed(1.0f);
+            Animator.SetSpeed(1);
             yield return null;
+
+            // Stop running when reaching the end
+            if (Vector2.Distance(transform.position, endOfLevelPosition) < 0.1f)
+            {
+                Animator.SetSpeed(0);
+                break;
+            }
         }
     }
 

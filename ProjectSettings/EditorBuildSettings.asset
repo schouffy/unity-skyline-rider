@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/blackwhite-side-scroller/level-2.unity
     guid: cc7c538aa0042bc4b960039d090e0f9f
+  - enabled: 1
+    path: Assets/blackwhite-side-scroller/level-3.unity
+    guid: 8b68e8927301f5c44b4cb862a0fd17b6
   m_configObjects: {}

@@ -237,3 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9287db4f4b80d5848a5d7a170d708a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetMusicVolume: 0.5
+  AudioFadeSpeed: 1
+  MusicSource: {fileID: 5332704480670551054}
