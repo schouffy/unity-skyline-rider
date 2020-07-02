@@ -17,15 +17,14 @@ X mockup/proto graphique
 
 ================== Must have :
 
-- à la fin du level-3, joueur ramasse une arme, recharge classe, vise un ennemi, qui se retourne et le vise aussi, coup de feu sur écran noir, puis écran de fin
-- écran de fin
-	"to be continued". Et je parle de moi, du contexte, recherche, contact etc...
-
+- Séquence de fin
+	- Rendre visible l'arme au sol
+	- Rendre visible l'arme dans les mains quand on la ramasse
+	- contenu écran de fin à vérifier. Parler du devlog, linkedin...
 - contrôles manette
 		A au lieu de Y pour sauter
 		D-pad pour diriger aussi
 		pas de blending, 1 allure marche et 1 allure course
-		1 seule allure pour marcher baissé
 - écran de démarrage + scénario (en BD pixel art ?). Voir storyboard
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 
