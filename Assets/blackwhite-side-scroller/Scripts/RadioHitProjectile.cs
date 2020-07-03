@@ -22,11 +22,11 @@ public class RadioHitProjectile : Projectile
         {
             StartCoroutine(RenderBulletPath(hitInfo.point));
 
-            if (hitInfo.collider.gameObject.tag == Constants.TagPlayer)
+            if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer(Constants.LayerPlayer))
             {
                 hitInfo.collider.gameObject.GetComponentInParent<PlayerAttackable>().GetHitByBullet(this, hitInfo.point);
             }
-            else if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+            else if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer(Constants.LayerPlayer))
             {
                 //Debug.Log("TODO projectile hit enemy. Make it die");
             }

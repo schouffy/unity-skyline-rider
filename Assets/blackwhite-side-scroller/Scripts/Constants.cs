@@ -13,6 +13,9 @@ namespace Assets.blackwhite_side_scroller.Scripts
         public static String TagGameController => "GameController";
         public static String TagMainCamera => "MainCamera";
 
+        public static String LayerPlayer => "Player";
+        public static String LayerEnemies => "Enemies";
+
         public static GameObject Player => GameObject.FindWithTag(TagPlayer);
         public static GameController GameController => GameObject.FindWithTag(TagGameController).GetComponent<GameController>();
         public static GameObject MainCamera => GameObject.FindWithTag(TagMainCamera);

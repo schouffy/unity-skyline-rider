@@ -12775,16 +12775,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 784812342}
     m_Modifications:
-    - target: {fileID: 4824850489225185897, guid: f56f1f71e6e99274db162f625fc7e4cf,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4824850489225185897, guid: f56f1f71e6e99274db162f625fc7e4cf,
-        type: 3}
-      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
-      value: 1.018
-      objectReference: {fileID: 0}
     - target: {fileID: 6159654974102791780, guid: f56f1f71e6e99274db162f625fc7e4cf,
         type: 3}
       propertyPath: m_Name
@@ -13023,12 +13013,12 @@ PrefabInstance:
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.69
+      value: 7.81
       objectReference: {fileID: 0}
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -63.63
+      value: -63.56
       objectReference: {fileID: 0}
     - target: {fileID: 7212177298887007250, guid: c633579c67b450f45802a18a5b6e8707,
         type: 3}

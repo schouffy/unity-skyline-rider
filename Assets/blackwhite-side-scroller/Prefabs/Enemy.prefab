@@ -427,7 +427,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   Status: 0
-  AimTimeBeforeShoot: 1
+  AimTimeBeforeShoot: 0.75
   WeaponTip: {fileID: 7277311990542180346}
   AimOrigin: {fileID: 7544120742504572545}
   BulletPrefab: {fileID: 4680399479194675349, guid: e3d58cdf054d2704a89ac34519d73407,

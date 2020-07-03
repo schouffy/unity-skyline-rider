@@ -28,14 +28,10 @@ public class EndCutscene : GameTrigger
     {
         if (collision.gameObject.tag == Constants.TagPlayer)
         {
-            Debug.Log("Start cutscene");
             // disable player
             Player.SetActive(false);
             // enable scripted player
             ScriptedPlayer.SetActive(true);
-
-            // lerp camera to correct position
-            
         }
     }
 

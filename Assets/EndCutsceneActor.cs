@@ -7,10 +7,14 @@ public class EndCutsceneActor : MonoBehaviour
 {
     public UnityEvent OnReloadEnd;
     public AudioClip Reload;
-    
+
+    public GameObject WeaponOnGround;
+    public GameObject WeaponInHand;
+
     public void GunAcquired()
     {
-        Debug.Log("Gun acquired");
+        WeaponOnGround?.SetActive(false);
+        WeaponInHand?.SetActive(true);
     }
 
     public void ReloadStart()

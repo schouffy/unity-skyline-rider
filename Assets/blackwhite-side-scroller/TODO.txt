@@ -17,15 +17,13 @@ X mockup/proto graphique
 
 ================== Must have :
 
-revoir le bruit des oiseaux
-
 - Séquence de fin
-	- Rendre visible l'arme au sol
-	- Rendre visible l'arme dans les mains quand on la ramasse
 	- contenu écran de fin à vérifier. Parler du devlog, linkedin, cv, ...
 		- liens cliquables ? https://va.lent.in/opening-links-in-a-unity-webgl-project/
 - écran de démarrage + scénario (en BD pixel art ?). Voir storyboard
+	- PS use the rooftops it's safer. Safer huh ?
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
+- le feeling sur l'anim de course est pas génial encore, y a un ptit côté constipé qui traine encore  (le cul trop en arrière ? ou alors c'est parce qu'il manque une ptite anim de démarrage de course peut-être ?)
 
 - polish ?
 
