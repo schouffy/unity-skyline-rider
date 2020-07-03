@@ -43,6 +43,12 @@ public class MusicPlayer : MonoBehaviour
         StartCoroutine(StartFade(MusicSource, AudioFadeSpeed, TargetMusicVolume));
     }
 
+    public void PlayMusic(AudioClip clip)
+    {
+        MusicSource.clip = clip;
+        MusicSource.Play();
+    }
+
     public void FinishMusic()
     {
         StartCoroutine(_FinishMusic());

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/blackwhite-side-scroller/level-0.unity
+    guid: ee9f3a0f209732e498de0d9ce4273a6b
+  - enabled: 1
     path: Assets/blackwhite-side-scroller/level-1.unity
     guid: cbc326875a72f474abf400c84fe6947c
   - enabled: 1

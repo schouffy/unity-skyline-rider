@@ -6,10 +6,27 @@ public class IntroCutscene : MonoBehaviour
 {
     public GameObject Player;
     public LevelLoader LevelLoader;
+    public AudioClip DeadGuyHitsGroundSound;
+    public AudioClip DramaticMusic;
+    public AudioClip RollingTinCanSound;
+    public AudioClip ElevatorButtonSound;
+    public AudioClip ElevatorOpensSound;
+    public AudioClip ElevatorClosesSound;
+
+    public void DeadGuyHitsGround()
+    {
+        GetComponent<AudioSource>().PlayOneShot(DeadGuyHitsGroundSound);
+        MusicPlayer.instance.PlayMusic(DramaticMusic);
+    }
 
     public void PlayerReactFromDeadGuy()
     {
         Player.GetComponent<Animator>().SetFloat("AnimSpeed", 1);
+    }
+
+    public void TinCanRollsToPlayer()
+    {
+        GetComponent<AudioSource>().PlayOneShot(RollingTinCanSound);
     }
 
     public void PlayerLooksAtDeadGuy()
@@ -22,20 +39,24 @@ public class IntroCutscene : MonoBehaviour
         Player.GetComponent<Animator>().SetFloat("AnimSpeed", 1);
     }
 
+    public void PlayerPushesElevatorButton()
+    {
+        GetComponent<AudioSource>().PlayOneShot(ElevatorButtonSound);
+    }
+
     public void ElevatorOpens()
     {
-
+        GetComponent<AudioSource>().PlayOneShot(ElevatorOpensSound);
     }
 
     public void PlayerEntersElevator()
     {
-        Debug.Log("PlayerEntersElevator");
         Player.GetComponent<Animator>().SetFloat("AnimSpeed", 1);
     }
 
     public void ElevatorCloses()
     {
-
+        GetComponent<AudioSource>().PlayOneShot(ElevatorClosesSound);
     }
 
     public void LevelEnds()
