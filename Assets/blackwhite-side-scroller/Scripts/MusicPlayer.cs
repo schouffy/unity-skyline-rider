@@ -56,8 +56,8 @@ public class MusicPlayer : MonoBehaviour
 
     IEnumerator _FinishMusic()
     {
+        Destroy(gameObject, AudioFadeSpeed - 0.05f);
         yield return StartFade(MusicSource, AudioFadeSpeed, 0);
-        Destroy(gameObject);
     }
 
     static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)

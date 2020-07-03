@@ -12,6 +12,12 @@ public class IntroCutscene : MonoBehaviour
     public AudioClip ElevatorButtonSound;
     public AudioClip ElevatorOpensSound;
     public AudioClip ElevatorClosesSound;
+    public AudioSource CarsSounds;
+
+    public void CameraApproachingStreet()
+    {
+        CarsSounds.volume = 0.2f;
+    }
 
     public void DeadGuyHitsGround()
     {

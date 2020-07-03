@@ -17,6 +17,9 @@ X mockup/proto graphique
 
 ================== Must have :
 
+Le perso disparait quand je me fais tirer dessus ??
+musique redémarre parfois pas quand je passe un niveau
+
 - écran de démarrage + scénario (en BD pixel art ?). Voir storyboard
 	- PS use the rooftops it's safer. Safer huh ?
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
