@@ -17,9 +17,6 @@ X mockup/proto graphique
 
 ================== Must have :
 
-- Séquence de fin
-	- contenu écran de fin à vérifier. Parler du devlog, linkedin, cv, ...
-		- liens cliquables ? https://va.lent.in/opening-links-in-a-unity-webgl-project/
 - écran de démarrage + scénario (en BD pixel art ?). Voir storyboard
 	- PS use the rooftops it's safer. Safer huh ?
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
@@ -28,8 +25,15 @@ X mockup/proto graphique
 - polish ?
 
 - rendre le repo public / renommer et réorga
+- fiche itch.io
+- cv
+- devlog
 - Se renseigner sur la gestion des Prefabs / events
 - Se renseigner sur comment faire la partie audio "proprement"
+
+- Séquence de fin
+	- contenu écran de fin à vérifier. Parler du devlog, linkedin, cv, ...
+		- liens cliquables ? https://va.lent.in/opening-links-in-a-unity-webgl-project/
 
 
 ================== Nice to have :
