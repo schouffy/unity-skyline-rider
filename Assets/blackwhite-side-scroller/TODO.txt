@@ -23,6 +23,7 @@ X mockup/proto graphique
 - le feeling sur l'anim de course est pas génial encore, y a un ptit côté constipé qui traine encore  (le cul trop en arrière ? ou alors c'est parce qu'il manque une ptite anim de démarrage de course peut-être ?)
 
 - polish ?
+	- voir feedback
 
 - rendre le repo public / renommer et réorga
 - fiche itch.io
