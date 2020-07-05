@@ -18,11 +18,7 @@ X mockup/proto graphique
 ================== Must have :
 
 - Trouver un nom
-- Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
 - rendre le repo public / renommer et réorga
-
-- polish ?
-
 - mettre en place devlog sur tumblr
 - cv
 - fiche itch.io
