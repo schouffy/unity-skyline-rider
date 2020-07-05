@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IntroCutscene : MonoBehaviour
 {
@@ -13,6 +14,44 @@ public class IntroCutscene : MonoBehaviour
     public AudioClip ElevatorOpensSound;
     public AudioClip ElevatorClosesSound;
     public AudioSource CarsSounds;
+    public Text UIHoldSpaceToSkip;
+
+
+    private float? _spacePressedSinceTime;
+    private float? _promptLastRequestAtTime;
+    private Color _uiColor;
+
+    private void Start()
+    {
+        _uiColor = UIHoldSpaceToSkip.color;
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.anyKeyDown)
+        {
+            UIHoldSpaceToSkip.color = new Color(_uiColor.r, _uiColor.g, _uiColor.b, 1);
+            _promptLastRequestAtTime = Time.time;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                _spacePressedSinceTime = Time.time;
+            }
+        }
+        if (!Input.GetButton("Jump"))
+        {
+            _spacePressedSinceTime = null;
+        }
+        if (!Input.anyKey)
+        {
+            if (Time.time > _promptLastRequestAtTime + 0.5f)
+                UIHoldSpaceToSkip.color = new Color(_uiColor.r, _uiColor.g, _uiColor.b, 0);
+        }
+        if (_spacePressedSinceTime.HasValue && Time.time - _spacePressedSinceTime > 2f)
+        {
+            LevelEnds();
+        }
+    }
 
     public void CameraApproachingStreet()
     {

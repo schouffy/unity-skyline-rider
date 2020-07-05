@@ -17,13 +17,10 @@ X mockup/proto graphique
 
 ================== Must have :
 
-- pouvoir skip intro
 - voir feedback
 - Trouver un nom
 - le feeling sur l'anim de course est pas génial encore, y a un ptit côté constipé qui traine encore  (le cul trop en arrière ? ou alors c'est parce qu'il manque une ptite anim de démarrage de course peut-être ?)
 - Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
-- Séquence de fin
-	- mentionner "plus de details sur la fiche itch.io"
 - rendre le repo public / renommer et réorga
 
 - polish ?
