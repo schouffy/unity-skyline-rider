@@ -17,27 +17,25 @@ X mockup/proto graphique
 
 ================== Must have :
 
-Le perso disparait quand je me fais tirer dessus ??
-musique redémarre parfois pas quand je passe un niveau
-
-- écran de démarrage + scénario (en BD pixel art ?). Voir storyboard
-	- PS use the rooftops it's safer. Safer huh ?
-- Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
+- pouvoir skip intro
+- voir feedback
+- Trouver un nom
 - le feeling sur l'anim de course est pas génial encore, y a un ptit côté constipé qui traine encore  (le cul trop en arrière ? ou alors c'est parce qu'il manque une ptite anim de démarrage de course peut-être ?)
+- Les anims de grimpe sont pas géniales. Réessayer root motion pour l'escalade ? Ou tenter avec de l'IK ?
+- Séquence de fin
+	- mentionner "plus de details sur la fiche itch.io"
+- rendre le repo public / renommer et réorga
 
 - polish ?
-	- voir feedback
 
-- rendre le repo public / renommer et réorga
-- fiche itch.io
+- mettre en place devlog sur tumblr
 - cv
-- devlog
+- fiche itch.io
+
 - Se renseigner sur la gestion des Prefabs / events
 - Se renseigner sur comment faire la partie audio "proprement"
 
-- Séquence de fin
-	- contenu écran de fin à vérifier. Parler du devlog, linkedin, cv, ...
-		- liens cliquables ? https://va.lent.in/opening-links-in-a-unity-webgl-project/
+
 
 
 ================== Nice to have :

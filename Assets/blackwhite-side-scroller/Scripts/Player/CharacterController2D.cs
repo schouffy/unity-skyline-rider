@@ -447,10 +447,14 @@ public class CharacterController2D : MonoBehaviour
         else
         {
             // identify where to land on the obstacle
-            var hit = Physics2D.Raycast(obstacleApproxPosition + Vector2.up * 3, Vector3.down, 5, m_WhatIsGround);
-            Debug.DrawRay(obstacleApproxPosition + Vector2.up * 3, Vector3.down * 5);
+            var hit = Physics2D.Raycast(obstacleApproxPosition + Vector2.up * 2, Vector3.down, 5, m_WhatIsGround);
+            Debug.DrawRay(obstacleApproxPosition + Vector2.up * 2, Vector3.down * 5, Color.white, 2f);
             if (hit.collider != null)
             {
+                Debug.DrawLine(new Vector3(hit.point.x - 1, hit.point.y, 1), new Vector3(hit.point.x + 1, hit.point.y, 1), Color.red, 2f);
+                Debug.DrawLine(new Vector3(hit.point.x, hit.point.y - 1, 1), new Vector3(hit.point.x, hit.point.y + 1, 1), Color.red, 2f);
+                
+                //Debug.Log("position to reach : " + hit.point);
                 m_Climbing = true;
                 // animate to this location
                 m_Rigidbody2D.velocity = Vector2.zero;
