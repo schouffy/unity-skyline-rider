@@ -32,25 +32,3 @@ squintik
 - globalement d'ailleurs, je trouve que c'est un peu mou. Je pense que t'y gagnerais à augmenter un peu la vitesse du perso, et adapter le level design pour que ça colle 
 avec (je sais pas quel temps tu as passé sur cette partie, mais même si ton challenge c'est faire un proto en 30 jours, s'assurer que le contrôle du joueur est le 
 plus satisfaisant possible mérite pas mal de temps vu le proto)
-
-
-
-
-for the intro level I would probably have checkpoints closer to where players are likely to fail
-for example I failed twice at the last jump timing obstacle
-and felt it a bit too long to get back to retrying
-
-the help text displayed does not stay long enough to be read
-
-Played it as well. I gotta say, I really like the art, but there's a constant pixel flickering effect on the side of sprites that looks really distracting
-The tutorials should stop the player as well
-At some point I actually Ran through a tutorial and went down a slope by error and couldnt get back up and read it
-so I'd advise stopping the player and having a Space to continue prompt
-
-Fix the tutorial and checkpoint problem, the flickering problem, (and maybe add a slope jump animation? It really felt like there should've been a special animation when doing slope jumps) and you've got a good showcase game!
-
-tried the game as well :slight_smile: promissing so far but I'll say the same things as above : the character's animation lacks a bit of dynamism, 
-his legs are a bit too much back so he looks more like an old man walking that someone running. Waypoints would be better placed right before where 
-there is a challenging area (that could lead to death) and it could be a good idea to introduce the player with the new mechanics in a safe environment 
-(where he can't die) before challenging him with a real obstacle to test his skills. Good luck on your journey :wink:
-
