@@ -28,6 +28,6 @@ Sounds are from https://assetstore.unity.com/packages/audio/sound-fx/universal-s
 
 Musics are from https://assetstore.unity.com/packages/audio/music/orchestral/ultimate-game-music-collection-37351
 
-#License
+# License
 
 Do whatever you want with the code or assets EXCEPT the sounds and musics, that are part of a Unity Asset Store package i purchased a while back. You can't use those without asking their author.
